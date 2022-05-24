@@ -1,0 +1,27 @@
+.form_wrapper {
+    width: 80%;
+    margin: 0 auto;
+    text-align: center;
+}
+
+
+.title_input {
+    width: 700px;
+    height: 42px;
+    margin-right: 0;
+    margin-bottom: 20px;
+
+}
+
+.submit_button {
+    margin-top: 20px;
+    width: 200px;
+    height: 50px;
+    font-size: 20px;
+    padding: 20px;
+    border: none;
+    background: indianred;
+    border-radius: 5px;
+    line-height: 12px;
+    font-weight: bolder;
+}
