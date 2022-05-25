@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
-import landingStyle from '../LandingPage/LandingPage.module.css';
-import boardStyle from './BoardPage.module.css';
+import '../LandingPage/LandingPage.css';
+import './BoardPage.css';
 import './Editor.css';
 import { CKEditor } from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
@@ -27,15 +27,15 @@ function BoardPage() {
     return (
 
         <div style={{ textAlign: "center" }}>
-            <nav className={landingStyle.navbar}>
-                <ul className={landingStyle.navbar_menu}>
-                    <li className={landingStyle.nav_item}>영화</li>
-                    <li className={landingStyle.nav_item}>음악</li>
-                    <li className={landingStyle.nav_item}>책</li>
-                    <button className={`${landingStyle.landing_btn} ${landingStyle.z5}`} >
+            <nav className='navbar'>
+                <ul className='navbar_menu'>
+                    <li className='nav_item'>영화</li>
+                    <li className='nav_item'>음악</li>
+                    <li className='nav_item'>책</li>
+                    <button className='landing_btn z5'>
                         로그아웃
                     </button>
-                    <button className={`${landingStyle.landing_btn} ${landingStyle.z5}`} >
+                    <button className='landing_btn z5'>
                         마이페이지
                     </button>
                 </ul>
@@ -52,9 +52,9 @@ function BoardPage() {
 
             <h1>게시판</h1>
 
-            <div className={boardStyle.form_wrapper}>
+            <div className='form_wrapper'>
                 <span>제목 : </span>
-                <input className={boardStyle.title_input}
+                <input className='title_input'
                     type='text'
                     placeholder='제목'
                     onChange={getValue}

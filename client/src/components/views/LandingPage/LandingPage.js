@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios';
 import { withRouter } from 'react-router-dom';
-import landingStyle from './LandingPage.module.css';
+import './LandingPage.css';
 
 function LandingPage(props) {
 
@@ -25,25 +25,25 @@ function LandingPage(props) {
     return (
         <div>
 
-            <div className={landingStyle.back}></div>
+            <div className='back'></div>
 
-            <nav className={landingStyle.navbar}>
-                <ul className={landingStyle.navbar_menu}>
-                    <li className={landingStyle.nav_item}>영화</li>
-                    <li className={landingStyle.nav_item}>음악</li>
-                    <li className={landingStyle.nav_item}>책</li>
-                    <button className={`${landingStyle.landing_btn} ${landingStyle.z5}`} onClick={onClickHandler}>
+            <nav className='navbar'>
+                <ul className='navbar_menu'>
+                    <li className='nav_item'>영화</li>
+                    <li className='nav_item'>음악</li>
+                    <li className='nav_item'>책</li>
+                    <button className='landing_btn z5' onClick={onClickHandler}>
                         로그아웃
                     </button>
-                    <button className={`${landingStyle.landing_btn} ${landingStyle.z5}`} onClick={onClickMypage}>
+                    <button className='landing_btn z5' onClick={onClickMypage}>
                         마이페이지
                     </button>
                 </ul>
             </nav>
-            <div className={`${landingStyle.list_content} ${landingStyle.z5} ${landingStyle.container} ${landingStyle.mt_5}`}>
+            <div className='list_content z5 container mt_5'>
                 <h4>영화 추천</h4>
-                <div className={landingStyle.content}></div>
-                <p className={landingStyle.content_p}>보스베이비 블라블랄~~~~~~~~~~</p>
+                <div className='content'></div>
+                <p className='content_p'>보스베이비 블라블랄~~~~~~~~~~</p>
             </div>
 
 

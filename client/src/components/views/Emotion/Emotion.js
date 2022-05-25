@@ -7,7 +7,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Switch from 'react-switch';
 import Camera from '../Camera/Camera';
 
-import '../../../App.css';
+import './Emotion.css';
 createFaLibrary();
 loadModels();
 

@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { useDispatch } from 'react-redux';
 import { registerUser } from '../../../_actions/user_action';
 import { Link, withRouter } from 'react-router-dom';
-import registerStyle from './RegisterPage.module.css';
+import './RegisterPage.css';
 
 
 function RegisterPage(props) {
@@ -45,7 +45,7 @@ function RegisterPage(props) {
         dispatch(registerUser(body))
             .then(response => {
                 if (response.payload.success) {
-                    props.history.push("/login")
+                    props.history.push("/")
                 } else {
                     alert("Failed to sign up")
                 }
@@ -55,11 +55,11 @@ function RegisterPage(props) {
 
 
     return (
-        <div className={registerStyle.register_background} >
-            <div className={registerStyle.register_page}>
-                <h1 className={registerStyle.register_title}>Apple</h1>
-                <div className={registerStyle.form}>
-                    <form className={registerStyle.register_form} onSubmit={onSubmitHandler}>
+        <div className='register__background'>
+            <div className='register__page'>
+                <h1 className='register__title'>Apple</h1>
+                <div className='form'>
+                    <form className='register__form' onSubmit={onSubmitHandler}>
                         <input type="email" value={Email} onChange={onEmailHandler} placeholder="Email" />
                         <input type="text" value={Name} onChange={onNameHandler} placeholder="Name" />
                         <input type="password" value={Password} onChange={onPasswordHandler} placeholder="Password" />
@@ -67,7 +67,7 @@ function RegisterPage(props) {
                         <button type="submit">
                             회원 가입
                         </button>
-                        <p className={registerStyle.message}>Already registered? <Link to={'/'}>Sign In</Link></p>
+                        <p className='register__message'>Already registered? <Link to={'/'}>Sign In</Link></p>
                     </form>
                 </div>
             </div>

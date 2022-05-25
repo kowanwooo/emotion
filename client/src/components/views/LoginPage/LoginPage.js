@@ -1,10 +1,13 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useDispatch } from 'react-redux';
 import { loginUser } from '../../../_actions/user_action';
 import { Link, withRouter } from 'react-router-dom';
-import loginStyle from "./LoginPage.module.css"
+import "./LoginPage.css"
+
 
 function LoginPage(props) {
+
+
     const dispatch = useDispatch();
 
     const [Email, setEmail] = useState("")
@@ -40,10 +43,10 @@ function LoginPage(props) {
 
 
     return (
-        <div className={loginStyle.login_background} >
-            <div className={loginStyle.login_page}>
-                <h1 className={loginStyle.login_title}>Apple</h1>
-                <div className={loginStyle.form}>
+        <div className='login__background'>
+            <div className='login__page'>
+                <h1 className='login__title'>Apple</h1>
+                <div className='login__form'>
                     <form onSubmit={onSubmitHandler}>
                         <input type="email" value={Email} onChange={onEmailHandler} placeholder="email" />
                         <input type="password" value={Password} onChange={onPasswordHandler} placeholder="password" />
@@ -51,7 +54,7 @@ function LoginPage(props) {
                         <button type="submit">
                             Login
                         </button>
-                        <p className={loginStyle.message}>Not registered? <Link to="/register">Create an account</Link></p>
+                        <p className='login__message'>Not registered? <Link to="/register">Create an account</Link></p>
                     </form>
                 </div>
                 <button><Link to={'/register'}>register</Link></button>
