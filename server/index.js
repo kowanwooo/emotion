@@ -113,16 +113,25 @@ app.get('/api/users/mypage', auth, (req, res) => {
     })
 
 });
-
-//----------------------------board crud
+//---------------------------------------------------------------------
+//----------------------------board crud-------------------------------
+//---------------------------------------------------------------------
 // 게시글 추가하기
 app.post('/api/board/create', (req, res) => {
-    const board = new Board(req.body)
+    const board = new Board(req.body);
 
-    board.save((err, doc) => {
-        if (err) return res.status(400).send(err);
-        else res.status(200).json({ success: true, doc: doc })
-    });
+    board.save((err, board) => {
+        if (err) return res.json({ success: false, err })
+        return res.status(200).json({
+            success: true
+        })
+    })
+    console.log(board)
+    console.log(req.body.title)
+    // board.save((err, doc) => {
+    //     if (err) return res.status(400).send(err);
+    //     else res.status(200).json({ success: true, doc: doc })
+    // });
 })
 
 // 게시글 삭제

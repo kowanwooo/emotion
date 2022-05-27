@@ -5,6 +5,7 @@ import './Editor.css';
 import { CKEditor } from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import ReactHtmlParser from 'html-react-parser';
+import Axios from 'axios';
 
 function BoardPage() {
 
@@ -14,6 +15,16 @@ function BoardPage() {
     })
 
     const [viewContent, setViewContent] = useState([]);
+
+    const submitReview = () => {
+        Axios.post('/api/board/create', {
+            title: boardTitle.title,
+            content: boardTitle.title
+        }).then((res) => {
+            console.log(res)
+            alert('등록 완료!');
+        })
+    };
 
     const getValue = e => {
         const { name, value } = e.target;
@@ -61,9 +72,7 @@ function BoardPage() {
                     name='title' />
             </div>
             <CkeEditor getValue={getValue} boardTitle={boardTitle} setBoardTitle={setBoardTitle} ></CkeEditor>
-            <button className="btn btn-primary btn-lg" onClick={() => {
-                setViewContent(viewContent.concat({ ...boardTitle }));
-            }}>제출</button>
+            <button className="btn btn-primary btn-lg" onClick={submitReview}>제출</button>
         </div >
     )
 }
@@ -88,7 +97,6 @@ function CkeEditor({ getValue, boardTitle, setBoardTitle }) {
                     })
                     console.log(boardTitle);
                 }}
-
 
             />
         </div>

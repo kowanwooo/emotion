@@ -24,10 +24,10 @@ const boardSchema = mongoose.Schema({
         type: Date,
         default: Date.now
     }
-}, { timestamps: true })
+}, { timestamps: true });
 
 
 
-const Board = mongoose.model('Board', boardSchema);
+const Board = mongoose.model('Boards', boardSchema);
 
-module.exports = { Board }
+module.exports = { Board };
