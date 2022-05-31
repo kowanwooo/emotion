@@ -1,0 +1,43 @@
+.BoardBox {
+    background-color: #fff;
+    color: #353535;
+    font-size: 13px;
+    padding: 14px 12px;
+    border: 1px solid #ddd;
+    margin: 0px -1px -1px -1px;
+}
+
+.BoardUser {
+    display: flex;
+    height: 22px;
+    margin-top: 2px;
+    margin-bottom: 12px;
+    justify-content: space-between;
+}
+
+.BoardUserImg {
+    width: 22px;
+    height: 22px;
+    border-radius: 3px;
+    margin-right: 6px;
+}
+
+.BoardTime {
+    color: #aaa;
+    font-size: 12px;
+    line-height: 22px;
+    padding-left: 8px;
+    text-align: left;
+}
+
+.BoardTitle {
+    font-weight: bold;
+    margin-bottom: 4px;
+}
+
+.BoardContent {
+    font-weight: normal;
+    margin-bottom: 8px;
+    white-space: pre-wrap;
+    overflow-wrap: break-word;
+}

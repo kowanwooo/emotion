@@ -1,38 +1,92 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import '../LandingPage/LandingPage.css';
 import './BoardPage.css';
 import './Editor.css';
 import { CKEditor } from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
-import ReactHtmlParser from 'html-react-parser';
-import Axios from 'axios';
+import axios from 'axios';
+
+import AddBoard from "./Section/AddBoard";
+
 
 function BoardPage() {
 
-    const [boardTitle, setBoardTitle] = useState({
-        title: '',
-        content: ''
+    const userFrom = localStorage.getItem("userId");
+    const writerFrom = localStorage.getItem('userName');
+    const [boardWriter, setBoardWriter] = useState(String(writerFrom));
+    const [inputs, setInput] = useState({
+        boardTitle: '',
+        boardContent: ''
     })
-
     const [viewContent, setViewContent] = useState([]);
 
-    const submitReview = () => {
-        Axios.post('/api/board/create', {
-            title: boardTitle.title,
-            content: boardTitle.title
-        }).then((res) => {
-            console.log(res)
-            alert('등록 완료!');
-        })
+    const [totalPage, settotalPage] = useState(0);     //-------
+    const [currentPage, setcurrentPage] = useState(1); //--------
+    const [Content, setContent] = useState([]); //-------
+
+    const { boardTitle, boardContent } = inputs;
+
+
+    useEffect(() => {
+        FetchBoard();
+        console.log('fetch')
+    }, [currentPage]);
+
+    const FetchBoard = () => {
+        axios
+            .post("api/users/board/getBoard", { page: currentPage })
+            .then((response) => {
+                if (response.data.success) {
+                    setContent(response.data.boards);
+                    settotalPage(Math.ceil(response.data.count / 5));
+                } else {
+                    alert("게시글을 보여줄 수 없습니다.");
+                }
+            });
+    };
+    const onRemove = (id) => {
+        setContent(Content.filter((Content) => Content._id !== id));
+        FetchBoard();
+    };
+
+    const onSubmit = (e) => {
+        e.preventDefault();
+        if (!boardTitle) {
+            alert(`제목을 작성해주세요`);
+            return;
+        } else if (!boardContent) {
+            alert(`내용을 작성해주세요`);
+            return;
+        } else if (boardContent.length > 300) {
+            alert(`내용을 300자 이내로 작성해주세요`);
+            return;
+        }
+        let variables = {
+            userFrom: userFrom,
+            boardTitle: boardTitle,
+            boardContent: boardContent,
+            boardWriter: boardWriter,
+        };
+        axios.post("api/users/board/upload", variables).then((response) => {
+            if (response.status === 200) {
+                setInput({
+                    boardTitle: "",
+                    boardContent: "",
+                });
+                // FetchBoard();
+            } else {
+                alert("게시글 업로드에 실패하였습니다.");
+            }
+        });
     };
 
     const getValue = e => {
         const { name, value } = e.target;
-        setBoardTitle({
-            ...boardTitle,
+        setInput({
+            ...inputs,
             [name]: value
         })
-        console.log(boardTitle);
+        console.log(inputs);
     };
 
     return (
@@ -52,14 +106,23 @@ function BoardPage() {
                 </ul>
             </nav>
 
-            {viewContent.map((element, item) =>
-                <div key={item}>
-                    <h2>{element.title}</h2>
-                    <div key={item}>
-                        {ReactHtmlParser(element.content)}
-                    </div>
-                </div>
-            )}
+            {Content &&
+                Content.map((board, index) => {
+                    return (
+                        <React.Fragment key={index}>
+                            <AddBoard
+                                id={board._id}
+                                user={board.userFrom._id}
+                                time={board.createdAt}
+                                writer={board.boardWriter}
+                                title={board.boardTitle}
+                                content={board.boardContent}
+
+                                onRemove={onRemove}
+                            />
+                        </React.Fragment>
+                    );
+                })}
 
             <h1>게시판</h1>
 
@@ -69,15 +132,15 @@ function BoardPage() {
                     type='text'
                     placeholder='제목'
                     onChange={getValue}
-                    name='title' />
+                    name='boardTitle' />
             </div>
-            <CkeEditor getValue={getValue} boardTitle={boardTitle} setBoardTitle={setBoardTitle} ></CkeEditor>
-            <button className="btn btn-primary btn-lg" onClick={submitReview}>제출</button>
+            <CkeEditor getValue={getValue} inputs={inputs} setInput={setInput} ></CkeEditor>
+            <button className="btn btn-primary btn-lg" onClick={onSubmit}>제출</button>
         </div >
     )
 }
 
-function CkeEditor({ getValue, boardTitle, setBoardTitle }) {
+function CkeEditor({ getValue, inputs, setInput }) {
 
     return (
         <div className='editorWidth'>
@@ -91,11 +154,11 @@ function CkeEditor({ getValue, boardTitle, setBoardTitle }) {
                 onChange={(event, editor) => {
                     const data = editor.getData();
 
-                    setBoardTitle({
-                        ...boardTitle,
-                        content: data
+                    setInput({
+                        ...inputs,
+                        boardContent: data
                     })
-                    console.log(boardTitle);
+                    console.log(inputs);
                 }}
 
             />

@@ -3,8 +3,14 @@ import { withRouter } from 'react-router-dom';
 import { useDispatch } from "react-redux";
 import { logoutUser } from "../../../_actions/user_action";
 import './LandingPage.css';
+import axios from 'axios';
 
 function LandingPage(props) {
+
+    const [User, setUser] = useState({
+        userId: "",
+        userName: "",
+    })
 
     const dispatch = useDispatch();
 
@@ -20,9 +26,20 @@ function LandingPage(props) {
     };
 
     const onClickMypage = () => {
-        props.history.push("/login/mypage")
+        props.history.push("/mypage")
     }
 
+    useEffect(() => {
+        const userFrom = localStorage.getItem("userId");
+        axios.get('api/users/profile', { _id: userFrom })
+            .then((response) => {
+                setUser({
+                    userId: response.data.id,
+                    userName: response.data.name,
+                })
+                window.localStorage.setItem('userName', response.data.name);
+            })
+    }, [])
     return (
         <div>
 

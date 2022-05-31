@@ -30,8 +30,8 @@ function App() {
         <Route exact path="/login" component={Auth(LandingPage, true)} />
         <Route exact path="/emotion" component={Auth(Emotion, null)} />
         <Route exact path="/register" component={Auth(RegisterPage, null)} />
-        <Route exact path="/login/mypage" component={Auth(MyPage, null)} />
-        <Route exact path="/login/board" component={Auth(BoardPage, null)} />
+        <Route exact path="/mypage" component={Auth(MyPage, null)} />
+        <Route exact path="/board" component={Auth(BoardPage, null)} />
       </Switch>
     </Router >
   );
