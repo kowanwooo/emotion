@@ -32,9 +32,10 @@ function LoginPage(props) {
         dispatch(loginUser(body))
             .then(response => {
                 if (response.payload.loginSuccess) {
+                    window.localStorage.setItem('userId', response.payload.userId);
                     props.history.push('/login')
                 } else {
-                    alert('다시확인해주세요')
+                    alert(response.payload.message);
                 }
             })
 

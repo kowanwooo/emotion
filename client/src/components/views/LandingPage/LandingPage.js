@@ -1,22 +1,23 @@
 import React, { useEffect, useState } from 'react'
-import axios from 'axios';
 import { withRouter } from 'react-router-dom';
+import { useDispatch } from "react-redux";
+import { logoutUser } from "../../../_actions/user_action";
 import './LandingPage.css';
 
 function LandingPage(props) {
 
-    const [userName, setUserName] = useState('');
+    const dispatch = useDispatch();
 
     const onClickHandler = () => {
-        axios.get(`/api/users/logout`)
-            .then(response => {
-                if (response.data.success) {
-                    props.history.push("/")
-                } else {
-                    alert('로그아웃 하는데 실패 했습니다.')
-                }
-            })
-    }
+        dispatch(logoutUser()).then((response) => {
+            if (response.payload.logoutSuccess) {
+                window.localStorage.removeItem("userId");
+                props.history.push("/");
+            } else {
+                alert("로그아웃에 실패했습니다");
+            }
+        });
+    };
 
     const onClickMypage = () => {
         props.history.push("/login/mypage")

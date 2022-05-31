@@ -1,33 +1,36 @@
-const mongoose = require("mongoose");
-
+const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
+const { Comment } = require("../models/Comment");
+const { Like } = require("../models/Like");
 
 const boardSchema = mongoose.Schema({
-    writer: {
+    userFrom: {
         type: Schema.Types.ObjectId,
-        required: true,
         ref: 'User'
     },
-    _id: {
-        type: String,
-        required: true
+    boardTitle: {
+        type: String
     },
-    title: {
-        type: String,
-        required: true
+    boardContent: {
+        type: String
     },
-    content: {
-        type: String,
-        required: true
-    },
-    createdAt: { // 글을 생성한 날짜 
-        type: Date,
-        default: Date.now
+    boardWriter: {
+        type: String
     }
-}, { timestamps: true });
+},{ timestamps: true });
 
+boardSchema.pre('findOneAndDelete', function(next) {
+    var Board = this;
+    Comment.deleteMany({boardFrom: Board._conditions._id})
+        .exec((err, result) => {
+            return {success : true, result}
+        })
+    Like.deleteMany({boardFrom: Board._conditions._id})
+        .exec((err, result) => {
+            return {success : true, result}
+        })
+    next();
+})
 
-
-const Board = mongoose.model('Boards', boardSchema);
-
-module.exports = { Board };
+const Board = mongoose.model('Board', boardSchema);
+module.exports = { Board }

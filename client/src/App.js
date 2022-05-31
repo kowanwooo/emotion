@@ -14,7 +14,7 @@ import BoardPage from './components/views/BoardPage/BoardPage';
 import Emotion from './components/views/Emotion/Emotion';
 import Spinner from './components/views/Spinner/Spinner';
 import Auth from './hoc/auth'
-import './App.css';
+
 
 function App() {
   const [loading, setLoading] = useState(true);
