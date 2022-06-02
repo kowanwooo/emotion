@@ -3,7 +3,7 @@ const router = express.Router();
 const { auth } = require("../middleware/auth");
 
 //=================================
-//            Comment
+//            Mypage
 //=================================
 
 router.get('/mypage', auth, (req, res) => {

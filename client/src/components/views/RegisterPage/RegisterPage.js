@@ -58,7 +58,7 @@ function RegisterPage(props) {
         <div className='register__background'>
             <div className='register__page'>
                 <h1 className='register__title'>Apple</h1>
-                <div className='form'>
+                <div className='register__wrap__form'>
                     <form className='register__form' onSubmit={onSubmitHandler}>
                         <input type="email" value={Email} onChange={onEmailHandler} placeholder="Email" />
                         <input type="text" value={Name} onChange={onNameHandler} placeholder="Name" />

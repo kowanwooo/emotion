@@ -1,11 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import '../LandingPage/LandingPage.css';
 import './BoardPage.css';
-import './Editor.css';
-import { CKEditor } from '@ckeditor/ckeditor5-react';
-import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+import CkeEditor from './Section/CkeEditor';
 import axios from 'axios';
-
 import AddBoard from "./Section/AddBoard";
 
 
@@ -20,10 +17,9 @@ function BoardPage() {
     })
     const [viewContent, setViewContent] = useState([]);
 
-    const [totalPage, settotalPage] = useState(0);     //-------
-    const [currentPage, setcurrentPage] = useState(1); //--------
-    const [Content, setContent] = useState([]); //-------
-
+    const [totalPage, settotalPage] = useState(0);
+    const [currentPage, setcurrentPage] = useState(1);
+    const [Content, setContent] = useState([]);
     const { boardTitle, boardContent } = inputs;
 
 
@@ -134,36 +130,13 @@ function BoardPage() {
                     onChange={getValue}
                     name='boardTitle' />
             </div>
-            <CkeEditor getValue={getValue} inputs={inputs} setInput={setInput} ></CkeEditor>
+
+            <CkeEditor getValue={getValue} inputs={inputs} setInput={setInput} />
             <button className="btn btn-primary btn-lg" onClick={onSubmit}>제출</button>
         </div >
     )
 }
 
-function CkeEditor({ getValue, inputs, setInput }) {
 
-    return (
-        <div className='editorWidth'>
-            <CKEditor
-                editor={ClassicEditor}
-                config={{ placeholder: "Placeholder text..." }}
-                onReady={editor => {
-                    // You can store the "editor" and use when it is needed.
-                    console.log('Editor is ready to use!', editor);
-                }}
-                onChange={(event, editor) => {
-                    const data = editor.getData();
-
-                    setInput({
-                        ...inputs,
-                        boardContent: data
-                    })
-                    console.log(inputs);
-                }}
-
-            />
-        </div>
-    )
-}
 
 export default BoardPage

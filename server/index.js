@@ -9,6 +9,8 @@ const loginRouter = require('./routes/login');
 const authRouter = require('./routes/auth');
 const logoutRouter = require('./routes/logout');
 const mypageRouter = require('./routes/mypage');
+const boardRouter = require('./routes/board');
+const userRouter = require('./routes/user');
 
 //=================================
 //            mongoose
@@ -34,6 +36,8 @@ app.use('/api/users', loginRouter);
 app.use('/api/users', authRouter);
 app.use('/api/users', logoutRouter);
 app.use('/api/users', mypageRouter);
+app.use('/api/users', boardRouter);
+app.use('/api/users', userRouter);
 
 
 app.listen(port, () => {

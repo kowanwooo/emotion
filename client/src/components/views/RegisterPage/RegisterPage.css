@@ -1,15 +1,7 @@
 @import url(https://fonts.googleapis.com/css?family=Roboto:300);
 
-body {
-    background: #43678B;
-    /* fallback for old browsers */
-    font-family: "Roboto", sans-serif;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-}
-
 .register__background {
-    background: #43678B;
+    background: #1B1B1B;
     font-family: "Roboto", sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -25,13 +17,13 @@ body {
 
 .register__title {
     font-weight: bold;
-    color: white;
+    color: #FFFFFF;
 }
 
-.form {
+.register__wrap__form {
     position: relative;
     z-index: 1;
-    background: #FFFFFF;
+    background: #252525;
     max-width: 360px;
     margin: 0 auto 100px;
     margin-top: 20px;
@@ -40,23 +32,24 @@ body {
     box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
 }
 
-.form input {
+.register__wrap__form input {
     font-family: "Roboto", sans-serif;
     outline: 0;
-    background: #f2f2f2;
+    background: #2F2F2F;
     width: 100%;
     border: 0;
     margin: 0 0 15px;
     padding: 15px;
     box-sizing: border-box;
     font-size: 14px;
+    color: #FFFFFF;
 }
 
-.form button {
+.register__wrap__form button {
     font-family: "Roboto", sans-serif;
     text-transform: uppercase;
     outline: 0;
-    background: #43678B;
+    background: #1351f9;
     width: 100%;
     border: 0;
     padding: 15px;
@@ -67,19 +60,19 @@ body {
     cursor: pointer;
 }
 
-.form button:hover,
-.form button:active,
-.form button:focus {
+.register__wrap__form button:hover,
+.register__wrap__form button:active,
+.register__wrap__form button:focus {
     background: #13385c;
 }
 
-.form .register__message {
+.register__wrap__form .register__message {
     margin: 15px 0 0;
     color: #b3b3b3;
     font-size: 12px;
 }
 
-.form .register__message a {
+.register__wrap__form .register__message a {
     color: #43678B;
     text-decoration: none;
 }

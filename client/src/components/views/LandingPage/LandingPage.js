@@ -40,11 +40,10 @@ function LandingPage(props) {
                 window.localStorage.setItem('userName', response.data.name);
             })
     }, [])
+
     return (
         <div>
-
             <div className='back'></div>
-
             <nav className='navbar'>
                 <ul className='navbar_menu'>
                     <li className='nav_item'>영화</li>
@@ -63,10 +62,6 @@ function LandingPage(props) {
                 <div className='content'></div>
                 <p className='content_p'>보스베이비 블라블랄~~~~~~~~~~</p>
             </div>
-
-
-
-
         </div>
     )
 }
