@@ -1,0 +1,77 @@
+import axios from 'axios';
+import React, { useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { Link, withRouter } from 'react-router-dom';
+import { logoutUser } from "../../../_actions/user_action";
+import './Header.css';
+
+function Header(props) {
+
+    // eslint-disable-next-line no-unused-vars
+    const [User, setUser] = useState({
+        userId: "",
+        userName: "",
+    })
+
+    const dispatch = useDispatch();
+
+    const logoutHandler = () => {
+        dispatch(logoutUser()).then((response) => {
+            if (response.payload.logoutSuccess) {
+                window.localStorage.removeItem("userId");
+                props.history.push("/");
+            } else {
+                alert("로그아웃에 실패했습니다");
+            }
+        });
+    };
+
+    useEffect(() => {
+        const userFrom = localStorage.getItem("userId");
+        axios.get('api/users/profile', { _id: userFrom })
+            .then((response) => {
+                setUser({
+                    userId: response.data.id,
+                    userName: response.data.name,
+                })
+                window.localStorage.setItem('userName', response.data.name);
+            })
+    }, [])
+
+    const [isOpen, setMenu] = useState(false);  // 메뉴의 초기값을 false로 설정
+
+    const toggleMenu = () => {
+        setMenu(isOpen => !isOpen); // on,off 개념 boolean
+    }
+    return (
+        <div className='header'>
+            <div>
+                <div className='header-nav'>
+                    <div className="wrap">
+                        <ul className='nav'>
+                            <li><Link to={'/mypage'}>MY</Link></li>
+                            <li><button onClick={logoutHandler}>로그아웃</button></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div className='header-gnb'>
+                <Link to={'/login'}><h1 className='logo'>Apple</h1></Link>
+                <nav className='gnb-left'>
+                    <ul className='gnb-menu'>
+                        <li><Link to={'/login'}>홈</Link></li>
+                        <li><button onClick={() => toggleMenu()}>카테고리</button></li>
+                        <li><Link to={'/board'}>게시판</Link></li>
+                    </ul>
+                    <ul className={isOpen ? "show-menu" : "hide-menu"}>
+                        <li><Link>랭킹순</Link></li>
+                        <li><Link>조회수별</Link></li>
+                        <li><Link>감정별</Link></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    );
+}
+
+export default withRouter(Header);

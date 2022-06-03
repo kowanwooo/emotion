@@ -1,0 +1,149 @@
+.header {
+    position: fixed;
+    z-index: 1750;
+    top: 0;
+    left: 0;
+    width: 100%;
+    min-width: 1240px;
+    background-color: #1b1b1b;
+    display: block;
+
+}
+
+.header-nav {
+    border-bottom: 1px solid #2f2f2f;
+    height: 34px;
+}
+
+.wrap {
+    width: 1240px;
+    margin: 0 auto;
+    position: relative;
+}
+
+.header-nav ul.nav {
+    float: right;
+}
+
+.header-nav ul.nav>li {
+    position: relative;
+    float: left;
+    padding-right: 2px;
+}
+
+
+.header-gnb {
+    position: relative;
+    width: 1240px;
+    height: 74px;
+    margin: 0 auto;
+    display: flex;
+}
+
+.nav {
+    height: 35px;
+    margin: 0;
+    line-height: 35px;
+    padding: 0;
+
+}
+
+.nav a {
+    color: #a5a5a5;
+    font-weight: 400;
+    margin: 0 5px;
+}
+
+
+
+.header-gnb a h1 {
+    color: #a5a5a5;
+    font-weight: 400;
+    line-height: 68px;
+}
+
+.gnb-menu li {
+    margin-right: 20px;
+    vertical-align: middle;
+}
+
+.nav button {
+    display: block;
+    padding: 0 10px;
+    font-size: 15px;
+    height: 35px;
+    line-height: 39px;
+    background: transparent;
+    cursor: pointer;
+    color: #a5a5a5;
+    border: 0;
+}
+
+.gnb-left>ul>li>button {
+    display: block;
+    padding: 0 10px;
+    font-size: 20px;
+    line-height: 78px;
+    background: transparent;
+    cursor: pointer;
+    color: #a5a5a5;
+    border: 0;
+}
+
+.logo {
+    height: 100%;
+    margin: 0;
+}
+
+.gnb-left {
+    margin-left: 80px;
+}
+
+.gnb-left>ul>li {
+    float: left;
+    vertical-align: middle;
+}
+
+.header-gnb .gnb-menu>li>a {
+    display: block;
+    padding: 0 10px;
+    font-size: 20px;
+    line-height: 74px;
+    color: #a5a5a5;
+}
+
+.nav a:hover,
+.nav button:hover,
+.header-gnb h1:hover,
+.gnb-menu button:hover,
+.gnb-menu a:nth-child(1):hover,
+.show-menu a:nth-child(1):hover {
+    color: #fff;
+}
+
+.show-menu {
+    position: absolute;
+    top: 74px;
+    left: 226px;
+    transition: 1s;
+    display: grid;
+    background-color: #1b1b1b;
+    width: 100px;
+    font-size: 20px;
+    line-height: 74px;
+    border-radius: 0 0 10px 10px;
+}
+
+.hide-menu {
+    display: none;
+    transition: 1s;
+}
+
+.show-menu li {
+    text-align: center;
+    font-size: 18px;
+}
+
+.show-menu a {
+    color: #a5a5a5;
+}
