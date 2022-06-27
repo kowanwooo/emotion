@@ -1,0 +1,43 @@
+.ck.ck-editor__editable:not(.ck-editor__nested-editable) {
+    min-height: 500px;
+}
+
+.editorWidth {
+    width: 80%;
+    margin: auto;
+}
+
+.board__C__main {
+    padding-top: 109px;
+    width: 1100px;
+    margin: 0 auto;
+    background-color: #fff;
+}
+
+.form_wrapper {
+    width: 80%;
+    margin: 0 auto;
+    text-align: center;
+}
+
+
+.title_input {
+    width: 700px;
+    height: 42px;
+    margin-right: 0;
+    margin-bottom: 20px;
+
+}
+
+.submit_button {
+    margin-top: 20px;
+    width: 200px;
+    height: 50px;
+    font-size: 20px;
+    padding: 20px;
+    border: none;
+    background: indianred;
+    border-radius: 5px;
+    line-height: 12px;
+    font-weight: bolder;
+}

@@ -64,9 +64,9 @@ function Header(props) {
                         <li><Link to={'/board'}>게시판</Link></li>
                     </ul>
                     <ul className={isOpen ? "show-menu" : "hide-menu"}>
-                        <li><Link>랭킹순</Link></li>
-                        <li><Link>조회수별</Link></li>
-                        <li><Link>감정별</Link></li>
+                        <li><Link to={'#'}>랭킹순</Link></li>
+                        <li><Link to={'#'}>조회수별</Link></li>
+                        <li><Link to={'#'}>감정별</Link></li>
                     </ul>
                 </nav>
             </div>

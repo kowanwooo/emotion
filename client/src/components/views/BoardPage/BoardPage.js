@@ -2,28 +2,24 @@ import React, { useEffect, useState } from 'react'
 import '../LandingPage/LandingPage.css';
 import './BoardPage.css';
 import axios from 'axios';
-import CkeEditor from './Section/CkeEditor';
-import AddBoard from "./Section/AddBoard";
 import Header from '../Header/Header';
+import styled from "styled-components";
+import Pagination from "@material-ui/lab/Pagination";
+import Button from '@mui/material/Button';
 import { Link } from 'react-router-dom';
 
+const PaginationBox = styled.div`
+    text-align: center;
+    margin-top: 1em;
+    margin-bottom: 1em;
+    display: flex;
+    justify-content: center;
+`;
 
 function BoardPage() {
-
-    const userFrom = localStorage.getItem("userId");
-    const writerFrom = localStorage.getItem('userName');
-    const [boardWriter, setBoardWriter] = useState(String(writerFrom));
-    const [inputs, setInput] = useState({
-        boardTitle: '',
-        boardContent: ''
-    })
-    const [viewContent, setViewContent] = useState([]);
-
     const [totalPage, settotalPage] = useState(0);
     const [currentPage, setcurrentPage] = useState(1);
     const [Content, setContent] = useState([]);
-    const { boardTitle, boardContent } = inputs;
-
 
     useEffect(() => {
         FetchBoard();
@@ -42,135 +38,119 @@ function BoardPage() {
                 }
             });
     };
-    const onRemove = (id) => {
-        setContent(Content.filter((Content) => Content._id !== id));
-        FetchBoard();
+
+    const handlePageChange = (e) => {
+        const currentPage = parseInt(e.target.textContent);
+        setcurrentPage(currentPage);
     };
 
-    const onSubmit = (e) => {
-        e.preventDefault();
-        if (!boardTitle) {
-            alert(`제목을 작성해주세요`);
-            return;
-        } else if (!boardContent) {
-            alert(`내용을 작성해주세요`);
-            return;
-        } else if (boardContent.length > 300) {
-            alert(`내용을 300자 이내로 작성해주세요`);
-            return;
-        }
-        let variables = {
-            userFrom: userFrom,
-            boardTitle: boardTitle,
-            boardContent: boardContent,
-            boardWriter: boardWriter,
-        };
-        axios.post("api/users/board/upload", variables).then((response) => {
-            if (response.status === 200) {
-                setInput({
-                    boardTitle: "",
-                    boardContent: "",
-                });
-                // FetchBoard();
-            } else {
-                alert("게시글 업로드에 실패하였습니다.");
-            }
-        });
-    };
-
-    const getValue = e => {
-        const { name, value } = e.target;
-        setInput({
-            ...inputs,
-            [name]: value
-        })
-        console.log(inputs);
-    };
 
     return (
         <>
             <Header />
-            <div className='board__main' style={{ textAlign: "center" }}>
-                <table>
-
-                    <thead>
-                        <tr>
-                            <th><input class="check all" type="checkbox" /></th>
-                            <th>번호</th>
-                            <th>제목</th>
-                            <th>작성자</th>
-                            <th>날짜</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td><input class="check" type="checkbox" /></td>
-                            <td>1</td>
-                            <td><Link href="#">글의 제목 - 1</Link></td>
-                            <td>거북이</td>
-                            <td>2019.10.14</td>
-                        </tr>
-                        <tr>
-                            <td><input clLinkss="check" type="checkbox" /></td>
-                            <td>2</td>
-                            <td><Link href="#">글의 제목 - 2</Link></td>
-                            <td>거북이</td>
-                            <td>2019.10.14</td>
-                        </tr>
-                        <tr>
-                            <td><input clLinkss="check" type="checkbox" /></td>
-                            <td>3</td>
-                            <td><Link href="#">글의 제목 - 3</Link></td>
-                            <td>거북이</td>
-                            <td>2019.10.14</td>
-                        </tr>
-                    </tbody>
-                </table>
-                <div class="page-box">
-                    <Link class="btn" href="#">&lt;&lt;</Link>
-                    <Link class="btn" href="#">&lt;</Link>
-
-                    <Link class="btn number" href="#">1</Link>
-                    <Link class="btn number" href="#">2</Link>
-                    <Link class="btn number on" href="#">3</Link>
-                    <Link class="btn number" href="#">4</Link>
-                    <Link class="btn number" href="#">5</Link>
-
-                    <Link class="btn" href="#">&gt;</Link>
-                    <Link class="btn" href="#">&gt;&gt;</Link>
-                </div>
-                {Content &&
-                    Content.map((board, index) => {
-                        return (
-                            <React.Fragment key={index}>
-                                <AddBoard
-                                    id={board._id}
-                                    user={board.userFrom._id}
-                                    time={board.createdAt}
-                                    writer={board.boardWriter}
-                                    title={board.boardTitle}
-                                    content={board.boardContent}
-
-                                    onRemove={onRemove}
-                                />
-                            </React.Fragment>
-                        );
-                    })}
-
-                <h1>게시판</h1>
-
-                <div className='form_wrapper'>
-                    <span>제목 : </span>
-                    <input className='title_input'
-                        type='text'
-                        placeholder='제목'
-                        onChange={getValue}
-                        name='boardTitle' />
+            <div className='board__main'>
+                <div className='board_top'>
+                    <h2 className='board_title'>감정 게시판</h2>
+                    <Button component={Link} to="/board/create" variant="contained">게시물 쓰기</Button>
                 </div>
 
-                <CkeEditor getValue={getValue} inputs={inputs} setInput={setInput} />
-                <button className="btn btn-primary btn-lg" onClick={onSubmit}>제출</button>
-            </div >
+                <form className="board-actions">
+                    <div className="board-btns" >
+                        <div className="form-custom-radio-btngroup">
+                            <div className="radio-container">
+                                <input type="radio" name="sort" id="radio1" value="new" className="blog_sort_input" defaultChecked="checked" />
+                                <label htmlFor="radio1">새로운 게시물 순</label>
+                            </div>
+                            <div className="radio-container">
+                                <input type="radio" name="sort" id="radio2" value="hot_blog" className="blog_sort_input" />
+                                <label htmlFor="radio2">인기글</label>
+                            </div>
+                        </div>
+                        <div className="form-search-post">
+                            <select name="search_type" id="" className="form-control light " >
+                                <option value="1">제목</option>
+                                <option value="2">제목 + 내용</option>
+                            </select>
+                            <div className="search-post">
+                                <div className="searchbar">
+                                    <input type="text" placeholder="게시물 검색" name="q" id="search_input" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+
+                <div className="board_build_list">
+                    <div className="board_header">
+                        <span className="post_category"></span>
+                        <span className="post_content">제목</span>
+                        <span className="post_writer">작성자</span>
+                        <span className="post_date">날짜</span>
+                        <span className="post_view">조회</span>
+                        <span className="post_recommend">추천</span>
+                    </div>
+                    <div className="post_list">
+
+                        <Link to={"/ko/notice/48"} className="post_item post_notice">
+                            <div className="post_heading">
+                                <span className="post_category">공지</span>
+                                <div className="post_content">
+                                    <span className="post_title">공지가 들어갈 자리</span>
+                                    <i className="post_comment">[0]</i>
+                                </div>
+                            </div>
+                            <div className="post_detail">
+                                <span className="post_writer"><i className="mark_admin">PS</i>관리자</span>
+                                <span className="post_date">2022/05/23</span>
+                                <span className="post_view">24,346</span>
+                                <span className="post_recommend">8</span>
+                            </div>
+                        </Link>
+
+
+                        {Content &&
+                            Content.map((board, index) => {
+
+                                const boardCreatedAt = board.createdAt.substr(0, 10);
+
+                                return (
+                                    <Link key={index} to={"##"} className="post_item" >
+                                        <div className="post_heading">
+                                            <span className="post_category">
+                                                1
+                                            </span>
+                                            <div className="post_content">
+                                                <span className="post_title">
+                                                    {board.boardTitle}
+                                                </span>
+                                                <i className="post_comment">[댓글 갯수]</i>
+                                            </div>
+                                        </div>
+                                        <div className="post_detail">
+                                            <span className="post_writer">
+                                                {board.boardWriter}
+                                            </span>
+                                            <span className="post_date">{boardCreatedAt}</span>
+                                            <span className="post_view">조회수</span>
+                                            <span className="post_recommend">추천수</span>
+                                        </div>
+                                    </Link>
+                                );
+                            })}
+                    </div>
+                    <PaginationBox>
+                        <Pagination
+                            count={totalPage}
+                            page={currentPage}
+                            onChange={handlePageChange}
+                            shape="rounded"
+                            size="large"
+                            hidePrevButton
+                            hideNextButton
+                        />
+                    </PaginationBox>
+                </div>
+            </div>
         </>
     )
 }
