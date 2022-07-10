@@ -33,7 +33,8 @@ router.post('/login', (req, res) => {
                     .status(200)
                     .json({
                         loginSuccess: true,
-                        userId: user._id
+                        userId: user._id,
+                        userName: user.name
                     })
             })
         })

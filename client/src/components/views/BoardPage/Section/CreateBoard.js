@@ -5,8 +5,9 @@ import './CreateBoard.css';
 import Header from '../../Header/Header';
 import { useState } from 'react';
 import axios from 'axios';
-import { withRouter } from 'react-router-dom';
-
+import { Link, withRouter } from 'react-router-dom';
+import Button from '@mui/material/Button';
+import Box from '@material-ui/core/Box';
 function CreateBoard({ history }) {
     const userFrom = localStorage.getItem("userId");
     const writerFrom = localStorage.getItem('userName');
@@ -59,16 +60,25 @@ function CreateBoard({ history }) {
     return (
         <>
             <Header />
-
-            <div className='form_wrapper board__C__main'>
-                <span>제목 : </span>
+            <div className='board_top2 board__C__main'>
+                <h2 className='board_title'>게시판 쓰기</h2>
+                <div>
+                    <Button component={Link} to="/board" variant="contained">
+                        뒤로가기 !
+                    </Button>
+                    <Button onClick={onSubmit} variant="contained" color="success">
+                        등록 !
+                    </Button>
+                </div>
+            </div>
+            <div className='form_wrapper '>
+                <span><strong>제목 : </strong></span>
                 <input className='title_input'
                     type='text'
                     placeholder='제목'
                     onChange={getValue}
                     name='boardTitle' />
             </div>
-
             <div className='editorWidth'>
                 <CKEditor
                     editor={ClassicEditor}
@@ -87,7 +97,6 @@ function CreateBoard({ history }) {
                         console.log(inputs);
                     }}
                 />
-                <button className="btn btn-primary btn-lg" onClick={onSubmit}>제출</button>
             </div>
         </>
     )

@@ -1,0 +1,172 @@
+.post-detail,
+.notice .post {
+    flex-direction: column;
+}
+
+.title {
+    display: flex;
+    justify-content: space-between;
+}
+
+.primary {
+    padding: 20px;
+    min-height: 200px;
+    margin-top: 50px;
+    margin-bottom: 72px;
+    box-shadow: 0 4px 16px 0 rgb(126 155 255 / 30%);
+}
+
+.primary {
+    box-shadow: 0 4px 16px 0 rgb(126 155 255 / 60%);
+    border-radius: 4px;
+    background: #fff;
+    padding: 14px 12px;
+    margin-bottom: 36px;
+}
+
+
+
+.pb-sm-3,
+.py-sm-3 {
+    padding-bottom: 1rem !important;
+    margin: 0 25px;
+}
+
+.pt-sm-3,
+.py-sm-3 {
+    padding-top: 1rem !important;
+}
+
+.post-detail h3.float-left,
+.notice .post h3.float-left {
+    font-size: 14px;
+    color: #7e9bff;
+    padding: 0 16px;
+    margin-bottom: 24px;
+}
+
+
+
+.post-detail .myOption,
+.notice .post .myOption {
+    position: relative;
+    top: -4px;
+}
+
+.post-detail .title,
+.notice .post .title {
+    flex: 1 1;
+    font-size: 20px;
+    padding: 4px 5px 20px;
+    border-bottom: 1px solid rgba(126, 155, 255, .3);
+    margin: 0 20px 12px;
+    word-break: break-all;
+    font-weight: 700;
+}
+
+.post-detail .info,
+.notice .post .info {
+    display: flex;
+    border-bottom: 1px solid rgba(47, 62, 78, .18);
+    padding: 24px 0;
+    margin: 0 16px;
+}
+
+.post-detail .info .thumb,
+.notice .post .info .thumb {
+    flex: 0 0;
+    align-self: flex-start;
+    margin: 0 8px;
+}
+
+.post-detail .info .thumb .img,
+.notice .post .info .thumb .img {
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    width: 120px;
+    height: 120px;
+    display: block;
+    border-radius: 4px;
+}
+
+.post-detail .text,
+.notice .post .text {
+    padding-top: 0;
+}
+
+.post-detail .action,
+.notice .post .action {
+    padding: 24px 0 16px;
+    text-align: center;
+    align-items: center;
+}
+
+.primary .text,
+.champ-stat .text {
+    text-align: left;
+    transition: all ease .4s;
+    align-self: center;
+    padding-left: 8px;
+    padding-top: 2px;
+    color: #353945;
+}
+
+.post-detail .info .text .label,
+.notice .post .info .text .label {
+    color: rgba(33, 58, 150, .5);
+    margin: 4px 0;
+    display: block;
+    font-size: 16px;
+}
+
+.post-detail .info .text span,
+.notice .post .info .text span {
+    font-size: 14px;
+    color: rgba(47, 62, 78, .7);
+}
+
+.post-detail .reaction,
+.notice .post .reaction {
+    flex: 1 1 40%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    text-align: right;
+    padding-right: 4px;
+    color: rgba(33, 58, 150, .5);
+}
+
+.post-detail .reaction .d-flex,
+.notice .post .reaction .d-flex {
+    align-self: flex-end;
+}
+
+.post-detail .reaction span,
+.notice .post .reaction span {
+    margin-left: 4px;
+    margin-top: 4px;
+}
+
+.post-detail .reaction .report,
+.notice .post .reaction .report {
+    color: rgba(47, 62, 78, .18);
+    padding: 2px 0 2px 12px;
+}
+
+.post-detail .action .vote button,
+.notice .post .action .vote button {
+    font-size: 16px;
+    display: inline-block;
+    width: auto;
+    padding: 8px 16px;
+    padding-left: 40px;
+    margin-right: 12px;
+}
+
+.post-detail .content,
+.notice .post .content {
+    padding: 20px 0;
+    margin: 0 35px;
+    border-bottom: 1px solid rgba(47, 62, 78, .05);
+}

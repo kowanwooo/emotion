@@ -33,6 +33,7 @@ function LoginPage(props) {
             .then(response => {
                 if (response.payload.loginSuccess) {
                     window.localStorage.setItem('userId', response.payload.userId);
+                    window.localStorage.setItem('userName', response.payload.userName);
                     props.history.push('/login')
                 } else {
                     alert(response.payload.message);

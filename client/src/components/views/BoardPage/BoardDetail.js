@@ -1,0 +1,130 @@
+import React, { useEffect, useState } from 'react';
+import { Link, withRouter } from 'react-router-dom';
+import axios from 'axios';
+import Header from '../Header/Header';
+import ClickedBoard from './Section/ClickedBoard';
+import CommentBoard from './Section/CommentBoard';
+import AddComment from './Section/AddComment';
+
+function BoardDetail(props) {
+    const BoardId = props.match.params.boardId;
+    const userFrom = localStorage.getItem('userId');
+    const userName = localStorage.getItem('userName');
+    const [Content, setContent] = useState([]);
+    const [Comments, setComments] = useState([]);
+    const [BoardDetail, setBoardDetail] = useState([]);
+    const [CommentCounts, setCommentCounts] = useState(0);
+    const [ViewsCounts, setViewsCounts] = useState(0);
+    const [Value, setValue] = useState("");
+    let variables = {
+        userFrom: userFrom,
+        boardFrom: BoardId,
+        commentContent: Value,
+        commentWriter: userName,
+    }
+
+    useEffect(() => {
+        const variable = { boardId: BoardId };
+        // console.log(props.match.path)
+        console.log(props.match.path)
+        // console.log(props.match.params.boardId)
+        // console.log(props.match.params)
+        axios.post(`/api/users${props.match.path}`, variable)
+            .then(response => {
+                if (response.data.success) {
+                    setBoardDetail([response.data.board]);
+                    setViewsCounts([response.data.boardviews])
+                } else {
+                    alert("게시글 가져오기에 실패했습니다.");
+                }
+            })
+        FetchComment();
+    }, []);
+
+    const FetchComment = () => {
+        axios.post("/api/users/comment/getComment", variables)
+            .then((response) => {
+                if (response.data.success) {
+                    setComments(response.data.comments);
+                    setCommentCounts(response.data.commentCounts);
+                } else {
+                    alert("댓글을 보여줄 수 없습니다.");
+                }
+            })
+    }
+
+    const onChange = (e) => {
+        setValue(e.currentTarget.value);
+    }
+
+    const onSubmit = (e) => {
+        e.preventDefault();
+        axios.post('/api/users/comment/upload', variables)
+            .then(response => {
+                alert("댓글이 등록되었습니다.");
+                FetchComment();
+            })
+    }
+    const onReset = (e) => {
+        setValue("");
+    }
+    const onRemove = (id) => {
+        setContent(Content.filter((Content) => Content._id !== id));
+    };
+    const onRemoveComment = (id) => {
+        setComments(Comments.filter(Comments => Comments._id !== id))
+        FetchComment();
+    }
+
+    return (
+        <div>
+            <Header />
+            <div className='board__C__main'>
+                {BoardDetail && BoardDetail.map((board, index) => {
+                    return (
+                        <React.Fragment key={index}>
+                            <ClickedBoard
+                                id={board._id}
+                                user={board.userFrom}
+                                time={board.createdAt}
+                                writer={board.boardWriter}
+                                title={board.boardTitle}
+                                content={board.boardContent}
+                                CommentCounts={CommentCounts}
+                                ViewsCounts={ViewsCounts}
+                                history={`${props.history}`}
+                                onRemove={onRemove}
+                            />
+
+                        </React.Fragment>
+                    )
+                })
+                }
+                {Comments && Comments.map((comment, index) => {
+                    return (
+                        <React.Fragment key={index}>
+                            <AddComment
+                                id={comment._id}
+                                user={comment.userFrom}
+                                time={comment.createdAt}
+                                writer={comment.commentWriter}
+                                content={comment.commentContent}
+                                onRemove={onRemoveComment}
+
+                            />
+                        </React.Fragment>
+                    )
+                })
+                }
+                <CommentBoard
+                    onSubmit={onSubmit}
+                    onChange={onChange}
+                    onReset={onReset}
+                />
+            </div>
+
+        </div>
+    )
+}
+
+export default withRouter(BoardDetail);

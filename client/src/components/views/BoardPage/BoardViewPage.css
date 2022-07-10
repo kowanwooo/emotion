@@ -10,7 +10,7 @@ hr {
 }
 
 .board_top {
-    margin: 0 10px;
+    margin: 20px 0 10px 0;
     display: flex;
     justify-content: space-between;
     align-items: center;

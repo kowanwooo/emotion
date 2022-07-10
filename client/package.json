@@ -21,7 +21,7 @@
     "ckeditor4-react": "^3.0.0",
     "classnames": "^2.3.1",
     "face-api.js": "^0.22.2",
-    "html-react-parser": "^1.4.12",
+    "html-react-parser": "^1.4.14",
     "http-proxy-middleware": "^2.0.4",
     "jquery": "^3.6.0",
     "node-html-parser": "^5.3.3",

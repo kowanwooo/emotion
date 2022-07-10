@@ -14,6 +14,10 @@ const boardSchema = mongoose.Schema({
     },
     boardWriter: {
         type: String
+    },
+    views: {
+        type: Number,
+        default: 0
     }
 }, { timestamps: true });
 
