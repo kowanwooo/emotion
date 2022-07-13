@@ -2,49 +2,45 @@ import React, { useState } from 'react';
 
 import { loadModels } from '../../../helpers/faceApi';
 import { createFaLibrary } from '../../../helpers/icons';
-import Header from '../Header/Header';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Switch from 'react-switch';
 import Camera from '../Camera/Camera';
-
 import './Emotion.css';
+
+import Header from '../Header/Header';
+
 createFaLibrary();
 loadModels();
 
 function Emotion() {
     const [mode, setMode] = useState(false); //true = photo mode; false = video mode
     return (
-        <>
-            <Header />
-            <div className="App">
-                <header>
-                    <div className="App__header">
-                        <h1>
-                            <span>Emotion-Analysis</span>
-                        </h1>
-                        <div className="App__switcher">
-                            <FontAwesomeIcon icon="camera" color={mode ? '#007c6c' : '#cccccc'} />
-                            <Switch
-                                onChange={() => setMode(!mode)}
-                                uncheckedIcon={false}
-                                checkedIcon={false}
-                                checked={!mode}
-                                className="App__switcher-switch"
-                            />
-                            <FontAwesomeIcon icon="video" color={!mode ? '#007c6c' : '#cccccc'} />
-                        </div>
+    <>
+        <Header/>
+        <div className="App">
+            <header>
+                <div className="App__header">
+                    <h1>
+                        <span>감정 인식</span>
+                    </h1>
+                    <div className="App__switcher">
+                        <FontAwesomeIcon icon="camera" color={mode ? '#353535' : '#cccccc'} />
+                        <Switch
+                            onChange={() => setMode(!mode)}
+                            uncheckedIcon={false}
+                            checkedIcon={false}
+                            checked={!mode}
+                            className="App__switcher-switch"
+                        />
+                        <FontAwesomeIcon icon="video" color={!mode ? '#353535' : '#cccccc'} />
                     </div>
-                </header>
-                <Camera photoMode={mode} />
-                <p>
-                    Made with{' '}
-                    <span role="img" aria-label="heart-emoji">
-                        ❤️
-                    </span>{' '}
-                    by Rishabh.
-                </p>
-            </div>
-        </>
+                    
+                </div>
+            </header>
+            <Camera photoMode={mode} />
+        </div>
+        
+    </>
     )
 }
 

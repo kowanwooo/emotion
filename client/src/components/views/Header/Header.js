@@ -26,6 +26,17 @@ function Header(props) {
         });
     };
 
+    useEffect(() => {
+        const userFrom = localStorage.getItem("userId");
+        axios.get('api/users/profile', { _id: userFrom })
+            .then((response) => {
+                setUser({
+                    userId: response.data.id,
+                    userName: response.data.name,
+                })
+                window.localStorage.setItem('userName', response.data.name);
+            })
+    }, [])
 
     const [isOpen, setMenu] = useState(false);  // 메뉴의 초기값을 false로 설정
 

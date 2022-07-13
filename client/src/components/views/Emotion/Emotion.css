@@ -1,10 +1,11 @@
 .App {
-    background-color: #3d9970;
+    background-color: #5D5D5D;
     min-height: 100vh;
+    padding-top: 109px;
 }
 
 .App header {
-    background: white;
+    background: #eaeaea;
 }
 
 .App__header {

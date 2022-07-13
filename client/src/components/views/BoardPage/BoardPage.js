@@ -1,12 +1,12 @@
-import React, { useEffect, useLayoutEffect, useState } from 'react'
-import './BoardViewPage.css';
+import React, { useEffect, useState } from 'react'
+import '../LandingPage/LandingPage.css';
+import './BoardPage.css';
 import axios from 'axios';
 import Header from '../Header/Header';
 import styled from "styled-components";
 import Pagination from "@material-ui/lab/Pagination";
 import Button from '@mui/material/Button';
 import { Link } from 'react-router-dom';
-import AddBoard from './Section/AddBoard'
 
 const PaginationBox = styled.div`
     text-align: center;
@@ -16,46 +16,29 @@ const PaginationBox = styled.div`
     justify-content: center;
 `;
 
-function BoardPage(props) {
+function BoardPage() {
     const [totalPage, settotalPage] = useState(0);
     const [currentPage, setcurrentPage] = useState(1);
     const [Content, setContent] = useState([]);
-    const [boardTap, setboardTap] = useState(0);
+
     useEffect(() => {
-        console.log('fetch')
         FetchBoard();
-        console.log(props)
+        console.log('fetch')
     }, [currentPage]);
 
     const FetchBoard = () => {
         axios
-            .post("/api/users/board/getBoard", { page: currentPage })
+            .post("api/users/board/getBoard", { page: currentPage })
             .then((response) => {
                 if (response.data.success) {
                     setContent(response.data.boards);
                     settotalPage(Math.ceil(response.data.count / 5));
-                    setboardTap(0);
                 } else {
                     alert("게시글을 보여줄 수 없습니다.");
                 }
             });
-        console.log('1')
     };
 
-    const popularityBoard = () => {
-        axios
-            .post("/api/users/board/getBoardP", { page: currentPage })
-            .then((response) => {
-                if (response.data.success) {
-                    setContent(response.data.boards);
-                    settotalPage(Math.ceil(response.data.count / 5));
-                    setboardTap(1);
-                } else {
-                    alert("게시글을 보여줄 수 없습니다.");
-                }
-            });
-        console.log('gigi')
-    }
     const handlePageChange = (e) => {
         const currentPage = parseInt(e.target.textContent);
         setcurrentPage(currentPage);
@@ -68,20 +51,18 @@ function BoardPage(props) {
             <div className='board__main'>
                 <div className='board_top'>
                     <h2 className='board_title'>감정 게시판</h2>
-                    <Button component={Link} to="/board/create" variant="contained" color="success">
-                        게시물 쓰기
-                    </Button>
+                    <Button component={Link} to="/board/create" variant="contained">게시물 쓰기</Button>
                 </div>
 
                 <form className="board-actions">
                     <div className="board-btns" >
                         <div className="form-custom-radio-btngroup">
                             <div className="radio-container">
-                                <input onClick={FetchBoard} type="radio" name="sort" id="radio1" value="new" className="blog_sort_input" defaultChecked="checked" />
+                                <input type="radio" name="sort" id="radio1" value="new" className="blog_sort_input" defaultChecked="checked" />
                                 <label htmlFor="radio1">새로운 게시물 순</label>
                             </div>
                             <div className="radio-container">
-                                <input onClick={popularityBoard} type="radio" name="sort" id="radio2" value="hot_blog" className="blog_sort_input" />
+                                <input type="radio" name="sort" id="radio2" value="hot_blog" className="blog_sort_input" />
                                 <label htmlFor="radio2">인기글</label>
                             </div>
                         </div>
@@ -110,7 +91,7 @@ function BoardPage(props) {
                     </div>
                     <div className="post_list">
 
-                        <Link to={"#"} className="post_item post_notice">
+                        <Link to={"/ko/notice/48"} className="post_item post_notice">
                             <div className="post_heading">
                                 <span className="post_category">공지</span>
                                 <div className="post_content">
@@ -129,20 +110,31 @@ function BoardPage(props) {
 
                         {Content &&
                             Content.map((board, index) => {
+
                                 const boardCreatedAt = board.createdAt.substr(0, 10);
 
                                 return (
-                                    <AddBoard key={index}
-                                        id={board._id}
-                                        user={board.userFrom._id}
-                                        time={boardCreatedAt}
-                                        writer={board.boardWriter}
-                                        title={board.boardTitle}
-                                        content={board.boardContent}
-                                        history={`${props.history}`}
-                                        currentPage={currentPage}
-                                        boardTap={boardTap}
-                                    />
+                                    <Link key={index} to={"##"} className="post_item" >
+                                        <div className="post_heading">
+                                            <span className="post_category">
+                                                1
+                                            </span>
+                                            <div className="post_content">
+                                                <span className="post_title">
+                                                    {board.boardTitle}
+                                                </span>
+                                                <i className="post_comment">[댓글 갯수]</i>
+                                            </div>
+                                        </div>
+                                        <div className="post_detail">
+                                            <span className="post_writer">
+                                                {board.boardWriter}
+                                            </span>
+                                            <span className="post_date">{boardCreatedAt}</span>
+                                            <span className="post_view">조회수</span>
+                                            <span className="post_recommend">추천수</span>
+                                        </div>
+                                    </Link>
                                 );
                             })}
                     </div>

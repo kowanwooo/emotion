@@ -23,15 +23,15 @@ router.get('/', auth, (req, res) => {
     })
 })
 
-// router.get('/profile', auth, (req, res) => {
-//     User.findOne({ _id: req.user._id }, (err, user) => {
-//         if (user) return res.status(200).json({
-//             id: req.user.id,
-//             name: req.user.name,
-//         })
-//         else return res.status(404).send();
-//     })
-// })
+router.get('/profile', auth, (req, res) => {
+    User.findOne({ _id: req.user._id }, (err, user) => {
+        if (user) return res.status(200).json({
+            id: req.user.id,
+            name: req.user.name,
+        })
+        else return res.status(404).send();
+    })
+})
 
 
 module.exports = router;
