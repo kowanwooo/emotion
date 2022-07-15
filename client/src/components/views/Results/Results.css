@@ -5,10 +5,11 @@
 .results__wrapper {
   display: flex;
   margin-top: 1rem;
+  padding-top: 65px;
 }
 
 .results__emoji {
-  color: #3d9970;
+  color: #eaeaea;
 }
 
 .results__text {

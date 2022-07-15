@@ -15,11 +15,13 @@ const Camera = ({ photoMode }) => {
   const camera = useRef();
   const cameraCanvas = useRef();
 
+  // [기본, 바꿀값] = undefined가 기본에 바인딩
   const [photo, setPhoto] = useState(undefined);
   const [showGallery, setShowGallery] = useState(false);
   const [photos, setPhotos] = useState([]);
   const [results, setResults] = useState([]);
 
+  // 얼굴 인식
   const getFaces = async () => {
     if (camera.current !== null) {
       const faces = await detectFaces(camera.current.video);
@@ -48,6 +50,8 @@ const Camera = ({ photoMode }) => {
 
   const toggleGallery = () => setShowGallery(!showGallery);
 
+
+  // 이미지 캡쳐 부분
   const capture = () => {
     const imgSrc = camera.current.getScreenshot();
     const newPhotos = [...photos, imgSrc];
@@ -55,6 +59,8 @@ const Camera = ({ photoMode }) => {
     setPhoto(imgSrc);
     setShowGallery(true);
   };
+
+  
   const reset = () => {
     setPhoto(undefined);
     setPhotos([]);
@@ -67,9 +73,20 @@ const Camera = ({ photoMode }) => {
     setPhotos(newPhotos);
   };
 
+
+function Scroll_down(props){
+  return(
+  <>
+    <p className={props.className}>{props.msg}</p>
+  </>
+  )
+}
+
+  
   return (
     <div className="camera">
-      <p className="scroll_down">Scroll down for results ↓</p>
+      {/* <Scroll_down className = {"scroll_down"} msg = {'감정인식중...'}/> */}
+      
       <div className="camera__wrapper">
         <Webcam audio={false} ref={camera} width="100%" height="auto" />
         <canvas className={classnames('webcam-overlay', photoMode && 'webcam-overlay--hidden')} ref={cameraCanvas} />

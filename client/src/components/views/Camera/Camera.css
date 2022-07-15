@@ -2,7 +2,7 @@
   width: 100%;
   margin-top: 1rem;
   display: flex;
-  flex-direction: column;
+  /* flex-direction: column; */
   align-items: center;
   position: relative;
 }
@@ -47,17 +47,15 @@ p.scroll_down
 }
 
 .results__container {
-  background-color: #fff;
-  width: 100%;
+  background-color: #1b1b1b;
+  width: 30%;
   padding-top: 1rem;
-  min-height: 250px;
+  min-height: 380px;
   display: flex;
   justify-content: center;
+  color: #aeaeae;
 }
 
-.results__wrapper {
-  padding: 1rem 0 0 1rem;
-}
 
 @media only screen and (min-width: 768px) {
   .camera__wrapper {
@@ -66,6 +64,6 @@ p.scroll_down
   }
 
   .results__wrapper {
-    padding: 0;
+    /* padding: 0; */
   }
 }
