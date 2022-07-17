@@ -17,7 +17,6 @@ function AddBoard(props) {
   };
 
   useEffect(() => {
-    console.log(props.match.path)
     axios
       .post("/api/users/comment/getComment", variables)
       .then((response) => {
@@ -50,7 +49,6 @@ function AddBoard(props) {
         let responsedData = response.data.boardviews;
         setViewCounts(responsedData);
       })
-    console.log(props.writer)
   }, [currentPage, boardTap]);
 
 

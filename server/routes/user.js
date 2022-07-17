@@ -23,6 +23,14 @@ router.get('/', auth, (req, res) => {
     })
 })
 
+router.post("/myBoard", (req, res) => {
+    Board.find({ userFrom: req.body.userFrom })
+        .sort({ createdAt: -1 })
+        .exec((err, boards) => {
+            if (err) return res.status(400).send(err);
+            return res.status(200).json({ success: true, boards })
+        })
+})
 // router.get('/profile', auth, (req, res) => {
 //     User.findOne({ _id: req.user._id }, (err, user) => {
 //         if (user) return res.status(200).json({
