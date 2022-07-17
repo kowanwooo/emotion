@@ -1,4 +1,4 @@
-.main__banner{
+/* .main__banner{
     width: 100%;
     overflow: hidden;
     margin: 0 auto 50px;
@@ -10,8 +10,16 @@
     color : #a5a5a5;
     padding-top: 109px;
 }
+*/
 #movie__name{
     text-align: center;
     display : block;
     margin : auto;
+    padding-top: 109px;
+} 
+
+.main__banner{
+    background-color: #1b1b1b;
+    color : #a5a5a5;
+
 }
