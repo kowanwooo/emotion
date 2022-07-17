@@ -11,7 +11,7 @@
     padding: 24px 0 34px;
     width: 100%;
     margin: 0 auto;
-    background-color: #252525;
+    background-color: #1B1B1B;
 }
 
 .mypage__wrap {
@@ -63,7 +63,8 @@
 }
 
 .mypage__user__innerText,
-.mypage__user__matadata__list {
+.mypage__user__matadata__list,
+.mypage__user__matadata__list a {
     color: #A5A5A5;
 }
 
@@ -83,5 +84,5 @@
 }
 
 .mypage__user__R {
-    border-left: 1px solid black;
+    border-left: 1px solid #A5A5A5;
 }

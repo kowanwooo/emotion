@@ -24,12 +24,14 @@ function BoardDetail(props) {
     }
 
     useEffect(() => {
+        FetchBoardDetail();
+        FetchComment();
+    }, [,]);
+
+    const FetchBoardDetail = () => {
         const variable = { boardId: BoardId };
-        // console.log(props.match.path)
-        console.log(props.match.path)
-        // console.log(props.match.params.boardId)
-        // console.log(props.match.params)
-        axios.post(`/api/users${props.match.path}`, variable)
+        axios
+            .post(`/api/users${props.match.path}`, variable)
             .then(response => {
                 if (response.data.success) {
                     setBoardDetail([response.data.board]);
@@ -38,11 +40,12 @@ function BoardDetail(props) {
                     alert("게시글 가져오기에 실패했습니다.");
                 }
             })
-        FetchComment();
-    }, []);
+
+    }
 
     const FetchComment = () => {
-        axios.post("/api/users/comment/getComment", variables)
+        axios
+            .post("/api/users/comment/getComment", variables)
             .then((response) => {
                 if (response.data.success) {
                     setComments(response.data.comments);
