@@ -2,11 +2,16 @@ hr {
     margin: 0;
 }
 
+.boardView {
+    background-color: #1b1b1b;
+    height: 100vh;
+}
+
 .board__main {
     padding-top: 109px;
     width: 1100px;
     margin: 0 auto;
-    background-color: #fff;
+    background-color: #1b1b1b;
 }
 
 .board_top {
@@ -17,6 +22,10 @@ hr {
 
 }
 
+.board_title {
+    color: #FFFFFF;
+}
+
 .w_button {
     height: 30px;
 }
@@ -24,7 +33,7 @@ hr {
 /*-----------------------------------------*/
 /*-----------------------------------------*/
 .board-actions {
-    border-top: 1px solid #3254ce;
+    border-top: 1px solid #FFFFFF;
 }
 
 .board-btns {
@@ -61,15 +70,16 @@ hr {
     display: block;
     background: rgba(47, 62, 78, .02);
     margin-right: -5px;
-    border: 1px solid rgba(47, 62, 78, .05);
     border-left: 0;
+    color: #FFFFFF;
+    border: 1px solid rgba(126, 155, 255, .3);
 }
 
 
 .form-custom-radio-btngroup input[type=radio]:checked~label {
-    background-color: #fff;
+    background-color: #7e9bff;
     border: 1px solid rgba(126, 155, 255, .3);
-    color: #7e9bff;
+    color: #FFFFFF;
     font-weight: 700;
 }
 
@@ -80,7 +90,7 @@ hr {
 select.form-control.light {
 
     background-size: 20px;
-    border-color: #7e9bff;
+    border-color: #FFFFFF;
     color: #7e9bff;
     font-weight: 700;
 }
@@ -114,8 +124,8 @@ select.form-control.light {
 
 
 .board_header {
-    color: #828b95;
-    border: 1px solid #c1c5ca;
+    color: #FFFFFF;
+    border: 1px solid #FFFFFF;
     border-width: 1px 0;
 }
 
@@ -189,8 +199,8 @@ select.form-control.light {
 }
 
 .post_item {
-    border-bottom: 1px solid #dbdde1;
-    color: #828b95;
+    border-bottom: 1px solid #FFFFFF;
+    color: #FFFFFF;
     display: flex;
     flex-flow: row nowrap;
 }
@@ -272,7 +282,7 @@ select.form-control.light {
 .post_item .post_writer,
 .post_item .post_date,
 .post_item .post_view {
-    color: #828b95;
+    color: #FFFFFF;
 }
 
 .board_build_list .post_date {

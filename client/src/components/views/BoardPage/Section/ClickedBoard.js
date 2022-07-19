@@ -49,6 +49,7 @@ function ClickedBoard(props) {
                     </div>
                     <div className="action">
                         <div className="vote">
+                            추천수&nbsp;&nbsp;
                             <LikeButton
                                 boardId={props.id}
                                 boardWriter={props.writer}

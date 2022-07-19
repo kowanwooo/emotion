@@ -1,5 +1,20 @@
+.createBoard {
+    background-color: #1b1b1b;
+    height: 100vh;
+}
+
 .ck.ck-editor__editable:not(.ck-editor__nested-editable) {
     min-height: 500px;
+    background-color: #1b1b1b;
+    color: #FFFFFF;
+}
+
+.ck-rounded-corners .ck.ck-editor__top .ck-sticky-panel .ck-toolbar,
+.ck.ck-editor__top .ck-sticky-panel .ck-toolbar.ck-rounded-corners {
+    border-radius: var(--ck-border-radius);
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    background: black;
 }
 
 .editorWidth {
@@ -11,7 +26,7 @@
     padding-top: 109px;
     width: 1100px;
     margin: 0 auto;
-    background-color: #fff;
+
 }
 
 .board_top2 {
@@ -30,6 +45,7 @@
     align-items: center;
     margin-bottom: 30px;
     text-align: center;
+    color: #FFFFFF;
 }
 
 
@@ -37,6 +53,8 @@
     width: 700px;
     height: 42px;
     margin-left: 10px;
+    background-color: #1b1b1b;
+    color: #FFFFFF;
 }
 
 .submit_button {
@@ -50,4 +68,8 @@
     border-radius: 5px;
     line-height: 12px;
     font-weight: bolder;
+}
+
+.ck-toolbar {
+    color: #1b1b1b;
 }

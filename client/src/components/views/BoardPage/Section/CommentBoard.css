@@ -1,5 +1,5 @@
 .comments .form-reply.fixed {
-    border-top: 1px solid #7e9bff;
+    border-top: 1px solid rgba(248, 249, 250, 0.3);
     padding: 24px 0;
 }
 
@@ -10,8 +10,8 @@
     align-content: flex-start;
     padding-top: 12px;
     margin-top: 12px;
-    border-top: 1px dashed rgba(126, 155, 255, .5);
-    border-bottom: 1px solid #bdbfc5;
+    border-top: 1px dashed rgba(248, 249, 250, 0.3);
+    border-bottom: 1px solid rgba(248, 249, 250, 0.3);
 }
 
 div.content_wrap>div.content>p,
@@ -55,8 +55,8 @@ textarea.form-control {
     font-size: 1rem;
     font-weight: 400;
     line-height: 1.5;
-    color: #495057;
-    background-color: #fff;
+    color: #FFFFFF;
+    background-color: #1b1b1b;
     background-clip: padding-box;
     border: 1px solid #ced4da;
     border-radius: 0.25rem;
@@ -120,6 +120,7 @@ textarea {
 [type=submit]:not(:disabled),
 button:not(:disabled) {
     cursor: pointer;
+    color: #FFFFFF;
 }
 
 [type=button],

@@ -60,43 +60,45 @@ function CreateBoard({ history }) {
     return (
         <>
             <Header />
-            <div className='board_top2 board__C__main'>
-                <h2 className='board_title'>게시판 쓰기</h2>
-                <div>
-                    <Button component={Link} to="/board" variant="contained">
-                        뒤로가기 !
-                    </Button>
-                    <Button onClick={onSubmit} variant="contained" color="success">
-                        등록 !
-                    </Button>
+            <div className='createBoard'>
+                <div className='board_top2 board__C__main'>
+                    <h2 className='board_title'>게시판 쓰기</h2>
+                    <div>
+                        <Button component={Link} to="/board" variant="contained">
+                            뒤로가기 !
+                        </Button>
+                        <Button onClick={onSubmit} variant="contained" color="success">
+                            등록 !
+                        </Button>
+                    </div>
                 </div>
-            </div>
-            <div className='form_wrapper '>
-                <span><strong>제목 : </strong></span>
-                <input className='title_input'
-                    type='text'
-                    placeholder='제목'
-                    onChange={getValue}
-                    name='boardTitle' />
-            </div>
-            <div className='editorWidth'>
-                <CKEditor
-                    editor={ClassicEditor}
-                    config={{ placeholder: "Placeholder text..." }}
-                    onReady={editor => {
-                        // You can store the "editor" and use when it is needed.
-                        console.log('Editor is ready to use!', editor);
-                    }}
-                    onChange={(event, editor) => {
-                        const data = editor.getData();
+                <div className='form_wrapper '>
+                    <span><strong>제목 : </strong></span>
+                    <input className='title_input'
+                        type='text'
+                        placeholder='제목'
+                        onChange={getValue}
+                        name='boardTitle' />
+                </div>
+                <div className='editorWidth'>
+                    <CKEditor
+                        editor={ClassicEditor}
+                        config={{ placeholder: "Placeholder text..." }}
+                        onReady={editor => {
+                            // You can store the "editor" and use when it is needed.
+                            console.log('Editor is ready to use!', editor);
+                        }}
+                        onChange={(event, editor) => {
+                            const data = editor.getData();
 
-                        setInput({
-                            ...inputs,
-                            boardContent: data
-                        })
-                        console.log(inputs);
-                    }}
-                />
+                            setInput({
+                                ...inputs,
+                                boardContent: data
+                            })
+                            console.log(inputs);
+                        }}
+                    />
+                </div>
             </div>
         </>
     )

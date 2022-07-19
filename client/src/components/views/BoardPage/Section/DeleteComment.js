@@ -7,6 +7,8 @@ const Button = styled.button`
   color: #c62912;
   font-size: 12px;
   line-height: 22px;
+  background-color: #6e6e6e;
+  border-radius: 20%;
 `
 
 function DeleteComment(props) {

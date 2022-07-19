@@ -2,7 +2,7 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
-    border-top: 1px solid rgba(47, 62, 78, .18);
+    border-top: 1px solid rgba(248, 249, 250, 0.3);
     padding: 12px 0;
 }
 
@@ -20,7 +20,7 @@
 .comment .nick {
     flex: 1 1;
     font-weight: bolder;
-    color: rgba(29, 46, 105, .8);
+    color: #FFFFFF;
     margin-bottom: 8px;
     padding-top: 4px;
     display: inline-flex;
@@ -43,8 +43,11 @@ div {
     justify-content: space-between;
 }
 
+.content p {
+    color: #FFFFFF;
+}
 
 .comment .date {
     font-size: 12px;
-    color: rgba(47, 62, 78, .4);
+    color: rgba(216, 216, 216, 0.4);
 }

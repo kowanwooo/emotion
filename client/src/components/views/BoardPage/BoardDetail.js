@@ -82,50 +82,51 @@ function BoardDetail(props) {
     return (
         <div>
             <Header />
-            <div className='board__C__main'>
-                {BoardDetail && BoardDetail.map((board, index) => {
-                    return (
-                        <React.Fragment key={index}>
-                            <ClickedBoard
-                                id={board._id}
-                                user={board.userFrom}
-                                time={board.createdAt}
-                                writer={board.boardWriter}
-                                title={board.boardTitle}
-                                content={board.boardContent}
-                                CommentCounts={CommentCounts}
-                                ViewsCounts={ViewsCounts}
-                                history={`${props.history}`}
-                                onRemove={onRemove}
-                            />
+            <div className='boardDetail'>
+                <div className='board__C__main'>
+                    {BoardDetail && BoardDetail.map((board, index) => {
+                        return (
+                            <React.Fragment key={index}>
+                                <ClickedBoard
+                                    id={board._id}
+                                    user={board.userFrom}
+                                    time={board.createdAt}
+                                    writer={board.boardWriter}
+                                    title={board.boardTitle}
+                                    content={board.boardContent}
+                                    CommentCounts={CommentCounts}
+                                    ViewsCounts={ViewsCounts}
+                                    history={`${props.history}`}
+                                    onRemove={onRemove}
+                                />
 
-                        </React.Fragment>
-                    )
-                })
-                }
-                {Comments && Comments.map((comment, index) => {
-                    return (
-                        <React.Fragment key={index}>
-                            <AddComment
-                                id={comment._id}
-                                user={comment.userFrom}
-                                time={comment.createdAt}
-                                writer={comment.commentWriter}
-                                content={comment.commentContent}
-                                onRemove={onRemoveComment}
+                            </React.Fragment>
+                        )
+                    })
+                    }
+                    {Comments && Comments.map((comment, index) => {
+                        return (
+                            <React.Fragment key={index}>
+                                <AddComment
+                                    id={comment._id}
+                                    user={comment.userFrom}
+                                    time={comment.createdAt}
+                                    writer={comment.commentWriter}
+                                    content={comment.commentContent}
+                                    onRemove={onRemoveComment}
 
-                            />
-                        </React.Fragment>
-                    )
-                })
-                }
-                <CommentBoard
-                    onSubmit={onSubmit}
-                    onChange={onChange}
-                    onReset={onReset}
-                />
+                                />
+                            </React.Fragment>
+                        )
+                    })
+                    }
+                    <CommentBoard
+                        onSubmit={onSubmit}
+                        onChange={onChange}
+                        onReset={onReset}
+                    />
+                </div>
             </div>
-
         </div>
     )
 }
