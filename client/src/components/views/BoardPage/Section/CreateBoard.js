@@ -62,7 +62,7 @@ function CreateBoard({ history }) {
             <Header />
             <div className='createBoard'>
                 <div className='board_top2 board__C__main'>
-                    <h2 className='board_title'>게시판 쓰기</h2>
+                    <h2 className='board_title'>게시물 쓰기</h2>
                     <div>
                         <Button component={Link} to="/board" variant="contained">
                             뒤로가기 !

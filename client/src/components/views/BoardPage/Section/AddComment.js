@@ -4,6 +4,7 @@ import './ClickedBoard.css'
 import DeleteComment from './DeleteComment'
 function AddComment(props) {
     const currentUser = window.localStorage.getItem('userId');
+
     return (
         <div className="comment">
             <div className="box">

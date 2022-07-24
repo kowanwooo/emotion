@@ -105,12 +105,13 @@ function BoardDetail(props) {
                     })
                     }
                     {Comments && Comments.map((comment, index) => {
+                        const commentCreatedAt = comment.createdAt.substr(0, 10);
                         return (
                             <React.Fragment key={index}>
                                 <AddComment
                                     id={comment._id}
                                     user={comment.userFrom}
-                                    time={comment.createdAt}
+                                    time={commentCreatedAt}
                                     writer={comment.commentWriter}
                                     content={comment.commentContent}
                                     onRemove={onRemoveComment}
