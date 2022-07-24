@@ -1,5 +1,5 @@
 import { Link, withRouter } from 'react-router-dom';
-import './Section.css';
+import './SubBanner.css';
 
 function Img_Src(props) {
     return (<>
@@ -10,7 +10,7 @@ function Img_Src(props) {
 }
 
 
-function Section(props) {
+function SubBanner(props) {
     return (<>
         <section>
             <div id="multisection_index">
@@ -35,4 +35,4 @@ function Section(props) {
     </>)
 }
 
-export default withRouter(Section);
+export default withRouter(SubBanner);
