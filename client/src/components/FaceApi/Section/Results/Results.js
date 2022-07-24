@@ -3,7 +3,7 @@ import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Spinner from '../Spinner/Spinner';
 
-import { mapExpressionToEmoji } from '../../../helpers/emojis';
+import { mapExpressionToEmoji } from '../../../../helpers/emojis';
 
 import './Results.css';
 

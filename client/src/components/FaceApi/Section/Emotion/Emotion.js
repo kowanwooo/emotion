@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 
-import { loadModels } from '../../../helpers/faceApi';
-import { createFaLibrary } from '../../../helpers/icons';
+import { loadModels } from '../../../../helpers/faceApi';
+import { createFaLibrary } from '../../../../helpers/icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Switch from 'react-switch';
 import Camera from '../Camera/Camera';
 import './Emotion.css';
 
-import Header from '../../Common/Header/Header';
+import Header from '../../../Common/Header/Header';
 
 createFaLibrary();
 loadModels();

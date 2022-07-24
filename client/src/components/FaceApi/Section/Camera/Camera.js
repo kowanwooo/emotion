@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import classnames from 'classnames';
 
-import { detectFaces, drawResults } from '../../../helpers/faceApi';
+import { detectFaces, drawResults } from '../../../../helpers/faceApi';
 
 import Button from '../Button/Button';
 import Gallery from '../Gallery/Gallery';
