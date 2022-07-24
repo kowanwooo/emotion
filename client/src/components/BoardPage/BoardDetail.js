@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import { Link, withRouter } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 import axios from 'axios';
-import Header from '../Header/Header';
+import Header from '../Common/Header/Header';
 import ClickedBoard from './Section/ClickedBoard';
 import CommentBoard from './Section/CommentBoard';
 import AddComment from './Section/AddComment';

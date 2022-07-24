@@ -60,7 +60,7 @@ const Camera = ({ photoMode }) => {
     setShowGallery(true);
   };
 
-  
+
   const reset = () => {
     setPhoto(undefined);
     setPhotos([]);
@@ -74,19 +74,19 @@ const Camera = ({ photoMode }) => {
   };
 
 
-function Scroll_down(props){
-  return(
-  <>
-    <p className={props.className}>{props.msg}</p>
-  </>
-  )
-}
+  function Scroll_down(props) {
+    return (
+      <>
+        <p className={props.className}>{props.msg}</p>
+      </>
+    )
+  }
 
-  
+
   return (
     <div className="camera">
       {/* <Scroll_down className = {"scroll_down"} msg = {'감정인식중...'}/> */}
-      
+
       <div className="camera__wrapper">
         <Webcam audio={false} ref={camera} width="100%" height="auto" />
         <canvas className={classnames('webcam-overlay', photoMode && 'webcam-overlay--hidden')} ref={cameraCanvas} />

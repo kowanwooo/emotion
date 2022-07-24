@@ -1,10 +1,10 @@
-import React, {useEffect, useRef, useState} from "react";
-import {detectFaces, drawResults} from "../../../helpers/faceApi";
+import React, { useEffect, useRef, useState } from "react";
+import { detectFaces, drawResults } from "../../../helpers/faceApi";
 
 import "./SelectedImage.css";
 import Results from "../Results/Results";
 
-const SelectedImage = ({img}) => {
+const SelectedImage = ({ img }) => {
   const selected = useRef();
   const canvas = useRef();
 

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { withRouter } from "react-router-dom";
 import axios from "axios";
-import Header from "../../Header/Header";
+import Header from "../../Common/Header/Header";
 import AddBoard from "../../BoardPage/Section/AddBoard";
 
 

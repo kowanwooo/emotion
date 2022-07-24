@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { useDispatch } from 'react-redux';
-import { loginUser } from '../../../_actions/user_action';
+import { loginUser } from '../../_actions/user_action';
 import { Link, withRouter } from 'react-router-dom';
 import "./LoginPage.css"
 
@@ -60,7 +60,7 @@ function LoginPage(props) {
                     </form>
                 </div>
                 <button><Link to={'/register'}>register</Link></button>
-                <button><Link to={'/login'}>/</Link></button>
+                <button><Link to={'/'}>/</Link></button>
             </div>
         </div>
 

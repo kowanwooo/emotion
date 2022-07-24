@@ -1,7 +1,7 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
-import { Link, withRouter } from 'react-router-dom';
-import Header from '../../Header/Header';
+import { withRouter } from 'react-router-dom';
+import Header from '../../Common/Header/Header';
 import './MyBoardList.css';
 import AddBoard from '../../BoardPage/Section/AddBoard';
 

@@ -4,16 +4,17 @@ import {
   Switch,
   Route,
 } from "react-router-dom";
-import LandingPage from './components/views/LandingPage/LandingPage'
-import LoginPage from './components/views/LoginPage/LoginPage';
-import RegisterPage from './components/views/RegisterPage/RegisterPage';
-import Emotion from './components/views/Emotion/Emotion';
-import Spinner from './components/views/Spinner/Spinner';
-import CreateBoard from './components/views/BoardPage/Section/CreateBoard';
-import BoardDetail from './components/views/BoardPage/BoardDetail'
+import LandingPage from './components/LandingPage/LandingPage'
+import LoginPage from './components/LoginPage/LoginPage';
+import RegisterPage from './components/RegisterPage/RegisterPage';
+import Emotion from './components/FaceApi/Emotion/Emotion';
+import Spinner from './components/Spinner/Spinner';
+import CreateBoard from './components/BoardPage/Section/CreateBoard';
+import BoardDetail from './components/BoardPage/BoardDetail'
 import Auth from './hoc/auth'
 import MyPage from './pages/MyPage';
 import Board from "./pages/Board";
+
 
 
 

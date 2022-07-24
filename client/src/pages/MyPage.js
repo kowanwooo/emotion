@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import { Route, withRouter } from 'react-router-dom';
-import MypageInfo from '../components/views/MyPage/Section/MypageInfo';
-import Comment from "../components/views/MyPage/Section/Comment";
-import MyBoardList from '../components/views/MyPage/Section/MyBoardList';
+import MypageInfo from '../components/MyPage/Section/MypageInfo';
+import Comment from "../components/MyPage/Section/Comment";
+import MyBoardList from '../components/MyPage/Section/MyBoardList';
 
 function MyPage({ match }) {
     return (

@@ -1,7 +1,7 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import './MypageInfo.css';
-import Header from '../../Header/Header';
+import Header from '../../Common/Header/Header';
 import { Link } from 'react-router-dom';
 
 

@@ -1,7 +1,7 @@
-import React, { useEffect, useLayoutEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import './BoardViewPage.css';
 import axios from 'axios';
-import Header from '../Header/Header';
+import Header from '../Common/Header/Header';
 import styled from "styled-components";
 import Pagination from "@material-ui/lab/Pagination";
 import Button from '@mui/material/Button';

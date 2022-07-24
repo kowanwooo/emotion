@@ -2,12 +2,13 @@ import React from 'react';
 import { CKEditor } from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import './CreateBoard.css';
-import Header from '../../Header/Header';
+import Header from '../../Common/Header/Header';
 import { useState } from 'react';
 import axios from 'axios';
 import { Link, withRouter } from 'react-router-dom';
 import Button from '@mui/material/Button';
-import Box from '@material-ui/core/Box';
+
+
 function CreateBoard({ history }) {
     const userFrom = localStorage.getItem("userId");
     const writerFrom = localStorage.getItem('userName');
