@@ -1,0 +1,45 @@
+section{
+    height: 564px;
+    width: 100%;
+    display: block;
+    color: #ffffff;
+    background-color: #1b1b1b;
+}
+
+#multisection_index{
+    height: 564.210px;
+    min-height: 383px;
+    width: 1240px;
+    margin: 0 auto;
+    background-color: #1b1b1b;
+    position: relative;
+    display: block;
+    overflow: hidden;
+    
+}
+
+.label{
+    font-family: Notosans, sans-serif;
+    font-size: 24px;
+    line-height: 36px;
+    text-decoration: none solid rgb(255,255,255);
+    vertical-align: middle;
+    word-spacing: 0px;
+    padding: 0 0 10px 0;
+}
+
+
+ div > a > img{
+    height: 360px;
+    width: 240px;
+    max-width: 100%;
+    margin-left: 5px;
+    transition-duration: 1s;
+    
+}
+
+a > img:hover{
+    transform: scale(1.2);
+    transition: all 0.2s linear;
+    overflow: hidden;
+}
