@@ -64,13 +64,17 @@ function CreateBoard({ history }) {
             <div className='createBoard'>
                 <div className='board_top2 board__C__main'>
                     <h2 className='board_title'>게시물 쓰기</h2>
-                    <div>
-                        <Button component={Link} to="/board" variant="contained">
-                            뒤로가기 !
-                        </Button>
-                        <Button onClick={onSubmit} variant="contained" color="success">
-                            등록 !
-                        </Button>
+                    <div className='create_btn'>
+                        <div className='create_btn_first'>
+                            <Link to="/board"><button className='w_button'>
+                                뒤로가기&nbsp;&nbsp;
+                            </button></Link>
+                        </div>
+                        <div>
+                            <button className='w_button' onClick={onSubmit}>
+                                &nbsp;&nbsp;등록
+                            </button>
+                        </div>
                     </div>
                 </div>
                 <div className='form_wrapper '>

@@ -59,8 +59,6 @@ function LoginPage(props) {
                         <p className='login__message'>Not registered? <Link to="/register">Create an account</Link></p>
                     </form>
                 </div>
-                <button><Link to={'/register'}>register</Link></button>
-                <button><Link to={'/'}>/</Link></button>
             </div>
         </div>
 

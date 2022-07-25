@@ -12,7 +12,7 @@ function Img_Src(props) {
 
 function SubBanner(props) {
     return (<>
-        <section>
+        <section className='sub_section'>
             <div id="multisection_index">
                 <div className='section_banner'>
                     <div className='title'>

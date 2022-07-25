@@ -5,11 +5,13 @@
 
 .boardDetail {
     background-color: #1b1b1b;
+
 }
 
 .title {
     display: flex;
     justify-content: space-between;
+    color: #FFFFFF;
 }
 
 .primary {
@@ -28,8 +30,6 @@
     margin-bottom: 36px;
     color: #FFFFFF;
 }
-
-
 
 .pb-sm-3,
 .py-sm-3 {
@@ -159,8 +159,7 @@
     padding: 2px 0 2px 12px;
 }
 
-.post-detail .action .vote button,
-.notice .post .action .vote button {
+.post-detail .action .notice .post .action .vote button {
     font-size: 16px;
     display: inline-block;
     width: auto;
@@ -174,4 +173,13 @@
     padding: 20px 0;
     margin: 0 35px;
     border-bottom: 1px solid rgba(47, 62, 78, .05);
+}
+
+.like_btn {
+    color: #FFFFFF;
+    padding: 10px;
+    font-size: 16px;
+    cursor: pointer;
+    background-color: #353945;
+    border-radius: 20%;
 }

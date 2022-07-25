@@ -5,35 +5,95 @@ hr {
 .boardView {
     background-color: #1b1b1b;
     height: 100vh;
+    padding-top: 109px;
 }
 
 .board__main {
-    padding-top: 109px;
-    width: 1100px;
+    width: 1240px;
     margin: 0 auto;
     background-color: #1b1b1b;
 }
 
+.top_inner {
+    width: 1240px;
+    position: relative;
+    margin: 0 auto;
+    text-align: left;
+}
+
 .board_top {
+    margin-bottom: 40px;
+    padding: 20px 0;
     margin: 20px 0 10px 0;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    background-color: #252525;
 
 }
 
 .board_title {
-    color: #FFFFFF;
+    font-size: 24px;
+    line-height: 36px;
+    color: #fff;
+    font-weight: 400;
 }
 
 .w_button {
     height: 30px;
+    cursor: pointer;
+}
+
+.w_button:hover {
+    color: #FFFFFF;
 }
 
 /*-----------------------------------------*/
-/*-----------------------------------------*/
-.board-actions {
-    border-top: 1px solid #FFFFFF;
+
+.w_button {
+    font-size: 20px;
+    line-height: 22px;
+    color: #a5a5a5;
+}
+
+.cs-2depth {
+    padding-bottom: 20px;
+    font-size: 0;
+}
+
+
+.cs-2depth li {
+    display: inline-block;
+    position: relative;
+    margin-right: 12px;
+    padding-right: 12px;
+    vertical-align: middle;
+}
+
+.cs-2depth li.cs-2depth-on a,
+.cs-2depth li.cs-2depth-on button {
+    color: #fff;
+    font-weight: 700;
+
+}
+
+.cs-2depth a,
+.cs-2depth button {
+    font-size: 20px;
+    line-height: 22px;
+    color: #a5a5a5;
+}
+
+.cs-2depth li:after {
+    position: absolute;
+    top: 50%;
+    right: 0;
+    -webkit-transform: translateY(-50%);
+    transform: translateY(-50%);
+    content: "";
+    width: 1px;
+    height: 18px;
+    background-color: #2f2f2f;
 }
 
 .board-btns {
@@ -43,72 +103,21 @@ hr {
     align-items: center;
 }
 
-.form-custom-radio-btngroup {
-    position: relative;
+li>button {
     cursor: pointer;
-    color: rgba(47, 62, 78, .4);
 }
 
-.form-custom-radio-btngroup .radio-container {
-    display: inline-block;
-    position: relative;
-    cursor: pointer;
-    user-select: none;
-}
-
-.form-custom-radio-btngroup input {
-    position: absolute;
-    opacity: 0;
-    cursor: pointer;
-    width: 100%;
-    height: 100%;
-}
-
-.form-custom-radio-btngroup .radio-container label {
-    margin: 0;
-    padding: 6px 12px;
-    display: block;
-    background: rgba(47, 62, 78, .02);
-    margin-right: -5px;
-    border-left: 0;
+li>button:hover {
     color: #FFFFFF;
-    border: 1px solid rgba(126, 155, 255, .3);
 }
 
-
-.form-custom-radio-btngroup input[type=radio]:checked~label {
-    background-color: #7e9bff;
-    border: 1px solid rgba(126, 155, 255, .3);
-    color: #FFFFFF;
-    font-weight: 700;
-}
-
-
-
-
-
-select.form-control.light {
-
-    background-size: 20px;
-    border-color: #FFFFFF;
-    color: #7e9bff;
-    font-weight: 700;
-}
-
-
-
-.search-post {
-    display: inline-block;
-}
-
-/*-----------------------------------------*/
 .board_build_list {
     margin-top: 14px;
     width: 100%;
 }
 
 .board_build_list .board_header {
-    height: 26px;
+    height: 45px;
     font-size: 12px;
 }
 
@@ -121,20 +130,10 @@ select.form-control.light {
     padding-left: 4px;
 }
 
-
-
 .board_header {
-    color: #FFFFFF;
-    border: 1px solid #FFFFFF;
+    color: #a5a5a5;
+    border: 1px solid #3b3b3b;
     border-width: 1px 0;
-}
-
-.board_build_list .post_category {
-    flex: 0 0 40px;
-}
-
-.board_build_list .post_content {
-    width: calc(100% - 364px);
 }
 
 .board_build_list .post_content {
@@ -148,22 +147,6 @@ select.form-control.light {
     white-space: nowrap;
 }
 
-.board_build_list .post_writer {
-    width: 194px;
-    flex: 0 0 194px;
-}
-
-.board_build_list .post_writer {
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    text-align: right;
-}
-
-.board_build_list .post_date {
-    flex: 0 0 72px;
-}
-
 .board_header .post_category,
 .board_header .post_date,
 .board_header .post_view,
@@ -171,11 +154,7 @@ select.form-control.light {
     text-align: center;
 }
 
-.board_build_list .post_view,
-.post_recommend {
-    flex: 0 0 40px;
-    margin-right: 4px;
-}
+
 
 .board_build_list .post_list {
     padding: 0;
@@ -185,6 +164,10 @@ select.form-control.light {
 
 .post_list {
     width: 100%;
+}
+
+.post_notice {
+    background-color: #252525;
 }
 
 .board_build_list .post_item {
@@ -199,8 +182,8 @@ select.form-control.light {
 }
 
 .post_item {
-    border-bottom: 1px solid #FFFFFF;
-    color: #FFFFFF;
+    border-bottom: 1px solid #252525;
+    color: #a5a5a5;
     display: flex;
     flex-flow: row nowrap;
 }
@@ -214,7 +197,7 @@ select.form-control.light {
 }
 
 .board_build_list .post_category {
-    flex: 0 0 40px;
+    flex: 0 0 65px;
 }
 
 .post_item .post_category,
@@ -282,7 +265,7 @@ select.form-control.light {
 .post_item .post_writer,
 .post_item .post_date,
 .post_item .post_view {
-    color: #FFFFFF;
+    color: #a5a5a5;
 }
 
 .board_build_list .post_date {
@@ -295,5 +278,10 @@ select.form-control.light {
     margin-right: 4px;
 }
 
+.hihi button:not(:disabled) {
+    cursor: pointer;
+    color: #fff;
+
+}
 
 /*------------------------------*/

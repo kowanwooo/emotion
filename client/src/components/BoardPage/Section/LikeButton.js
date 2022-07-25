@@ -80,7 +80,7 @@ function LikeButton({ boardId, boardTitle, boardContent, boardWriter }) {
 
   return (
     <>
-      <button onClick={handleLike} className="btn btn-vote up">
+      <button onClick={handleLike} className="like_btn">
         <span className="iconfont"><i className="icf-arrow-thick"></i></span>{likeCounts}
       </button>
     </>

@@ -1,0 +1,47 @@
+.add_table {
+    color: #a5a5a5;
+}
+
+.add_comment {
+    color: blue;
+}
+
+.cs-table02-wrap {
+    position: relative;
+
+}
+
+.cs-table-02 {
+    width: 100%;
+    table-layout: fixed;
+    border-top: 2px solid #2f2f2f;
+}
+
+table {
+    border: none;
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+.cs-table-02 thead tr {
+    border-bottom: 1px solid #2f2f2f;
+}
+
+.cs-table-02 th {
+    text-align: center;
+    font-size: 15px;
+    color: #a5a5a5;
+    padding: 15px 0;
+}
+
+.cs-table-02 tbody tr {
+    border-bottom: 1px solid #2f2f2f;
+}
+
+.noti_time {
+    font-size: 13px;
+}
+
+.noti_date {
+    text-align: center;
+}

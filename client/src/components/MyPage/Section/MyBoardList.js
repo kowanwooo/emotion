@@ -3,7 +3,8 @@ import React, { useEffect, useState } from 'react'
 import { withRouter } from 'react-router-dom';
 import Header from '../../Common/Header/Header';
 import './MyBoardList.css';
-import AddBoard from '../../BoardPage/Section/AddBoard';
+import MyAddTable from './MyAddTable';
+import MyAddTableHeader from './MyAddTableHeader';
 
 function MyBoardList({ history }) {
     const [MyBoard, setMyBoard] = useState([]);
@@ -29,20 +30,26 @@ function MyBoardList({ history }) {
         <>
             <Header />
             <div className='myBoardList'>
+                <div className='board_top'>
+                    <div className='top_inner'>
+                        <h2 className='board_title'>내가 쓴 게시물</h2>
+                    </div>
+                </div>
                 <div className='m_board_wrap'>
-                    <h2>내가 쓴 게시물</h2>
+
                     {(MyBoard.length === 0) &&
                         <div>
                             <h2>게시글 목록이 없습니다.</h2>
                         </div>
                     }
+                    <MyAddTableHeader />
                     {MyBoard && MyBoard.map((board, index) => {
                         console.log(board)
                         console.log(index)
                         const boardCreatedAt = board.createdAt.substr(0, 10);
                         return (
                             <React.Fragment key={index}>
-                                <AddBoard
+                                <MyAddTable
                                     id={board._id}
                                     user={board.userFrom}
                                     time={boardCreatedAt}

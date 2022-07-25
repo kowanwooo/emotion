@@ -6,13 +6,38 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import MainBanner from './Section/MainBanner';
 import SubBanner from './Section/SubBanner';
-
-
-
-
+import TopButton from './Section/TopButton';
 
 
 function LandingPage(props) {
+  const [ScrollY, setScrollY] = useState(0);
+  const [BtnStatus, setBtnStatus] = useState(false);
+
+  const handleFollow = () => {
+    setScrollY(window.pageYOffset);
+    ScrollY > 100 ? setBtnStatus(true) : setBtnStatus(false);
+  }
+
+
+  const handleTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth"
+    });
+    setScrollY(0);
+    setBtnStatus(false);
+  }
+
+  useEffect(() => {
+    const watch = () => {
+      window.addEventListener('scroll', handleFollow)
+    }
+    watch();
+    return () => {
+      window.removeEventListener('scroll', handleFollow)
+    }
+  })
+
   return (
     <>
       <Header />
@@ -21,6 +46,7 @@ function LandingPage(props) {
       <SubBanner label="슬퍼어어엉" />
       <SubBanner label="꾸에에에엑" />
       <SubBanner label="갈길이 멀다" />
+      <TopButton BtnStatus={BtnStatus} handleTop={handleTop} />
     </>
   )
 }

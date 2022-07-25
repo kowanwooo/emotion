@@ -102,31 +102,32 @@ textarea {
     border-radius: 0.25rem;
     transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
     color: #fff;
-    background-color: #213a96;
-    border-color: #213a96;
+    background-color: #353945;
+    border-color: #353945;
     font-weight: 700;
+    cursor: pointer;
 }
 
 .btn:hover {
-    background-color: #112a79;
+    background-color: #616572;
 }
 
 .btn:active {
-    background-color: #314485;
+    background-color: #616572;
 }
 
-[type=button]:not(:disabled),
-[type=reset]:not(:disabled),
-[type=submit]:not(:disabled),
-button:not(:disabled) {
+.ck>[type=button]:not(:disabled),
+.ck>[type=reset]:not(:disabled),
+.ck>[type=submit]:not(:disabled),
+.ck>button:not(:disabled) {
     cursor: pointer;
     color: #FFFFFF;
 }
 
-[type=button],
-[type=reset],
-[type=submit],
-button {
+.ck>[type=button],
+.ck>[type=reset],
+.ck>[type=submit],
+.ck>button {
     -webkit-appearance: button;
 }
 

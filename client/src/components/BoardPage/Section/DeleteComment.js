@@ -4,11 +4,12 @@ import styled from 'styled-components'
 import { withRouter } from 'react-router-dom';
 
 const Button = styled.button`
-  color: #c62912;
+  color: #FFFFFF;
   font-size: 12px;
   line-height: 22px;
   background-color: #6e6e6e;
   border-radius: 20%;
+  cursor: pointer;
 `
 
 function DeleteComment(props) {

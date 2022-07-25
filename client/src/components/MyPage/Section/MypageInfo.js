@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import './MypageInfo.css';
 import Header from '../../Common/Header/Header';
 import { Link } from 'react-router-dom';
-
+import MySubSection from './MySubSection';
 
 function MypageInfo(props) {
     const [users, setUsers] = useState('');
@@ -41,6 +41,8 @@ function MypageInfo(props) {
                         </div>
                     </div>
                 </div>
+                <MySubSection title="전체 시청내역" />
+                <MySubSection title="찜한 콘텐츠" />
             </div>
         </>
     );
