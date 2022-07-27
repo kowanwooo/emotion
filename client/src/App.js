@@ -8,7 +8,7 @@ import LandingPage from './components/LandingPage/LandingPage'
 import LoginPage from './components/LoginPage/LoginPage';
 import RegisterPage from './components/RegisterPage/RegisterPage';
 import Emotion from './components/FaceApi/Section/Emotion/Emotion';
-import Spinner from './components/FaceApi/Section/Spinner/Spinner';
+import LoadingPage from './components/Common/LoadingPage/LoadingPage';
 import CreateBoard from './components/BoardPage/Section/CreateBoard';
 import BoardDetail from './components/BoardPage/BoardDetail'
 import Auth from './hoc/auth'
@@ -22,10 +22,12 @@ function App() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    setLoading(false);
+    setTimeout(() => {
+      setLoading(false);
+    }, 2500);
   });
 
-  return loading ? (<Spinner />) : (
+  return loading ? (<LoadingPage />) : (
     <Router>
       <Switch>
         <Route exact path="/" component={Auth(LoginPage, null)} />
