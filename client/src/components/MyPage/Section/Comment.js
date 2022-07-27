@@ -2,10 +2,9 @@ import React, { useEffect, useState } from "react";
 import { withRouter } from "react-router-dom";
 import axios from "axios";
 import Header from "../../Common/Header/Header";
-import AddBoard from "../../BoardPage/Section/AddBoard";
 import MyAddTable from './MyAddTable';
 import MyAddTableHeader from './MyAddTableHeader';
-
+import Footer from "../../Common/Footer/Footer";
 
 function Comment({ history }) {
     const [CommentsFrom, setCommentsFrom] = useState([]);
@@ -72,6 +71,7 @@ function Comment({ history }) {
                         })}
                 </div>
             </div>
+            <Footer />
         </>
     );
 }

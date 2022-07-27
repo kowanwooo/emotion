@@ -5,6 +5,7 @@ import Header from '../../Common/Header/Header';
 import './MyBoardList.css';
 import MyAddTable from './MyAddTable';
 import MyAddTableHeader from './MyAddTableHeader';
+import Footer from '../../Common/Footer/Footer';
 
 function MyBoardList({ history }) {
     const [MyBoard, setMyBoard] = useState([]);
@@ -64,6 +65,7 @@ function MyBoardList({ history }) {
                     }
                 </div>
             </div>
+            <Footer />
         </>
     )
 }

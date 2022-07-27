@@ -6,6 +6,7 @@ import styled from "styled-components";
 import Pagination from "@material-ui/lab/Pagination";
 import { Link } from 'react-router-dom';
 import AddBoard from './Section/AddBoard';
+import Footer from '../Common/Footer/Footer';
 
 const PaginationBox = styled.div`
     text-align: center;
@@ -148,6 +149,7 @@ function BoardPage(props) {
                     </div>
                 </div>
             </div>
+            <Footer />
         </>
     )
 }
