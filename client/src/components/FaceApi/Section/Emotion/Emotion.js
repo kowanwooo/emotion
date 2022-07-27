@@ -8,7 +8,7 @@ import Camera from '../Camera/Camera';
 import './Emotion.css';
 
 import Header from '../../../Common/Header/Header';
-
+import Footer from '../../../Common/Footer/Footer';
 createFaLibrary();
 loadModels();
 
@@ -39,7 +39,7 @@ function Emotion() {
                 </header>
                 <Camera photoMode={mode} />
             </div>
-
+            <Footer />
         </>
     )
 }
