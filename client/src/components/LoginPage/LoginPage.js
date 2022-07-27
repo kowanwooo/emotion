@@ -1,17 +1,16 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux';
 import { loginUser } from '../../_actions/user_action';
 import { Link, withRouter } from 'react-router-dom';
+import LoadingPage from '../Common/LoadingPage/LoadingPage';
 import "./LoginPage.css"
 
 
 function LoginPage(props) {
-
-
     const dispatch = useDispatch();
-
     const [Email, setEmail] = useState("")
     const [Password, setPassword] = useState("")
+    const [loading, setLoading] = useState(true);
 
     const onEmailHandler = (event) => {
         setEmail(event.currentTarget.value)
@@ -28,7 +27,6 @@ function LoginPage(props) {
             email: Email,
             password: Password
         }
-
         dispatch(loginUser(body))
             .then(response => {
                 if (response.payload.loginSuccess) {
@@ -39,12 +37,15 @@ function LoginPage(props) {
                     alert(response.payload.message);
                 }
             })
-
-
     }
 
+    useEffect(() => {
+        setTimeout(() => {
+            setLoading(false);
+        }, 2500);
+    }, []);
 
-    return (
+    return loading ? (<LoadingPage />) : (
         <div className='login__background'>
             <div className='login__page'>
                 <h1 className='login__title'>Apple</h1>

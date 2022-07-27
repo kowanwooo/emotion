@@ -8,7 +8,6 @@ import LandingPage from './components/LandingPage/LandingPage'
 import LoginPage from './components/LoginPage/LoginPage';
 import RegisterPage from './components/RegisterPage/RegisterPage';
 import Emotion from './components/FaceApi/Section/Emotion/Emotion';
-import LoadingPage from './components/Common/LoadingPage/LoadingPage';
 import CreateBoard from './components/BoardPage/Section/CreateBoard';
 import BoardDetail from './components/BoardPage/BoardDetail'
 import Auth from './hoc/auth'
@@ -19,15 +18,8 @@ import Board from "./pages/Board";
 
 
 function App() {
-  const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    setTimeout(() => {
-      setLoading(false);
-    }, 2500);
-  });
-
-  return loading ? (<LoadingPage />) : (
+  return (
     <Router>
       <Switch>
         <Route exact path="/" component={Auth(LoginPage, null)} />
