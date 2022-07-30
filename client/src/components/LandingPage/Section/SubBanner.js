@@ -19,7 +19,7 @@ function SubBanner(props) {
                         <span className='label'>{props.label}</span>
                     </div>
                     <div className='more_contents'>
-                        <Link>더보기</Link>
+                        <Link to="/more">더보기</Link>
                     </div>
                 </div>
                 <div class="img_wrap">
