@@ -42,7 +42,7 @@ function LoginPage(props) {
     useEffect(() => {
         setTimeout(() => {
             setLoading(false);
-        }, 2500);
+        }, 1000);
     }, []);
 
     return loading ? (<LoadingPage />) : (
