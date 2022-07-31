@@ -21,10 +21,10 @@ function Emotion() {
                 <header>
                     <div className="App__header">
                         <h1>
-                            <span>감정 인식</span>
+                            <span className='App__title'>회원 감정 인식</span>
                         </h1>
                         <div className="App__switcher">
-                            <FontAwesomeIcon icon="camera" color={mode ? '#353535' : '#cccccc'} />
+                            <FontAwesomeIcon icon="camera" color={mode ? '#cccccc' : '#353535'} />
                             <Switch
                                 onChange={() => setMode(!mode)}
                                 uncheckedIcon={false}
@@ -32,7 +32,7 @@ function Emotion() {
                                 checked={!mode}
                                 className="App__switcher-switch"
                             />
-                            <FontAwesomeIcon icon="video" color={!mode ? '#353535' : '#cccccc'} />
+                            <FontAwesomeIcon icon="video" color={!mode ? '#cccccc' : '#353535'} />
                         </div>
 
                     </div>

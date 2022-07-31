@@ -7,11 +7,12 @@
   align-items: center;
   position: relative;
 }
-p.scroll_down
-{
-	font-size: 20px;
-    color: white;
+
+p.scroll_down {
+  font-size: 20px;
+  color: white;
 }
+
 .camera__wrapper {
   position: relative;
   width: 80%;
@@ -55,6 +56,8 @@ p.scroll_down
   display: flex;
   justify-content: center;
   color: #aeaeae;
+  border: 3px solid #fff;
+  border-radius: 3px;
 }
 
 
