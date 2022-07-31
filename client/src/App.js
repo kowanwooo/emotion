@@ -13,6 +13,7 @@ import BoardDetail from './components/BoardPage/BoardDetail'
 import Auth from './hoc/auth'
 import MyPage from './pages/MyPage';
 import Board from "./pages/Board";
+import MoreBannerPage from './components/MoreBannerPage/MoreBannerPage'
 
 
 
@@ -30,6 +31,7 @@ function App() {
         <Route exact path="/board" component={Auth(Board, true)} />
         <Route path="/board/create" component={Auth(CreateBoard)} />
         <Route path="/board/:boardId" component={Auth(BoardDetail, true)} />
+        <Route path="/more" component={Auth(MoreBannerPage, null)} />
       </Switch>
     </Router >
   );
