@@ -7,7 +7,17 @@ import { mapExpressionToEmoji } from '../../../../helpers/emojis';
 
 import './Results.css';
 
-const Results = ({ results, processing }) => {
+const Results = ({ results, processing, photoMode }) => {
+  const setEmotion = () => {
+    const emotion = results[0].expressions.asSortedArray()[0].expression;
+    const age = Math.round(results[0].age);
+    const gender = results[0].gender;
+    console.log(emotion, age, gender);
+    window.localStorage.setItem("emotion", JSON.stringify([emotion, age, gender]));
+  }
+  const delEmotion = () => {
+    window.localStorage.removeItem("emotion");
+  }
   if (processing && results) {
     return <Spinner />;
   }
@@ -16,7 +26,7 @@ const Results = ({ results, processing }) => {
       <div className="results">
         {results.length > 1 ? (
           <div>
-            <p>I think...</p>
+            <p>I think!!!</p>
             {results.map((result, i) => (
               <div className="results__wrapper" key={i}>
                 <div style={{ width: '300px' }}>
@@ -37,6 +47,11 @@ const Results = ({ results, processing }) => {
               <p>You look {results[0].expressions.asSortedArray()[0].expression}</p>
               <p>You seem to be {Math.round(results[0].age)} years old</p>
               <p>I think you are a {results[0].gender}</p>
+              <div className='finalEmotion_btn'>
+                <button onClick={setEmotion}><p>Set Emotion</p></button>
+                <button button onClick={delEmotion}><p>Delete Emotion</p></button>
+              </div>
+
             </div>
             <div className="results__emoji">
               <FontAwesomeIcon icon={mapExpressionToEmoji(results[0].expressions.asSortedArray()[0].expression)} size="3x" />

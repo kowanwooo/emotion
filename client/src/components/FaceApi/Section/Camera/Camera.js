@@ -107,7 +107,7 @@ const Camera = ({ photoMode }) => {
       ) : (
         <>
           <div className="results__container">
-            <Results results={results} />
+            <Results results={results} photoMode={photoMode} />
           </div>
         </>
       )}
