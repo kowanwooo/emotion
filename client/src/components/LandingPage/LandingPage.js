@@ -45,7 +45,7 @@ function LandingPage(props) {
       <SubBanner label="실시간 인기 프로그램" />
       <SubBanner label="슬퍼어어엉" />
       <SubBanner label="꾸에에에엑" />
-      <SubBanner label="갈길이 멀다" />
+      <SubBanner label="갈길이 멀어" />
       <TopButton BtnStatus={BtnStatus} handleTop={handleTop} />
       <Footer />
     </>
