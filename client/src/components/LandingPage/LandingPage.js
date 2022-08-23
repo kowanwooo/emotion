@@ -8,10 +8,14 @@ import MainBanner from './Section/MainBanner';
 import SubBanner from './Section/SubBanner';
 import TopButton from './Section/TopButton';
 import Footer from '../Common/Footer/Footer';
+import axios from 'axios';
+
 
 function LandingPage(props) {
   const [ScrollY, setScrollY] = useState(0);
   const [BtnStatus, setBtnStatus] = useState(false);
+  const [Contents, setContents] = useState([]);
+  const [ContentsP, setContentsP] = useState([]);
 
   const handleFollow = () => {
     setScrollY(window.pageYOffset);
@@ -38,18 +42,53 @@ function LandingPage(props) {
     }
   })
 
+  useEffect(() => {
+    FetchContents();
+    FetchContentsP();
+  }, [])
+
+
+  const FetchContents = () => {
+    axios.post("/api/users/contents/getContents")
+      .then((response) => {
+        if (response.data.success) {
+          console.log(response.data.contents);
+          setContents(response.data.contents);
+        } else {
+          alert("콘텐츠을 보여줄 수 없습니다.");
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  const FetchContentsP = () => {
+    axios.post("/api/users/contents/getContentsP")
+      .then((response) => {
+        if (response.data.success) {
+          console.log(response.data.contents);
+          setContentsP(response.data.contents);
+        } else {
+          alert("콘텐츠을 보여줄 수 없습니다.");
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
   return (
     <>
       <Header />
       <MainBanner />
-      <SubBanner label="실시간 인기 프로그램" />
-      <SubBanner label="슬퍼어어엉" />
-      <SubBanner label="꾸에에에엑" />
-      <SubBanner label="갈길이 멀어" />
+      <SubBanner label="최신순" Contents={Contents} />
+      <SubBanner label="관객순" Contents={ContentsP} />
       <TopButton BtnStatus={BtnStatus} handleTop={handleTop} />
       <Footer />
     </>
   )
+
 }
 
 export default withRouter(LandingPage);

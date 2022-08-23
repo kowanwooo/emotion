@@ -17,6 +17,7 @@ function CreateBoard({ history }) {
         boardTitle: '',
         boardContent: ''
     })
+
     const { boardTitle, boardContent } = inputs;
 
     const getValue = e => {

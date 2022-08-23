@@ -1,16 +1,17 @@
 import { Link, withRouter } from 'react-router-dom';
 import './SubBanner.css';
 
-function Img_Src(props) {
+function ImgSrc(props) {
     return (<>
         <div className='point_img'>
-            <a href='#'><img src={props.src} /></a>
+            <Link to={`/login/${props.to}`}><img src={props.src} /></Link>
         </div>
     </>)
 }
 
 
 function SubBanner(props) {
+    console.log(props.Contents)
     return (<>
         <section className='sub_section'>
             <div id="multisection_index">
@@ -23,11 +24,11 @@ function SubBanner(props) {
                     </div>
                 </div>
                 <div class="img_wrap">
-                    <Img_Src src="https://img.wavve.com/BMS/program_poster/202206/S01_P458632414-2_w720_h1080_q75.jpg" />
-                    <Img_Src src="https://img.wavve.com/BMS/program_poster/202206/C9903_C99000000002-2_w720_h1080_q75.jpg" />
-                    <Img_Src src="https://img.wavve.com/202202/20220213/2656ca7270318b1d154d847e9531c927_w720_h1080_q75.jpg" />
-                    <Img_Src src="https://img.wavve.com/BMS/program_poster/202112/S01_V0000330171_w720_h1080_q75.jpg" />
-                    <Img_Src src="https://img.wavve.com/202201/20220127/ae4465d001a0a8d3be382f9324b3eb5b_w720_h1080_q75.jpg" />
+                    <ImgSrc to={props.Contents[0]?._id} src={props.Contents[0]?.posterUrl} />
+                    <ImgSrc to={props.Contents[1]?._id} src={props.Contents[1]?.posterUrl} />
+                    <ImgSrc to={props.Contents[2]?._id} src={props.Contents[2]?.posterUrl} />
+                    <ImgSrc to={props.Contents[3]?._id} src={props.Contents[3]?.posterUrl} />
+                    <ImgSrc to={props.Contents[4]?._id} src={props.Contents[4]?.posterUrl} />
                 </div>
             </div>
         </section>

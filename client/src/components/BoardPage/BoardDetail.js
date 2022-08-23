@@ -26,7 +26,7 @@ function BoardDetail(props) {
     useEffect(() => {
         FetchBoardDetail();
         FetchComment();
-    }, [,]);
+    }, []);
 
     const FetchBoardDetail = () => {
         const variable = { boardId: BoardId };

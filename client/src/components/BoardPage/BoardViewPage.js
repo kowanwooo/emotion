@@ -33,6 +33,7 @@ function BoardPage(props) {
             .post("/api/users/board/getBoard", { page: currentPage })
             .then((response) => {
                 if (response.data.success) {
+                    console.log(response.data.boards)
                     setContent(response.data.boards);
                     settotalPage(Math.ceil(response.data.count / 5));
                     setboardTap(0);
@@ -40,7 +41,6 @@ function BoardPage(props) {
                     alert("게시글을 보여줄 수 없습니다.");
                 }
             });
-        console.log('1')
     };
 
     const popularityBoard = () => {
