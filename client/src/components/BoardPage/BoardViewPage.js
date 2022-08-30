@@ -27,22 +27,26 @@ function BoardPage(props) {
         FetchBoard();
         console.log(props)
     }, [currentPage]);
-
+    
     const FetchBoard = () => {
         axios
             .post("/api/users/board/getBoard", { page: currentPage })
             .then((response) => {
                 if (response.data.success) {
                     console.log(response.data.boards)
-                    setContent(response.data.boards);
-                    settotalPage(Math.ceil(response.data.count / 5));
+                    setContent(response.data.boards); // 게시글을 가져옵니당.
+                    settotalPage(Math.ceil(response.data.count / 5)); // 게시글 총페이지 
                     setboardTap(0);
+                    console.log('Content : ',Content)
+                    console.log('currentPage : ', currentPage)
+                    console.log('totalPage : ', totalPage)
+                    console.log('boardTap : ', boardTap)
                 } else {
                     alert("게시글을 보여줄 수 없습니다.");
                 }
             });
     };
-
+    //인기순 데이터
     const popularityBoard = () => {
         axios
             .post("/api/users/board/getBoardP", { page: currentPage })
@@ -60,6 +64,7 @@ function BoardPage(props) {
     const handlePageChange = (e) => {
         const currentPage = parseInt(e.target.textContent);
         setcurrentPage(currentPage);
+        console.log('currentPage : ',currentPage)
     };
 
 
@@ -116,6 +121,7 @@ function BoardPage(props) {
 
                             {Content &&
                                 Content.map((board, index) => {
+                                    //날짜만 가져오기
                                     const boardCreatedAt = board.createdAt.substr(0, 10);
 
                                     return (

@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { Link } from 'react-router-dom';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Spinner from '../Spinner/Spinner';
@@ -7,7 +8,20 @@ import { mapExpressionToEmoji } from '../../../../helpers/emojis';
 
 import './Results.css';
 
+
+
 const Results = ({ results, processing, photoMode }) => {
+  
+  useEffect(() =>{
+
+
+  },[])
+  
+  const goMain = () =>{
+    window.location.href = '/login'
+  }
+  
+  
   const setEmotion = () => {
     const emotion = results[0].expressions.asSortedArray()[0].expression;
     const age = Math.round(results[0].age);
@@ -48,7 +62,12 @@ const Results = ({ results, processing, photoMode }) => {
               <p>You seem to be {Math.round(results[0].age)} years old</p>
               <p>I think you are a {results[0].gender}</p>
               <div className='finalEmotion_btn'>
-                <button onClick={setEmotion}><p>Set Emotion</p></button>
+                <button onClick={() =>{
+                  setEmotion();
+                  alert(`감정인식이 완료 되었습니다. 당신은 
+                  ${localStorage.getItem('emotion').split('"')[1]} 상태 입니다.`)
+                  goMain()
+                }}><p>Set Emotion</p></button>
                 <button button onClick={delEmotion}><p>Delete Emotion</p></button>
               </div>
 

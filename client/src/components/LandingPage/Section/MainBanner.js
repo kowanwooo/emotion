@@ -50,6 +50,7 @@ const MainImg = styled.img`
       background-size: 100%;
       display : inline;
       margin : auto;
+      border-radius: 20px;
   `;
 
 const H2 = styled.h2`
@@ -78,7 +79,7 @@ export class MainBanner extends Component {
         <div className='movieBox'>
           <Slider {...settings}>
             <Div>
-              <MainImg src="https://img.wavve.com/banner/pooq/2022/imgbuild_20220722_153329846.png" />
+              <MainImg src="https://cdn.bhdw.net/im/obeulribieon-yeonghwa-poseuteo-byeogji-11407_w635.webp" />
             </Div>
             <Div>
               <MainImg src="https://img.wavve.com/banner/pooq/2022/imgbuild_20220722_153329846.png" />

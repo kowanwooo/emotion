@@ -21,14 +21,15 @@ router.post('/board/upload', (req, res) => {
 
 router.post('/board/getBoard', (req, res) => {
     const Page = req.body.page;
+    //countD : 실제 문서 갯수, 조건에 맞는 컬럼 갯수를 빠르게 가져옴
     Board.countDocuments({}, (err, count) => {
         if (err) {
             return res.status(400).send(err);
         } else {
             Board.find()
-                .sort({ createdAt: -1 })
-                .skip(((Page - 1) * 5))
-                .limit(5)
+                .sort({ createdAt: -1 }) // 날짜 내림차순 정렬
+                .skip(((Page - 1) * 5)) // 한페이지당 5개 씩
+                .limit(5) // 출력갯수 5개 제한
                 .populate("userFrom")
                 .exec((err, boards) => {
                     if (err) return res.status(400).send(err);

@@ -1,9 +1,10 @@
 .sub_section {
-    height: 564px;
+    height: 100%;
     width: 100%;
     display: block;
     color: #ffffff;
     background-color: #1b1b1b;
+    z-index: 10;
 }
 
 #multisection_index {
@@ -30,12 +31,12 @@
 
 
 div>a>img {
-    height: 360px;
-    width: 240px;
+
     max-width: 100%;
-    margin-left: 5px;
+    /* margin-left: 5px; */
     transition-duration: 1s;
     overflow: hidden;
+
 }
 
 a>img:hover {
@@ -47,10 +48,18 @@ a>img:hover {
 .img_wrap {
 
     display: flex;
+    
 }
 
 .point_img {
     overflow: hidden;
+    height: 100%;
+    width: 100%;
+    margin-left: 5px;
+    margin-right: 5px;
+    border-radius: 20px 20px 20px 20px;
+
+
 }
 
 .section_banner {
@@ -59,6 +68,5 @@ a>img:hover {
 }
 
 .more_contents {
-    margin-right: 15px;
 
 }
