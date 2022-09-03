@@ -35,9 +35,9 @@ function BoardPage(props) {
                 if (response.data.success) {
                     console.log(response.data.boards)
                     setContent(response.data.boards); // 게시글을 가져옵니당.
-                    settotalPage(Math.ceil(response.data.count / 5)); // 게시글 총페이지 
+                    settotalPage(Math.ceil(response.data.count / 5)); // 페이지 tn
                     setboardTap(0);
-                    console.log('Content : ',Content)
+                    console.log('Content : ',response.data.boards)
                     console.log('currentPage : ', currentPage)
                     console.log('totalPage : ', totalPage)
                     console.log('boardTap : ', boardTap)
@@ -46,7 +46,7 @@ function BoardPage(props) {
                 }
             });
     };
-    //인기순 데이터
+    //조회수순 데이터
     const popularityBoard = () => {
         axios
             .post("/api/users/board/getBoardP", { page: currentPage })

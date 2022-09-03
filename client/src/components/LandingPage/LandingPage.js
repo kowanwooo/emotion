@@ -18,6 +18,17 @@ function LandingPage(props) {
   const [Contents, setContents] = useState([]);
   const [ContentsP, setContentsP] = useState([]);
 
+  const [EmotionState, setEmotionState] = useState(null);
+
+  const Test = ()=>{
+    if(localStorage.getItem("emotion").split('"')[1] === 'neutral'){
+      setEmotionState(Contents)
+      console.log('TEST:',EmotionState)
+    }
+  }
+  
+  
+
   const handleFollow = () => {
     setScrollY(window.pageYOffset);
     ScrollY > 100 ? setBtnStatus(true) : setBtnStatus(false);
@@ -44,20 +55,26 @@ function LandingPage(props) {
   })
 
   useEffect(() => {
+
     FetchContents();
     FetchContentsP();
+    Test();
   }, [])
-
 
   const FetchContents = () => {
     axios.post("/api/users/contents/getContents")
       .then((response) => {
         if (response.data.success) {
           console.log(response.data.contents);
-          setContents(response.data.contents);
+          if(localStorage.getItem("emotion").split('"')[1] === 'neutral'){ //뿌려주기 테스트 
+            setContents(response.data.contents);
+            setEmotionState('평범한 표정의 콘텐츠입니다.')
+          }
         } else {
           alert("콘텐츠을 보여줄 수 없습니다.");
         }
+        
+        
       })
       .catch((err) => {
         console.log(err);
@@ -83,7 +100,7 @@ function LandingPage(props) {
     <>
       <Header />
       <MainBanner />
-      <SubBanner label="최신순" Contents={Contents} />
+      <SubBanner label="최신순"  Contents={Contents}  />
       <SubBanner label="관객순" Contents={ContentsP} />
       <TopButton BtnStatus={BtnStatus} handleTop={handleTop} />
       <Footer />

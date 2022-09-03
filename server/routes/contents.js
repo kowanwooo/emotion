@@ -33,4 +33,23 @@ router.post('/login/:id', (req, res) => {
     })
 })
 
+router.post('/contents/moreContents', (req, res) => {
+    const Page = req.body.page;
+    Contents.countDocuments({},(err,count) =>{
+        if(err) {
+            return res.status(400).send(err);
+        } else{
+            Contents.find()
+            .sort({ releaseDate: -1 })
+            .skip(((Page - 1) * 20))
+            .limit(20)
+            .exec((err, content) =>{
+                if(err) return res.status(400).send(err);
+                res.status(200).json({success : true, content, count})
+            })
+        }
+    })
+
+})
+
 module.exports = router;

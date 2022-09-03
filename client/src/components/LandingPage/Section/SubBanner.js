@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { Link, withRouter } from 'react-router-dom';
 import './SubBanner.css';
 
@@ -10,7 +11,15 @@ function ImgSrc(props) {
 }
 
 
+
+
 function SubBanner(props) {
+
+    const setTitleName = ()=>{
+        localStorage.setItem("TitleName",props.label)
+        window.scroll({top:0, left:0, behavior:'smooth'});
+    }
+
     console.log(props.Contents)
     return (<>
         <section className='sub_section'>
@@ -20,7 +29,9 @@ function SubBanner(props) {
                         <span className='label'>{props.label}</span>
                     </div>
                     <div className='more_contents'>
-                        <Link to="/more">더보기</Link>
+                        <Link to="/more" onClick={()=>{
+                            setTitleName()
+                        }}>더보기</Link>
                     </div>
                 </div>
                 <div class="img_wrap">
