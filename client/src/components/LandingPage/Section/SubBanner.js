@@ -15,10 +15,10 @@ function ImgSrc(props) {
 
 function SubBanner(props) {
 
-    const setTitleName = ()=>{
-        localStorage.setItem("TitleName",props.label)
-        window.scroll({top:0, left:0, behavior:'smooth'});
-    }
+    // const setTitleName = ()=>{
+    //     localStorage.setItem("TitleName",props.label)
+    //     window.scroll({top:0, left:0, behavior:'smooth'});
+    // }
 
     console.log(props.Contents)
     return (<>
@@ -29,8 +29,9 @@ function SubBanner(props) {
                         <span className='label'>{props.label}</span>
                     </div>
                     <div className='more_contents'>
-                        <Link to="/more" onClick={()=>{
-                            setTitleName()
+                        <Link to={`/more`} onClick={()=>{
+                            // props.history.push('/more')
+                            // setTitleName()
                         }}>더보기</Link>
                     </div>
                 </div>
