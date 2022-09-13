@@ -24,7 +24,7 @@
 
 #contents{
     background-color: #1b1b1b;
-    height: 1776px;
+    height: 1700px;
     width: 100%;
 }
 
@@ -47,7 +47,7 @@
 }
 .list-view-detail{
     width: 1240px;
-    height: 1600px;
+    height: 1500px;
     margin: 20px auto;
 
     position: relative;
@@ -61,17 +61,20 @@
     display: inline-block;
     position: relative;
     margin-right: 8px;
-
-    
+    border-radius: 20px 20px 20px 20px;
+    overflow: hidden;    
 }
 .badge-list > a > img{
     height: 95%;
     width: 100%;
     position: relative; 
-    top: 50%; 
-    left: 50%; 
-    transform: translate(-50%, -50%); 
     border-radius: 20px 20px 20px 20px;
+    
+}
+
+ul > a > img:hover{
+    transform: scale(1.1);
+    transition: all 0.2s linear;
 }
 
 

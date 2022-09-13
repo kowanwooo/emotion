@@ -18,6 +18,7 @@ function LandingPage(props) {
   const [Contents, setContents] = useState([]);
   const [ContentsP, setContentsP] = useState([]);
 
+  const [EmotionState, setEmotionState] = useState(localStorage.getItem("emotion").split('"')[1]);
   const [EmotionContents, setEmotionContents] = useState([]);
   const [EmotionMsg, setEmotionMsg] = useState(null);
 
@@ -54,13 +55,8 @@ function LandingPage(props) {
 
     FetchContents();
     FetchContentsP();
-    getFear();
-    getSurprised();
-    getAngry();
-    getSad();
-    getNeutral();
-    getHappy();
-    getHate();
+    FetchEmotionContents();
+    console.log('props :',props)
   }, [])
 
   const FetchContents = () => {
@@ -93,106 +89,18 @@ function LandingPage(props) {
       });
   };
 
-  const getFear = () =>{
-    axios.post("/api/users/contents/emotion/getFear")
+  const FetchEmotionContents = () =>{
+    axios.post(`/api/users/contents/emotion/${EmotionState}`)
     .then((response) =>{
       if(response.data.success){
-        if(localStorage.getItem("emotion").split('"')[1] === 'fear'){ //뿌려주기 테스트 
-          setEmotionContents(response.data.fear);
-          setEmotionMsg('공포 표정의 콘텐츠입니다.')
-        }
+          setEmotionState(localStorage.getItem("emotion").split('"')[1])
+          setEmotionContents(response.data.contents);
+          setEmotionMsg(`${EmotionState} 표정의 콘텐츠입니다.`)
       }else{
         console.log('콘텐츠 오류')
       }
     })
   }
-
-  
-  const getSurprised = () =>{
-    axios.post("/api/users/contents/emotion/getSurprised")
-    .then((response) =>{
-      if(response.data.success){
-        if(localStorage.getItem("emotion").split('"')[1] === 'surprised'){ //뿌려주기 테스트 
-          setEmotionContents(response.data.surprised);
-          setEmotionMsg('놀란 표정의 콘텐츠입니다.')
-        }
-      }else{
-        console.log('콘텐츠 오류')
-      }
-    })
-  }
-
-  const getAngry = () =>{
-    axios.post("/api/users/contents/emotion/getAngry")
-    .then((response) =>{
-      if(response.data.success){
-        if(localStorage.getItem("emotion").split('"')[1] === 'angry'){ //뿌려주기 테스트 
-          setEmotionContents(response.data.angry);
-          setEmotionMsg('화난 표정의 콘텐츠입니다.')
-        }
-      }else{
-        console.log('콘텐츠 오류')
-      }
-    })
-  }
-
-  const getSad = () =>{
-    axios.post("/api/users/contents/emotion/getSad")
-    .then((response) =>{
-      if(response.data.success){
-        if(localStorage.getItem("emotion").split('"')[1] === 'sad'){ //뿌려주기 테스트 
-          setEmotionContents(response.data.sad);
-          setEmotionMsg('슬픈 표정의 콘텐츠입니다.')
-        }
-      }else{
-        console.log('콘텐츠 오류')
-      }
-    })
-  }
-
-  const getNeutral = () =>{
-    axios.post("/api/users/contents/emotion/getNeutral")
-    .then((response) =>{
-      if(response.data.success){
-        if(localStorage.getItem("emotion").split('"')[1] === 'neutral'){ //뿌려주기 테스트 
-          setEmotionContents(response.data.neutral);
-          setEmotionMsg('평범한 표정의 콘텐츠입니다.')
-        }
-      }else{
-        console.log('콘텐츠 오류')
-      }
-    })
-  }
-
-
-  const getHappy = () =>{
-    axios.post("/api/users/contents/emotion/getHappy")
-    .then((response) =>{
-      if(response.data.success){
-        if(localStorage.getItem("emotion").split('"')[1] === 'happy'){ //뿌려주기 테스트 
-          setEmotionContents(response.data.happy);
-          setEmotionMsg('기쁜 표정의 콘텐츠입니다.')
-        }
-      }else{
-        console.log('콘텐츠 오류')
-      }
-    })
-  }
-
-  const getHate = () =>{
-    axios.post("/api/users/contents/emotion/getHate")
-    .then((response) =>{
-      if(response.data.success){
-        if(localStorage.getItem("emotion").split('"')[1] === 'hate'){ //뿌려주기 테스트 
-          setEmotionContents(response.data.hate);
-          setEmotionMsg('혐오 표정의 콘텐츠입니다.')
-        }
-      }else{
-        console.log('콘텐츠 오류')
-      }
-    })
-  }
-
 
 
   return (

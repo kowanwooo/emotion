@@ -1,6 +1,9 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import { withRouter } from 'react-router-dom';
+import './LandingDetail.css'
+
+
 
 function LandingDetail(props) {
     const MovieId = props.match.params.movieId;
@@ -13,6 +16,8 @@ function LandingDetail(props) {
 
     useEffect(() => {
         FetchLandingDetail();
+        console.log(`LandingDetail(props) : ${props.match.params.movieId}`)
+        
     }, [,]);
 
     const FetchLandingDetail = () => {
@@ -23,6 +28,7 @@ function LandingDetail(props) {
                 if (response.data.success) {
                     console.log(response.data.contents);
                     setMovieDetail(response.data.contents);
+                    console.log('MovieDetail : ', response.data.contents)
 
                 } else {
                     alert("영화정보 가져오기에 실패했습니다.");
@@ -98,7 +104,6 @@ function LandingDetail(props) {
                 }
             </div>
             <br />
-
         </>
     )
 

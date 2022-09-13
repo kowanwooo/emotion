@@ -23,61 +23,67 @@ router.post('/contents/getContentsP', (req, res) => {
         })
 })
 
+//=================================
+//            Contents
+//=================================
+
 router.post('/contents/emotion/getFear',(req, res) =>{
     Contents.find({emotion:'공포'})
-    .exec((err, fear) =>{
+    .exec((err, contents) =>{
         if (err) return res.status(400).send(err);
-        return res.status(200).json({success: true, fear});
+        return res.status(200).json({success: true, contents});
     })
 })
 
-router.post('/contents/emotion/getSurprised',(req, res) =>{
+router.post(`/contents/emotion/surprised`,(req, res) =>{
     Contents.find({emotion:'놀람'})
-    .exec((err, surprised) =>{
+    .exec((err, contents) =>{
         if (err) return res.status(400).send(err);
-        return res.status(200).json({success: true, surprised});
+        return res.status(200).json({success: true, contents});
     })
 })
 
-router.post('/contents/emotion/getAngry',(req, res) =>{
+router.post('/contents/emotion/angry',(req, res) =>{
     Contents.find({emotion:'분노'})
-    .exec((err, angry) =>{
+    .exec((err, contents) =>{
         if (err) return res.status(400).send(err);
-        return res.status(200).json({success: true, angry});
+        return res.status(200).json({success: true, contents});
     })
 })
 
-router.post('/contents/emotion/getSad',(req, res) =>{
+router.post('/contents/emotion/sad',(req, res) =>{
     Contents.find({emotion:'슬픔'})
-    .exec((err, sad) =>{
+    .exec((err, contents) =>{
         if (err) return res.status(400).send(err);
-        return res.status(200).json({success: true, sad});
+        return res.status(200).json({success: true, contents});
     })
 })
 
-router.post('/contents/emotion/getNeutral',(req, res) =>{
+router.post('/contents/emotion/neutral',(req, res) =>{
     Contents.find({emotion:'중립'})
-    .exec((err, neutral) =>{
+    .exec((err, contents) =>{
         if (err) return res.status(400).send(err);
-        return res.status(200).json({success: true, neutral});
+        return res.status(200).json({success: true, contents});
     })
 })
 
-router.post('/contents/emotion/getHappy',(req, res) =>{
+router.post('/contents/emotion/happy',(req, res) =>{
     Contents.find({emotion:'행복'})
-    .exec((err, happy) =>{
+    .exec((err, contents) =>{
         if (err) return res.status(400).send(err);
-        return res.status(200).json({success: true, happy});
+        return res.status(200).json({success: true, contents});
     })
 })
 
-router.post('/contents/emotion/getHate',(req, res) =>{
+router.post('/contents/emotion/hate',(req, res) =>{
     Contents.find({emotion:'혐오'})
-    .exec((err, hate) =>{
+    .exec((err, contents) =>{
         if (err) return res.status(400).send(err);
-        return res.status(200).json({success: true, hate});
+        return res.status(200).json({success: true, contents});
     })
 })
+
+//=======================================================================
 
 router.post('/login/:id', (req, res) => {
     Contents.findOne({ _id: req.body.movieDbId }, (err, contents) => {

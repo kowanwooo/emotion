@@ -28,7 +28,7 @@ function Badge(props) {
 }
 
 
-function MoreContents() {
+function MoreContents(props) {
     const [totalPage, settotalPage] = useState(0);
     const [Contents, setContents] = useState([]);
     const [currentPage, setcurrentPage] = useState(1);
@@ -65,6 +65,7 @@ function MoreContents() {
 
     useEffect(() => {
         FetchMoreContents();
+        console.log('props : ',props.history.location)
     }, [currentPage, boardTap])
 
 
@@ -102,7 +103,6 @@ function MoreContents() {
                     </PaginationBox>
                 </div>
             </main>
-            <Footer></Footer>
         </>
     )
 }

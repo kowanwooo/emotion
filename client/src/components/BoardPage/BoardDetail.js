@@ -26,6 +26,7 @@ function BoardDetail(props) {
     useEffect(() => {
         FetchBoardDetail();
         FetchComment();
+        console.log('props : ',props)
     }, []);
 
     const FetchBoardDetail = () => {
