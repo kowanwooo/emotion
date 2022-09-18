@@ -29,7 +29,7 @@ function MypageInfo(props) {
                             </div>
                             <div className="mypage__user__infoBox">
                                 <span className='mypage__user__name'>{users.name}님 안녕하세요</span>
-                                <div className='mypage__user__innerText'>쏼라쏼라쏼라</div>
+                                <div className='mypage__user__innerText'>오늘 기분은 {localStorage.getItem("emotion").split('"')[1]} 하군요</div>
                             </div>
                         </div>
                         <div className="mypage__user__R">

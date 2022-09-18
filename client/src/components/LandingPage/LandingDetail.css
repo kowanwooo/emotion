@@ -1,0 +1,114 @@
+.landingdetail_body{/*바디*/
+    margin: 0;
+    padding: 0;
+    letter-spacing: -0.05em;
+    background-color: #1b1b1b;
+}
+.movie_content{ /*메인*/
+    position: relative;
+    min-height: 100%;
+    display: block;
+}
+.kakao_article { /*메인 안의 아티클*/
+    width: 1240px;
+    margin: 0 auto;
+    padding-top: 109px;
+}
+.txt_title { /*영화제목**/
+    display: block;
+    font-size: 1.17em;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    margin-left: 290px;
+    font-weight: bold;
+    font-weight: 600;
+    font-size: 35px;
+    line-height: 36px;
+    color: #a5a5a5;
+    
+}
+.box_basic { /* 전체 **/
+    position: relative;
+    height: 420px;
+    padding: 70px 0 0px 0;
+    color: #a5a5a5;
+}
+
+.movie_poster { /*포스터*/
+    width: 250px;
+    height: 340px;
+    margin-right: 25px;
+    float: left;
+    border-radius: 3%;
+}
+
+.detail_cont { 
+    display: flex;
+    padding: 0 0 53px;
+    align-items: flex-start;
+    font-size: 22px;
+    line-height: 45px;
+}
+.inner_cont1{
+    margin-right: 70px;
+    font-size: 20px;
+}
+.inner_cont2{
+    margin-right: 70px;
+}
+
+.li_strong{
+    color:rgb(59, 59, 59);
+    margin-left: 20px;
+}
+.moviedetail_a{
+    font-size: 18px;
+    margin-left: 20px;
+}
+.text_margin{
+    margin-left: 55px;
+}
+.actors_h1{
+    color: #a5a5a5;
+}
+
+.movie_actor_and_director{
+    width: 1240px;
+    padding-top: 30px;
+    padding-bottom: 200px;
+    border-top: 1px solid #a5a5a5;
+    
+    
+}
+.actors_director{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.director{
+    display: grid;
+}
+
+.actor_names, .director_name{
+    display: flex;
+    flex-direction: column;
+    
+}
+
+.actor_border, .director_border{
+    border-radius: 10%;
+}
+.director_name1, .actor_names1{
+    color: azure;
+    text-align: center;
+}
+.director_name2, .actor_names2{
+    color: rgb(110, 110, 110);
+    text-align: center;
+}
+.actor_img, .director_img{
+    border-radius: 10%;
+}
