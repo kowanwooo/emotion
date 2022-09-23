@@ -20,6 +20,8 @@ function LandingDetail(props) {
         FetchLandingDetail();
         console.log(`LandingDetail(props) : ${props.match.params.movieId}`)
         console.log('props.match.path : ',props.match.path)
+        console.log(`props : ${props.match.params}`)
+        console.log(`/api/users${props.match.path}`)
     }, [,]);
 
     const FetchLandingDetail = () => {

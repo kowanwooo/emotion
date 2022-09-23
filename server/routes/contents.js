@@ -27,7 +27,7 @@ router.post('/contents/getContentsP', (req, res) => {
 //            Contents
 //=================================
 
-router.post('/contents/emotion/getFear',(req, res) =>{
+router.post('/contents/emotion/fear',(req, res) =>{
     Contents.find({emotion:'공포'})
     .exec((err, contents) =>{
         if (err) return res.status(400).send(err);
@@ -95,13 +95,14 @@ router.post('/login/:id', (req, res) => {
     })
 })
 
-router.post('/contents/moreContents', (req, res) => {
+router.post('/more/:emotionId', (req, res) => {
     const Page = req.body.page;
-    Contents.countDocuments({},(err,count) =>{
+    const Test = req.body.emotionId
+    Contents.countDocuments({emotion : Test},(err,count) =>{
         if(err) {
             return res.status(400).send(err);
         } else{
-            Contents.find()
+            Contents.find({emotion : Test})
             .sort({ releaseDate: -1 })
             .skip(((Page - 1) * 20))
             .limit(20)

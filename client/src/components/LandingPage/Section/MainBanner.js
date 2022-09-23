@@ -57,8 +57,7 @@ const MainImg = styled.img`
 const H2 = styled.h2`
   `
 
-export class MainBanner extends Component {
-  render() {
+const MainBanner  = () => {
 
     const settings = {
       nextArrow: <NextArrow />,
@@ -93,6 +92,5 @@ export class MainBanner extends Component {
       </div>
     );
   }
-}
 
 export default withRouter(MainBanner);

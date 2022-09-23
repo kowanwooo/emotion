@@ -13,6 +13,7 @@ import axios from 'axios';
 
 
 function LandingPage(props) {
+
   const [ScrollY, setScrollY] = useState(0);
   const [BtnStatus, setBtnStatus] = useState(false);
   const [Contents, setContents] = useState([]);
@@ -56,14 +57,17 @@ function LandingPage(props) {
     FetchContents();
     FetchContentsP();
     FetchEmotionContents();
-    console.log('props :',props)
+    // console.log('props :',props);
+    // console.log('props.match.path : ',props.match.path);
+    // console.log(`props.match.params : ${props.match.params.movieId}`);
+
   }, [])
 
   const FetchContents = () => {
     axios.post("/api/users/contents/getContents")
       .then((response) => {
         if (response.data.success) {
-          console.log(response.data.contents);
+          // console.log(response.data.contents);
           setContents(response.data.contents);
         } else {
           alert("콘텐츠을 보여줄 수 없습니다.");
@@ -78,7 +82,7 @@ function LandingPage(props) {
     axios.post("/api/users/contents/getContentsP")
       .then((response) => {
         if (response.data.success) {
-          console.log(response.data.contents);
+          // console.log(response.data.contents);
           setContentsP(response.data.contents);
         } else {
           alert("콘텐츠을 보여줄 수 없습니다.");
@@ -107,7 +111,7 @@ function LandingPage(props) {
     <>
       <Header />
       <MainBanner />
-      <SubBanner label={EmotionMsg} Contents={EmotionContents} />
+      <SubBanner label={EmotionMsg} Contents={EmotionContents} test ={`/more/${EmotionState}`}/>
       <SubBanner label="최신순"  Contents={Contents} />
       <SubBanner label="관객순" Contents={ContentsP} />
       <TopButton BtnStatus={BtnStatus} handleTop={handleTop} />

@@ -7,14 +7,37 @@ import MySubSection from './MySubSection';
 import Footer from '../../Common/Footer/Footer';
 
 function MypageInfo(props) {
+
+    const userFrom = localStorage.getItem("userId");
+    const [movieId, setMovieID] = useState([]);
+
+    let variables = {
+        userFrom: userFrom,
+    }
+
+    const FetchMovieID = () =>{
+        axios
+        .post("/api/users/movie/getMovieId",variables)
+        .then((response) =>{
+            if(response.data.success){
+                setMovieID(response.data.movieId);
+                console.log('movie ID : ',response.data.movieId);
+            }else{
+                alert("조회정보 가져오기에 실패했습니다.");
+            }
+        })  
+    }
+
+
     const [users, setUsers] = useState('');
 
     useEffect(() => {
+        FetchMovieID();
         axios.get('/api/users/mypage')
             .then(response => {
                 console.log(response.data)
                 setUsers(response.data);
-            })
+            });
     }, [])
 
     return (
@@ -42,7 +65,7 @@ function MypageInfo(props) {
                         </div>
                     </div>
                 </div>
-                <MySubSection title="전체 시청내역" />
+                <MySubSection map ={movieId} title="전체 시청내역" />
                 <MySubSection title="찜한 콘텐츠" />
             </div>
             <Footer />

@@ -34,7 +34,7 @@ function App() {
         <Route exact path="/board" component={Auth(Board, true)} />
         <Route path="/board/create" component={Auth(CreateBoard)} />
         <Route path="/board/:boardId" component={Auth(BoardDetail, true)} />
-        <Route path="/more" component={Auth(MoreBannerPage, null)} />
+        <Route path="/more/:emotionId" component={Auth(MoreBannerPage, null)} />
       </Switch>
     </Router >
   );

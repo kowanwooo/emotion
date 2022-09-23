@@ -29,7 +29,7 @@ function SubBanner(props) {
                         <span className='label'>{props.label}</span>
                     </div>
                     <div className='more_contents'>
-                        <Link to={`/more`} onClick={()=>{
+                        <Link to={props.test} onClick={()=>{
                             // props.history.push('/more')
                             // setTitleName()
                         }}>더보기</Link>

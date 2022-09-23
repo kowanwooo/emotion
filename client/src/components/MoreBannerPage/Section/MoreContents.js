@@ -28,45 +28,65 @@ function Badge(props) {
 }
 
 
-function MoreContents(props) {
+function MoreContents(props) { 
+     
+    const local = localStorage.getItem("emotion").split('"')[1]
+    // const EmotionId = props.match.params.emotionId;
+    const array = {fear :'공포', surprised : '놀람', angry : '분노', sad : '슬픔', neutral : '중립', happy : '행복', hate : '혐오'}
     const [totalPage, settotalPage] = useState(0);
     const [Contents, setContents] = useState([]);
     const [currentPage, setcurrentPage] = useState(1);
     const [boardTap, setboardTap] = useState(0);
+    const [post, setPost] = useState('');
 
-
-    const FetchMoreContents = () => {
-        axios.post("/api/users/contents/moreContents", { page: currentPage })
-            .then((response) => {
-                if (response.data.success) {
-                    console.log(response.data.content);
-                    setContents(response.data.content);
-                    settotalPage(Math.ceil(response.data.count / 20));
-                    setboardTap(0);
-                    console.log('Content : ', Contents)
-                    console.log('currentPage : ', currentPage)
-                    console.log('totalPage : ', totalPage)
-                    console.log('boardTap : ', boardTap)
-                } else {
-                    alert("콘텐츠을 보여줄 수 없습니다.");
-                }
-            })
-            .catch((err) => {
-                console.log(err);
-            });
-    };
+    const test = () => {
+        for (let i = 0; i < Object.keys(array).length; i++) {
+            if (local === Object.keys(array)[i]) {
+                setPost(Object?.values(array)[i])
+                // console.log(`Object.values(array)[i] : ${Object.values(array)[i]}`)
+                console.log(post)
+                axios.post(`/api/users${props.match.path}`, { page: currentPage, emotionId: post })
+                    .then((response) => {
+                        if (response.data.success) {
+                            console.log(response.data.content);
+                            setContents(response.data.content);
+                            settotalPage(Math.ceil(response.data.count / 20));
+                            setboardTap(0);
+                            // console.log('Content : ', Contents)
+                            // console.log('currentPage : ', currentPage)
+                            // console.log('totalPage : ', totalPage)
+                            // console.log('boardTap : ', boardTap)
+                        } else {
+                            alert("콘텐츠을 보여줄 수 없습니다.");
+                        }
+                    })
+                    .catch((err) => {
+                        console.log(err);
+                    });
+            }
+        }
+    }
+    
 
     const handlePageChange = (e) => {
         const currentPage = parseInt(e.target.textContent);
         setcurrentPage(currentPage);
-        console.log('currentPage : ', currentPage)
+        // console.log('currentPage : ', currentPage)
         window.scroll({top:0, left:0, behavior:'smooth'});
     };
 
     useEffect(() => {
-        FetchMoreContents();
-        console.log('props : ',props.history.location)
-    }, [currentPage, boardTap])
+        // test()
+        // FetchMoreContents();
+        // console.log('props : ',props.match.path)
+        // console.log(`path :/api/users${props.match.path}`)
+    }, [currentPage, boardTap, ])
+    useEffect(() => {
+        test()
+
+    },)
+
+
 
 
     return (
