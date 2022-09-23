@@ -32,7 +32,7 @@ function LoginPage(props) {
                 if (response.payload.loginSuccess) {
                     window.localStorage.setItem('userId', response.payload.userId);
                     window.localStorage.setItem('userName', response.payload.userName);
-                    props.history.push('/login')
+                    props.history.push('/emotion')
                 } else {
                     alert(response.payload.message);
                 }

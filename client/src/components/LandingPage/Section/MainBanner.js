@@ -7,7 +7,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
 function NextArrow(props) {
-  
+
   const { className, style, onClick } = props;
   return (
     <div
@@ -57,40 +57,40 @@ const MainImg = styled.img`
 const H2 = styled.h2`
   `
 
-const MainBanner  = () => {
+const MainBanner = () => {
 
-    const settings = {
-      nextArrow: <NextArrow />,
-      prevArrow: <PrevArrow />,
-      dotsClass: "dots_css", // 목록 버튼 css 설정 하기위한 필요요소
-      dots: true,
-      infinite: true,
-      slidesToShow: 1,
-      slidesToScroll: 1,
-      autoplay: true,
-      speed: 2000,
-      autoplaySpeed: 3000,
-      cssEase: "linear",
+  const settings = {
+    nextArrow: <NextArrow />,
+    prevArrow: <PrevArrow />,
+    dotsClass: "dots_css", // 목록 버튼 css 설정 하기위한 필요요소
+    dots: true,
+    infinite: true,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    autoplay: true,
+    speed: 2000,
+    autoplaySpeed: 3000,
+    cssEase: "linear",
 
-    };
+  };
 
-    return (
-      <div className='main__banner'>
-        <div className='movieBox'>
-          <Slider {...settings}>
-            <Div>
-              <MainImg src="https://cdn.bhdw.net/im/obeulribieon-yeonghwa-poseuteo-byeogji-11407_w635.webp" />
-            </Div>
-            <Div>
-              <MainImg src="https://img.wavve.com/banner/pooq/2022/imgbuild_20220722_153329846.png" />
-            </Div>
-            <Div>
-              <MainImg src="https://img.wavve.com/banner/pooq/2022/imgbuild_20220722_153329846.png" />
-            </Div>
-          </Slider>
-        </div>
+  return (
+    <div className='main__banner'>
+      <div className='movieBox'>
+        <Slider {...settings}>
+          <Div>
+            <MainImg src="https://t1.daumcdn.net/cfile/tistory/231235395466C11011" />
+          </Div>
+          <Div>
+            <MainImg src="https://t1.daumcdn.net/news/201810/07/poctan/20181007042457317gcxe.jpg" />
+          </Div>
+          <Div>
+            <MainImg src="http://t1.daumcdn.net/brunch/service/user/d2vw/image/JVCBc1spXVrUBoFyc8LCYeicRE4.jpeg" />
+          </Div>
+        </Slider>
       </div>
-    );
-  }
+    </div>
+  );
+}
 
 export default withRouter(MainBanner);

@@ -18,6 +18,8 @@ function Header(props) {
         dispatch(logoutUser()).then((response) => {
             if (response.payload.logoutSuccess) {
                 window.localStorage.removeItem("userId");
+                window.localStorage.removeItem("userName");
+                window.localStorage.removeItem("emotion");
                 props.history.push("/");
             } else {
                 alert("로그아웃에 실패했습니다");
