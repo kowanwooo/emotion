@@ -30,20 +30,31 @@ function Badge(props) {
 
 function MoreContents(props) { 
      
-    const local = localStorage.getItem("emotion").split('"')[1]
+    // const emotionId = localStorage.getItem("emotion").split('"')[1]
     // const EmotionId = props.match.params.emotionId;
-    const array = {fear :'공포', surprised : '놀람', angry : '분노', sad : '슬픔', neutral : '중립', happy : '행복', hate : '혐오'}
+    const postArray = {
+        fear :'공포', 
+        surprised : '놀람', 
+        angry : '분노', 
+        sad : '슬픔', 
+        neutral : '중립', 
+        happy : '행복', 
+        hate : '혐오', 
+        latestorder : 'latestorder', 
+        manyspectators : 'manyspectators'}
+    const morePath = props.match.params.emotionId;
+
     const [totalPage, settotalPage] = useState(0);
     const [Contents, setContents] = useState([]);
     const [currentPage, setcurrentPage] = useState(1);
     const [boardTap, setboardTap] = useState(0);
     const [post, setPost] = useState('');
 
-    const test = () => {
-        for (let i = 0; i < Object.keys(array).length; i++) {
-            if (local === Object.keys(array)[i]) {
-                setPost(Object?.values(array)[i])
-                // console.log(`Object.values(array)[i] : ${Object.values(array)[i]}`)
+    const FetchMoreContents = () => {
+        for (let i = 0; i < Object.keys(postArray).length; i++) {
+            if (morePath === Object.keys(postArray)[i]) {
+                setPost(Object?.values(postArray)[i])
+                // console.log(`Object.values(postArray)[i] : ${Object.values(postArray)[i]}`)
                 console.log(post)
                 axios.post(`/api/users${props.match.path}`, { page: currentPage, emotionId: post })
                     .then((response) => {
@@ -76,13 +87,14 @@ function MoreContents(props) {
     };
 
     useEffect(() => {
-        // test()
+        // FetchMoreContents()
         // FetchMoreContents();
         // console.log('props : ',props.match.path)
-        // console.log(`path :/api/users${props.match.path}`)
+        console.log(`path :/api/users${props.match.path}`)
     }, [currentPage, boardTap, ])
     useEffect(() => {
-        test()
+        FetchMoreContents()
+
 
     },)
 
@@ -95,7 +107,7 @@ function MoreContents(props) {
                 <Header />
                 <div id='contents'>
                     <div className='title'>
-                        <h1 className='title-name'>{localStorage.getItem('TitleName')}</h1>
+                        <h1 className='title-name'>{props.State}</h1>
                     </div>
                     <div className='list-view-detail'>
                         {Contents &&

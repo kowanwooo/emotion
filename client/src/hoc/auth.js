@@ -20,10 +20,10 @@ export default function (SpecificComponent, option, adminRoute = null) {
                 } else {
                     //로그인 한 상태 
                     if (adminRoute && !response.payload.isAdmin) {
-                        props.history.push('/login')
+                        props.history.push('/emotion')
                     } else {
                         if (option === false)
-                            props.history.push('/login')
+                            props.history.push('/emotion')
                     }
                 }
             })

@@ -112,8 +112,8 @@ function LandingPage(props) {
       <Header />
       <MainBanner />
       <SubBanner label={EmotionMsg} Contents={EmotionContents} test ={`/more/${EmotionState}`}/>
-      <SubBanner label="최신순"  Contents={Contents} />
-      <SubBanner label="관객순" Contents={ContentsP} />
+      <SubBanner label="최신순"  Contents={Contents} test ={`/more/latestorder`}/>
+      <SubBanner label="관객순" Contents={ContentsP} test ={`/more/manyspectators`} />
       <TopButton BtnStatus={BtnStatus} handleTop={handleTop} />
       <Footer />
     </>
