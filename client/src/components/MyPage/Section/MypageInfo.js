@@ -15,17 +15,17 @@ function MypageInfo(props) {
         userFrom: userFrom,
     }
 
-    const FetchMovieID = () =>{
+    const FetchMovieID = () => {
         axios
-        .post("/api/users/movie/getMovieId",variables)
-        .then((response) =>{
-            if(response.data.success){
-                setMovieID(response.data.movieId);
-                console.log('movie ID : ',response.data.movieId);
-            }else{
-                alert("조회정보 가져오기에 실패했습니다.");
-            }
-        })  
+            .post("/api/users/movie/getMovieId", variables)
+            .then((response) => {
+                if (response.data.success) {
+                    setMovieID(response.data.movieId);
+                    console.log('movie ID : ', response.data.movieId);
+                } else {
+                    alert("조회정보 가져오기에 실패했습니다.");
+                }
+            })
     }
 
 
@@ -48,7 +48,7 @@ function MypageInfo(props) {
                     <div className="mypage__wrap">
                         <div className="mypage__user__L">
                             <div className="mypage__user__img">
-                                <img className='avatar' src="http://gravatar.com/avatar/288ce55a011c709f4e17aef7e3c86c64?s=200" alt="jofpin" />
+                                <img className='avatar' src="https://seoulmarket.net/common/img/default_profile.png" alt="jofpin" />
                             </div>
                             <div className="mypage__user__infoBox">
                                 <span className='mypage__user__name'>{users.name}님 안녕하세요</span>
@@ -65,7 +65,7 @@ function MypageInfo(props) {
                         </div>
                     </div>
                 </div>
-                <MySubSection map ={movieId} title="전체 시청내역" />
+                <MySubSection map={movieId} title="전체 시청내역" />
                 <MySubSection title="찜한 콘텐츠" />
             </div>
             <Footer />
