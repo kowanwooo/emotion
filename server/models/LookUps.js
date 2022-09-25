@@ -3,10 +3,12 @@ const Schema = mongoose.Schema;
 
 const lookupSchema = mongoose.Schema({
     userFrom: {
-        type: String
+        type: Schema.Types.ObjectId,
+        ref: 'User'
     },
     movieId: {
-        type: String
+        type: Schema.Types.ObjectId,
+        ref: 'Contents'
     },
     posterUrl: {
         type: String

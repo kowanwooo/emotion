@@ -16,13 +16,14 @@ function LandingDetail(props) {
     const directorUrl = actorUrl.shift()
     actor.pop()
 
+
+    const scrollUp = () => {
+        window.scroll({top:0, left:0, behavior:'smooth'});
+    }
+
     useEffect(() => {
         FetchLandingDetail();
-        console.log(`LandingDetail(props) : ${props.match.params.movieId}`)
-        console.log('props.match.path : ',props.match.path)
-        console.log(`props : ${props.match.params}`)
-        console.log(`/api/users${props.match.path}`)
-    }, [,]);
+    }, [scrollUp()]);
 
     const FetchLandingDetail = () => {
         const variable = { movieDbId: MovieId };

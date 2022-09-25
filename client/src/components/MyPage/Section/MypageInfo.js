@@ -14,9 +14,9 @@ function MypageInfo(props) {
         userFrom: userFrom,
     }
 
-    const FetchMovieID = () =>{
+    const FetchLookMovie = () =>{
         axios
-        .post("/api/users/movie/getLookContents",variables)
+        .post("/api/users/movie/getLookContents", variables)
         .then((response) =>{
             if(response.data.success){
                 setLookContents(response.data.lookContents);
@@ -24,19 +24,19 @@ function MypageInfo(props) {
             }else{
                 alert("조회정보 가져오기에 실패했습니다.");
             }
-        })  
+        })
     }
-
-
     const [users, setUsers] = useState('');
 
     useEffect(() => {
-        FetchMovieID();
+        FetchLookMovie();
         axios.get('/api/users/mypage')
             .then(response => {
                 console.log(response.data)
                 setUsers(response.data);
             });
+            console.log(lookContents)
+
     }, [])
 
     return (
@@ -64,7 +64,7 @@ function MypageInfo(props) {
                         </div>
                     </div>
                 </div>
-                <MySubSection map = {lookContents} label="전체 시청내역" />
+                <MySubSection map = {lookContents} label="전체 시청내역"/>
                 <MySubSection label="찜한 콘텐츠" />
             </div>
             <Footer />
