@@ -11,26 +11,23 @@ import './Results.css';
 
 
 const Results = ({ results, processing, photoMode }) => {
-  
-  useEffect(() =>{
+
+  useEffect(() => {
 
 
-  },[])
-  
-  const goMain = () =>{
+  }, [])
+
+  const goMain = () => {
     window.location.href = '/login'
   }
-  
-  
+
+
   const setEmotion = () => {
     const emotion = results[0].expressions.asSortedArray()[0].expression;
     const age = Math.round(results[0].age);
     const gender = results[0].gender;
     console.log(emotion, age, gender);
     window.localStorage.setItem("emotion", JSON.stringify([emotion, age, gender]));
-  }
-  const delEmotion = () => {
-    window.localStorage.removeItem("emotion");
   }
   if (processing && results) {
     return <Spinner />;
@@ -62,13 +59,11 @@ const Results = ({ results, processing, photoMode }) => {
               <p>You seem to be {Math.round(results[0].age)} years old</p>
               <p>I think you are a {results[0].gender}</p>
               <div className='finalEmotion_btn'>
-                <button onClick={() =>{
+                <button onClick={() => {
                   setEmotion();
-                  alert(`감정인식이 완료 되었습니다. 당신은 
-                  ${localStorage.getItem('emotion').split('"')[1]} 상태 입니다.`)
+                  alert(`감정인식이 완료 되었습니다. 당신은 ${localStorage.getItem('emotion').split('"')[1]} 상태 입니다.`)
                   goMain()
                 }}><p>Set Emotion</p></button>
-                <button button onClick={delEmotion}><p>Delete Emotion</p></button>
               </div>
 
             </div>

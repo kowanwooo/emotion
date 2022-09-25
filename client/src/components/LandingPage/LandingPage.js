@@ -24,8 +24,8 @@ function LandingPage(props) {
   const [EmotionMsg, setEmotionMsg] = useState(null);
 
 
-  
-  
+
+
 
   const handleFollow = () => {
     setScrollY(window.pageYOffset);
@@ -36,7 +36,7 @@ function LandingPage(props) {
   const handleTop = () => {
     window.scrollTo({
       top: 0,
-      behavior: "smooth"
+      behavior: "smooth",
     });
     setScrollY(0);
     setBtnStatus(false);
@@ -71,7 +71,7 @@ function LandingPage(props) {
           setContents(response.data.contents);
         } else {
           alert("콘텐츠을 보여줄 수 없습니다.");
-        } 
+        }
       })
       .catch((err) => {
         console.log(err);
@@ -93,17 +93,17 @@ function LandingPage(props) {
       });
   };
 
-  const FetchEmotionContents = () =>{
+  const FetchEmotionContents = () => {
     axios.post(`/api/users/contents/emotion/${EmotionState}`)
-    .then((response) =>{
-      if(response.data.success){
+      .then((response) => {
+        if (response.data.success) {
           setEmotionState(localStorage.getItem("emotion").split('"')[1])
           setEmotionContents(response.data.contents);
           setEmotionMsg(`${EmotionState} 표정의 콘텐츠입니다.`)
-      }else{
-        console.log('콘텐츠 오류')
-      }
-    })
+        } else {
+          console.log('콘텐츠 오류')
+        }
+      })
   }
 
 
@@ -111,9 +111,9 @@ function LandingPage(props) {
     <>
       <Header />
       <MainBanner />
-      <SubBanner label={EmotionMsg} Contents={EmotionContents} test ={`/more/${EmotionState}`}/>
-      <SubBanner label="최신순"  Contents={Contents} test ={`/more/latestorder`}/>
-      <SubBanner label="관객순" Contents={ContentsP} test ={`/more/manyspectators`} />
+      <SubBanner label={EmotionMsg} Contents={EmotionContents} test={`/more/${EmotionState}`} />
+      <SubBanner id="test1" label="최신순" Contents={Contents} test={`/more/latestorder`} />
+      <SubBanner label="관객순" Contents={ContentsP} test={`/more/manyspectators`} />
       <TopButton BtnStatus={BtnStatus} handleTop={handleTop} />
       <Footer />
     </>

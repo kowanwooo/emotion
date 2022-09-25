@@ -27,12 +27,31 @@ function Header(props) {
         });
     };
 
-
     const [isOpen, setMenu] = useState(false);  // 메뉴의 초기값을 false로 설정
 
     const toggleMenu = () => {
         setMenu(isOpen => !isOpen); // on,off 개념 boolean
     }
+    const testee = () => {
+        window.scrollTo({
+            top: 450,
+            behavior: "smooth",
+        });
+    }
+    const testee1 = () => {
+        window.scrollTo({
+            top: 1000,
+            behavior: "smooth",
+        });
+    }
+    const testee2 = () => {
+        window.scrollTo({
+            top: 1600,
+            behavior: "smooth",
+        });
+
+    }
+
     return (
         <div className='header'>
             <div>
@@ -54,9 +73,9 @@ function Header(props) {
                         <li><Link to={'/board'}>게시판</Link></li>
                     </ul>
                     <ul className={isOpen ? "show-menu" : "hide-menu"}>
-                        <li><Link to={'#'}>랭킹순</Link></li>
-                        <li><Link to={'#'}>조회수별</Link></li>
-                        <li><Link to={'#'}>감정별</Link></li>
+                        <li><Link onClick={testee} to={'#'}>나의 감정</Link></li>
+                        <li><Link onClick={testee1} to={'#'}>최신순</Link></li>
+                        <li><Link onClick={testee2} to={'#'}>관객순</Link></li>
                     </ul>
                 </nav>
             </div>

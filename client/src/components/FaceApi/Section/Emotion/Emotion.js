@@ -23,7 +23,7 @@ function Emotion() {
                         <h1>
                             <span className='App__title'>회원 감정 인식</span>
                         </h1>
-                        <div className="App__switcher">
+                        {/* <div className="App__switcher">
                             <FontAwesomeIcon icon="camera" color={mode ? '#cccccc' : '#353535'} />
                             <Switch
                                 onChange={() => setMode(!mode)}
@@ -33,7 +33,7 @@ function Emotion() {
                                 className="App__switcher-switch"
                             />
                             <FontAwesomeIcon icon="video" color={!mode ? '#cccccc' : '#353535'} />
-                        </div>
+                        </div> */}
 
                     </div>
                 </header>

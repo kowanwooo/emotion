@@ -4,6 +4,7 @@ import { withRouter } from 'react-router-dom';
 import Footer from '../Common/Footer/Footer';
 import Header from '../Common/Header/Header';
 import './LandingDetail.css'
+import Chart from './Section/Chart';
 
 
 
@@ -19,7 +20,7 @@ function LandingDetail(props) {
     useEffect(() => {
         FetchLandingDetail();
         console.log(`LandingDetail(props) : ${props.match.params.movieId}`)
-        console.log('props.match.path : ',props.match.path)
+        console.log('props.match.path : ', props.match.path)
         console.log(`props : ${props.match.params}`)
         console.log(`/api/users${props.match.path}`)
     }, [,]);
@@ -33,19 +34,19 @@ function LandingDetail(props) {
                     console.log(response.data.contents);
                     setMovieDetail(response.data.contents);
                     console.log('MovieDetail : ', response.data.contents)
-                    
+
                     const testvari = {
-                        userFrom : localStorage.getItem("userId"),
-                        movieId : MovieId,
-                        posterUrl : response.data.contents.posterUrl,
+                        userFrom: localStorage.getItem("userId"),
+                        movieId: MovieId,
+                        posterUrl: response.data.contents.posterUrl,
                     }
                     axios.post("/api/users/movie/lookup", testvari)
-                    .then((response) =>{
-                        if (response.status === 200){
-                            console.log('업로드 성공')
-                        }
-                        
-                    })
+                        .then((response) => {
+                            if (response.status === 200) {
+                                console.log('업로드 성공')
+                            }
+
+                        })
 
                 } else {
                     alert("영화정보 가져오기에 실패했습니다.");
@@ -56,7 +57,7 @@ function LandingDetail(props) {
     return (
         <>
             <body className='landingdetail_body'>
-                <Header/>
+                <Header />
                 <main className='movie_content'>
                     <article id='main_content' className='kakao_article'>
                         <div className='section_detail'>
@@ -98,6 +99,7 @@ function LandingDetail(props) {
                                     </div>
                                 </div>
                             </div>
+                            <Chart />
                         </div>
                         <div className='tabmenu_wrap'>
                             <ul class="list_tabmenu" role="tablist" data-tiara-layer="tab">
@@ -157,7 +159,7 @@ function LandingDetail(props) {
                         </div>
                     </article>
                 </main>
-                <Footer/>
+                <Footer />
             </body >
 
 
