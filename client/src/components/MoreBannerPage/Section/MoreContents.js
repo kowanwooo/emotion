@@ -113,7 +113,7 @@ function MoreContents(props) {
             <main className='list-view'>
                 <Header />
                 <div id='contents'>
-                    <div className='title'>
+                    <div className='more_title'>
                         <h1 className='title-name'>{props.State}</h1>
                     </div>
                     <div className='list-view-detail'>

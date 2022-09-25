@@ -2,16 +2,22 @@ const express = require('express');
 const router = express.Router();
 const { LookUps } = require("../models/LookUps");
 
-router.post('/movie/lookup', (req, res) =>{
+router.post('/movie/lookup', (req, res) => {
     const lookup = new LookUps(req.body);
-    lookup.save((err, lookup) =>{
-        if (err) return res.json({
-            success : false,
-            message : err,
-        })
-        return res.status(200).json({
-            success: true
-        })
+    movieId = req.body.movieId;
+    userFrom = req.body.userFrom;
+    LookUps.findOne({ movieId: movieId, userFrom: userFrom }, (err, Contents) => {
+        if (!Contents){
+            lookup.save((err, lookup) => {
+                if (err) return res.json({
+                    success: false,
+                    message: err,
+                })
+                return res.status(200).json({
+                    success: true
+                })
+            })
+        }
     })
 })
 
