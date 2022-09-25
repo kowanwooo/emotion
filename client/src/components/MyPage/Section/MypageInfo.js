@@ -5,16 +5,16 @@ import Header from '../../Common/Header/Header';
 import { Link } from 'react-router-dom';
 import MySubSection from './MySubSection';
 import Footer from '../../Common/Footer/Footer';
-
 function MypageInfo(props) {
 
     const userFrom = localStorage.getItem("userId");
-    const [movieId, setMovieID] = useState([]);
+    const [lookContents, setLookContents] = useState([]);
 
     let variables = {
         userFrom: userFrom,
     }
 
+<<<<<<< HEAD
     const FetchMovieID = () => {
         axios
             .post("/api/users/movie/getMovieId", variables)
@@ -26,18 +26,32 @@ function MypageInfo(props) {
                     alert("조회정보 가져오기에 실패했습니다.");
                 }
             })
+=======
+    const FetchLookMovie = () =>{
+        axios
+        .post("/api/users/movie/getLookContents", variables)
+        .then((response) =>{
+            if(response.data.success){
+                setLookContents(response.data.lookContents);
+                console.log('movie ID : ',response.data.lookContents);
+            }else{
+                alert("조회정보 가져오기에 실패했습니다.");
+            }
+        })
+>>>>>>> 47fd66de88c4e5be0b74a1b374a3ce51a5a8b141
     }
-
 
     const [users, setUsers] = useState('');
 
     useEffect(() => {
-        FetchMovieID();
+        FetchLookMovie();
         axios.get('/api/users/mypage')
             .then(response => {
                 console.log(response.data)
                 setUsers(response.data);
             });
+            console.log(lookContents)
+
     }, [])
 
     return (
@@ -65,8 +79,13 @@ function MypageInfo(props) {
                         </div>
                     </div>
                 </div>
+<<<<<<< HEAD
                 <MySubSection map={movieId} title="전체 시청내역" />
                 <MySubSection title="찜한 콘텐츠" />
+=======
+                <MySubSection map = {lookContents} label="전체 시청내역" more = {`/more/mylooksmore`}/>
+                <MySubSection label="찜한 콘텐츠" />
+>>>>>>> 47fd66de88c4e5be0b74a1b374a3ce51a5a8b141
             </div>
             <Footer />
         </>
