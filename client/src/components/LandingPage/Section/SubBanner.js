@@ -12,15 +12,8 @@ function ImgSrc(props) {
 
 
 
-
 function SubBanner(props) {
 
-    // const setTitleName = ()=>{
-    //     localStorage.setItem("TitleName",props.label)
-    //     window.scroll({top:0, left:0, behavior:'smooth'});
-    // }
-
-    console.log(props.Contents)
     return (<>
         <section className='sub_section'>
             <div id="multisection_index">
@@ -29,9 +22,7 @@ function SubBanner(props) {
                         <span className='label'>{props.label}</span>
                     </div>
                     <div className='more_contents'>
-                        <Link to={props.test} onClick={()=>{
-                            // props.history.push('/more')
-                            // setTitleName()
+                        <Link to={props.more} onClick={()=>{
                         }}>더보기</Link>
                     </div>
                 </div>

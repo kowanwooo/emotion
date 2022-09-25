@@ -1,6 +1,7 @@
 .sub_section {
     height: 100%;
     width: 100%;
+    max-height: 564.210px;
     display: block;
     color: #ffffff;
     background-color: #1b1b1b;
@@ -31,11 +32,11 @@
 
 
 div>a>img {
-
     max-width: 100%;
     /* margin-left: 5px; */
     transition-duration: 1s;
     overflow: hidden;
+    max-height: 383px;
 
 }
 
@@ -48,6 +49,8 @@ a>img:hover {
 .img_wrap {
 
     display: flex;
+    float: left;
+    padding-top: 20px;
     
 }
 
@@ -65,4 +68,7 @@ a>img:hover {
 .section_banner {
     display: flex;
     justify-content: space-between;
+}
+.contents_title {
+ width: 1180px;
 }

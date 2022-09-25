@@ -15,12 +15,12 @@ router.post('/movie/lookup', (req, res) =>{
     })
 })
 
-router.post('/movie/getMovieId',(req, res) => {
+router.post('/movie/getLookContents',(req, res) => {
     LookUps.find({ userFrom : req.body.userFrom })
     .sort({ createdAt: -1 })
-    .exec((err, movieId) =>{
+    .exec((err, lookContents) =>{
         if (err) return res.status(400).send(err);
-        return res.status(200).json({success: true, movieId})
+        return res.status(200).json({success: true, lookContents})
     })
 })
 

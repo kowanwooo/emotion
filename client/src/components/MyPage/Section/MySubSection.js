@@ -1,42 +1,54 @@
 import axios from 'axios';
 import React, { useState, useEffect } from 'react'
+import { Link } from 'react-router-dom';
 import './MySubSection.css';
 
-function MyStepIn(props){
+import '../../LandingPage/Section/SubBanner.css';
+
+function MyStepIn(props) {
     return (
         <>
-            <div>
-                {props.map &&
-                    props.map.map((MovieId, index) => {
+            {props.map &&
+                props.map.map((Contents, index) => {
+                    if (index <= 4) {
                         return (
                             <>
-                                <span><img src={MovieId.posterUrl}></img></span>
+                                <div className='point_img'>
+                                    <Link to={`/login/${Contents.movieId}`}><img src={Contents.posterUrl} /></Link>
+                                </div>
                             </>
+
                         )
-                    })}
-            </div>
+                    }
+                })
+            }
         </>
     )
 
 }
 
+
+
 function MySubSection(props) {
-    return (
-        <>
-            <div className='mysub_wrap'>
-                <div className="">
-                    <h2 className="title-area">
-                        <span className="mysub_title">{props.title}</span>
-                    </h2>
-                </div>
-                <div>
-                    <div className="no-data">
-                        <MyStepIn map = {props.map}/>
+    return (<>
+        <section className='sub_section'>
+            <div id="multisection_index">
+                <div className='section_banner'>
+                    <div className='contents_title'>
+                        <span className='label'>{props.label}</span>
+                    </div>
+                    <div className='more_contents'>
+                        <Link to = {props.more} onClick={() => {
+                        }}>더보기</Link>
                     </div>
                 </div>
+                <div class="img_wrap">
+                    <MyStepIn map = {props.map} />
+                </div>
             </div>
-        </>
-    )
+        </section>
+
+    </>)
 }
 
 export default MySubSection
