@@ -111,15 +111,9 @@ function LandingPage(props) {
     <>
       <Header />
       <MainBanner />
-<<<<<<< HEAD
-      <SubBanner label={EmotionMsg} Contents={EmotionContents} test={`/more/${EmotionState}`} />
-      <SubBanner id="test1" label="최신순" Contents={Contents} test={`/more/latestorder`} />
-      <SubBanner label="관객순" Contents={ContentsP} test={`/more/manyspectators`} />
-=======
-      <SubBanner label={EmotionMsg} Contents={EmotionContents} more ={`/more/${EmotionState}`}/>
-      <SubBanner label="최신순"  Contents={Contents} more ={`/more/latestorder`}/>
-      <SubBanner label="관객순" Contents={ContentsP} more ={`/more/manyspectators`} />
->>>>>>> 47fd66de88c4e5be0b74a1b374a3ce51a5a8b141
+      <SubBanner label={EmotionMsg} Contents={EmotionContents} more={`/more/${EmotionState}`} />
+      <SubBanner label="최신순" Contents={Contents} more={`/more/latestorder`} />
+      <SubBanner label="관객순" Contents={ContentsP} more={`/more/manyspectators`} />
       <TopButton BtnStatus={BtnStatus} handleTop={handleTop} />
       <Footer />
     </>

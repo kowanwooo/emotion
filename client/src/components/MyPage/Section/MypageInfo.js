@@ -14,31 +14,17 @@ function MypageInfo(props) {
         userFrom: userFrom,
     }
 
-<<<<<<< HEAD
-    const FetchMovieID = () => {
+    const FetchLookMovie = () => {
         axios
-            .post("/api/users/movie/getMovieId", variables)
+            .post("/api/users/movie/getLookContents", variables)
             .then((response) => {
                 if (response.data.success) {
-                    setMovieID(response.data.movieId);
-                    console.log('movie ID : ', response.data.movieId);
+                    setLookContents(response.data.lookContents);
+                    console.log('movie ID : ', response.data.lookContents);
                 } else {
                     alert("조회정보 가져오기에 실패했습니다.");
                 }
             })
-=======
-    const FetchLookMovie = () =>{
-        axios
-        .post("/api/users/movie/getLookContents", variables)
-        .then((response) =>{
-            if(response.data.success){
-                setLookContents(response.data.lookContents);
-                console.log('movie ID : ',response.data.lookContents);
-            }else{
-                alert("조회정보 가져오기에 실패했습니다.");
-            }
-        })
->>>>>>> 47fd66de88c4e5be0b74a1b374a3ce51a5a8b141
     }
 
     const [users, setUsers] = useState('');
@@ -50,7 +36,7 @@ function MypageInfo(props) {
                 console.log(response.data)
                 setUsers(response.data);
             });
-            console.log(lookContents)
+        console.log(lookContents)
 
     }, [])
 
@@ -79,13 +65,8 @@ function MypageInfo(props) {
                         </div>
                     </div>
                 </div>
-<<<<<<< HEAD
-                <MySubSection map={movieId} title="전체 시청내역" />
-                <MySubSection title="찜한 콘텐츠" />
-=======
-                <MySubSection map = {lookContents} label="전체 시청내역" more = {`/more/mylooksmore`}/>
+                <MySubSection map={lookContents} label="전체 시청내역" more={`/more/mylooksmore`} />
                 <MySubSection label="찜한 콘텐츠" />
->>>>>>> 47fd66de88c4e5be0b74a1b374a3ce51a5a8b141
             </div>
             <Footer />
         </>
