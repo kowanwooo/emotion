@@ -18,11 +18,11 @@ function SubBanner(props) {
         <section className='sub_section'>
             <div id="multisection_index">
                 <div className='section_banner'>
-                    <div className='title'>
+                    <div className='contents_title'>
                         <span className='label'>{props.label}</span>
                     </div>
                     <div className='more_contents'>
-                        <Link to={props.more} onClick={()=>{
+                        <Link className='btn_more' to={props.more} onClick={()=>{
                         }}>더보기</Link>
                     </div>
                 </div>

@@ -72,3 +72,21 @@ a>img:hover {
 .contents_title {
  width: 1180px;
 }
+.more_contents{
+    display: table;
+    position: relative;
+    width: 80px;
+
+}
+.label{
+    margin-left: 10px;
+}
+.btn_more{
+    font-size: 20px;
+    text-decoration: none solid rgb(255, 255, 255);
+    display:table-cell;
+    vertical-align:middle;
+    /* vertical-align: middle; */
+    /* word-spacing: 0px; */
+
+}
