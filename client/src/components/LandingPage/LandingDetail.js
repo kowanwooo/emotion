@@ -19,20 +19,13 @@ function LandingDetail(props) {
 
 
     const scrollUp = () => {
-        window.scroll({top:0, left:0, behavior:'smooth'});
+        window.scroll({ top: 0, left: 0, behavior: 'smooth' });
     }
 
     useEffect(() => {
         FetchLandingDetail();
-<<<<<<< HEAD
-        console.log(`LandingDetail(props) : ${props.match.params.movieId}`)
-        console.log('props.match.path : ', props.match.path)
-        console.log(`props : ${props.match.params}`)
-        console.log(`/api/users${props.match.path}`)
-    }, [,]);
-=======
     }, [scrollUp()]);
->>>>>>> 47fd66de88c4e5be0b74a1b374a3ce51a5a8b141
+
 
     const FetchLandingDetail = () => {
         const variable = { movieDbId: MovieId };
@@ -45,16 +38,11 @@ function LandingDetail(props) {
                     console.log('MovieDetail : ', response.data.contents)
 
                     const testvari = {
-<<<<<<< HEAD
+
                         userFrom: localStorage.getItem("userId"),
                         movieId: MovieId,
                         posterUrl: response.data.contents.posterUrl,
-=======
-                        userFrom : localStorage.getItem("userId"),
-                        movieId : MovieId,
-                        posterUrl : response.data.contents.posterUrl,
-                        title : response.data.contents.title
->>>>>>> 47fd66de88c4e5be0b74a1b374a3ce51a5a8b141
+                        title: response.data.contents.title
                     }
                     axios.post("/api/users/movie/lookup", testvari)
                         .then((response) => {
