@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const { Contents } = require("../models/Contents");
+const { LookUps } = require('../models/LookUps');
 
 //=================================
 //            Contents
@@ -126,6 +127,23 @@ router.post('/more/:emotionId', (req, res) => {
             } else {
                 Contents.find({})
                     .sort({ releaseDate: -1 })
+                    .skip(((Page - 1) * 20))
+                    .limit(20)
+                    .exec((err, content) => {
+                        if (err) return res.status(400).send(err);
+                        res.status(200).json({ success: true, content, count })
+                    })
+            }
+        })
+    
+    
+    }else if(variable === 'mylooksmore' ){
+        LookUps.countDocuments({}, (err, count) => {
+            if (err) {
+                return res.status(400).send(err);
+            } else {
+                LookUps.find({})
+                    .sort({ createdAt: -1 })
                     .skip(((Page - 1) * 20))
                     .limit(20)
                     .exec((err, content) => {

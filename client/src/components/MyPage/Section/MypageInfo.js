@@ -26,6 +26,7 @@ function MypageInfo(props) {
             }
         })
     }
+
     const [users, setUsers] = useState('');
 
     useEffect(() => {
@@ -64,7 +65,7 @@ function MypageInfo(props) {
                         </div>
                     </div>
                 </div>
-                <MySubSection map = {lookContents} label="전체 시청내역"/>
+                <MySubSection map = {lookContents} label="전체 시청내역" more = {`/more/mylooksmore`}/>
                 <MySubSection label="찜한 콘텐츠" />
             </div>
             <Footer />

@@ -6,13 +6,16 @@ const lookupSchema = mongoose.Schema({
         type: Schema.Types.ObjectId,
         ref: 'User'
     },
+    title : {
+        type: String
+    },
     movieId: {
-        type: Schema.Types.ObjectId,
-        ref: 'Contents'
+        type: String
     },
     posterUrl: {
         type: String
     },
+
 }, { timestamps: true });
 
 const LookUps = mongoose.model('LookUps', lookupSchema);

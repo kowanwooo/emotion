@@ -39,6 +39,7 @@ function LandingDetail(props) {
                         userFrom : localStorage.getItem("userId"),
                         movieId : MovieId,
                         posterUrl : response.data.contents.posterUrl,
+                        title : response.data.contents.title
                     }
                     axios.post("/api/users/movie/lookup", testvari)
                     .then((response) =>{

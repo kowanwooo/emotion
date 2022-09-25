@@ -7,6 +7,8 @@ import Footer from '../../Common/Footer/Footer';
 import Pagination from "@material-ui/lab/Pagination";
 import styled from "styled-components";
 
+
+
 const PaginationBox = styled.div`
     text-align: center;
     margin-top: 1em;
@@ -41,7 +43,11 @@ function MoreContents(props) {
         happy : '행복', 
         hate : '혐오', 
         latestorder : 'latestorder', 
-        manyspectators : 'manyspectators'}
+        manyspectators : 'manyspectators',
+        mylooksmore : 'mylooksmore'}
+
+
+    const userFrom = localStorage.getItem("userId");
     const morePath = props.match.params.emotionId;
 
     const [totalPage, settotalPage] = useState(0);
@@ -56,7 +62,8 @@ function MoreContents(props) {
                 setPost(Object?.values(postArray)[i])
                 // console.log(`Object.values(postArray)[i] : ${Object.values(postArray)[i]}`)
                 console.log(post)
-                axios.post(`/api/users${props.match.path}`, { page: currentPage, emotionId: post })
+                axios.post(`/api/users${props.match.path}`, 
+                { page: currentPage, emotionId: post, userFrom : userFrom })
                     .then((response) => {
                         if (response.data.success) {
                             console.log(response.data.content);
@@ -89,7 +96,7 @@ function MoreContents(props) {
     useEffect(() => {
         // FetchMoreContents()
         // FetchMoreContents();
-        // console.log('props : ',props.match.path)
+        console.log('props : ',props.match.path)
         console.log(`path :/api/users${props.match.path}`)
     }, [currentPage, boardTap, ])
     useEffect(() => {
@@ -114,7 +121,7 @@ function MoreContents(props) {
                             Contents.map((Content, index) => {
                                 return (
                                     <>
-                                        <Badge to={Content._id} src={Content.posterUrl} />
+                                        <Badge to={Content.movieId} src={Content.posterUrl} />
                                     </>
                                 )
 
