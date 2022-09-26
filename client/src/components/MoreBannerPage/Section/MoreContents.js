@@ -6,7 +6,6 @@ import Header from '../../Common/Header/Header';
 import Footer from '../../Common/Footer/Footer';
 import Pagination from "@material-ui/lab/Pagination";
 import styled from "styled-components";
-import { EmtoionArray } from '../../variable/emotionVar';
 
 
 const PaginationBox = styled.div`
