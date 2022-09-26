@@ -6,7 +6,7 @@ import Header from '../../Common/Header/Header';
 import Footer from '../../Common/Footer/Footer';
 import Pagination from "@material-ui/lab/Pagination";
 import styled from "styled-components";
-
+import { EmtoionArray } from '../../variable/emotionVar';
 
 
 const PaginationBox = styled.div`
@@ -35,16 +35,17 @@ function MoreContents(props) {
     // const emotionId = localStorage.getItem("emotion").split('"')[1]
     // const EmotionId = props.match.params.emotionId;
     const postArray = {
-        fear :'공포', 
-        surprised : '놀람', 
-        angry : '분노', 
-        sad : '슬픔', 
-        neutral : '중립', 
-        happy : '행복', 
-        hate : '혐오', 
-        latestorder : 'latestorder', 
-        manyspectators : 'manyspectators',
-        mylooksmore : 'mylooksmore'}
+        fear: '공포',
+        surprised: '놀람',
+        angry: '분노',
+        sad: '슬픔',
+        neutral: '중립',
+        happy: '행복',
+        hate: '혐오',
+        latestorder: 'latestorder',
+        manyspectators: 'manyspectators',
+        mylooksmore: 'mylooksmore'
+    }
 
 
     const userFrom = localStorage.getItem("userId");
@@ -70,10 +71,7 @@ function MoreContents(props) {
                             setContents(response.data.content);
                             settotalPage(Math.ceil(response.data.count / 20));
                             setboardTap(0);
-                            // console.log('Content : ', Contents)
-                            // console.log('currentPage : ', currentPage)
-                            // console.log('totalPage : ', totalPage)
-                            // console.log('boardTap : ', boardTap)
+                            console.log(response.data.State);
                         } else {
                             alert("콘텐츠을 보여줄 수 없습니다.");
                         }
@@ -114,14 +112,14 @@ function MoreContents(props) {
                 <Header />
                 <div id='contents'>
                     <div className='more_title'>
-                        <h1 className='title-name'>{props.State}</h1>
+                        <h1 className='title-name'>{post}</h1>
                     </div>
                     <div className='list-view-detail'>
                         {Contents &&
                             Contents.map((Content, index) => {
                                 return (
                                     <>
-                                        <Badge to={Content.movieId} src={Content.posterUrl} />
+                                        <Badge to={post === 'mylooksmore' ? Content.movieId : Content._id} src={Content.posterUrl} />
                                     </>
                                 )
 

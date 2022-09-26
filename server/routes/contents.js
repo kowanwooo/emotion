@@ -25,7 +25,7 @@ router.post('/contents/getContentsP', (req, res) => {
 })
 
 //=================================
-//            Contents
+//            EmotionContents
 //=================================
 
 router.post('/contents/emotion/fear',(req, res) =>{
@@ -103,9 +103,9 @@ router.post('/login/:id', (req, res) => {
 router.post('/more/:emotionId', (req, res) => {
     const Page = req.body.page;
     const variable = req.body.emotionId
-    console.log(variable)
+    // console.log(variable)
 
-    if(variable === 'manyspectators' ){
+    if(variable === 'manyspectators' ){ // 관객순
         Contents.countDocuments({}, (err, count) => {
             if (err) {
                 return res.status(400).send(err);
@@ -115,12 +115,12 @@ router.post('/more/:emotionId', (req, res) => {
                     .limit(20)
                     .exec((err, content) => {
                         if (err) return res.status(400).send(err);
-                        res.status(200).json({ success: true, content, count })
+                        res.status(200).json({ success: true, content, count, State :'관객순' })
                     })
             }
         })
 
-    }else if(variable === 'latestorder' ){
+    }else if(variable === 'latestorder' ){ // 최신순
         Contents.countDocuments({}, (err, count) => {
             if (err) {
                 return res.status(400).send(err);
@@ -131,7 +131,7 @@ router.post('/more/:emotionId', (req, res) => {
                     .limit(20)
                     .exec((err, content) => {
                         if (err) return res.status(400).send(err);
-                        res.status(200).json({ success: true, content, count })
+                        res.status(200).json({ success: true, content, count, State :'최신순' })
                     })
             }
         })

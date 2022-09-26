@@ -10,7 +10,8 @@ const lookupSchema = mongoose.Schema({
         type: String
     },
     movieId: {
-        type: String
+        type: Schema.Types.ObjectId,
+        ref: '_id'
     },
     posterUrl: {
         type: String
