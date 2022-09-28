@@ -28,7 +28,7 @@ function App() {
         <Route exact path="/" component={Auth(LoginPage, null)} />
         <Route exact path="/login" component={Auth(Landing, true)} />
         <Route path="/login/:movieId" component={Auth(LandingDetail, true)} />
-        <Route path="/emotion" component={Auth(Emotion, null)} />
+        <Route path="/:emotion" component={Auth(Emotion, null)} />
         <Route path="/register" component={Auth(RegisterPage, null)} />
         <Route path="/mypage" component={Auth(MyPage, null)} />
         <Route exact path="/board" component={Auth(Board, true)} />

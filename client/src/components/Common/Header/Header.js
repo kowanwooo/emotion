@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { Link, withRouter } from 'react-router-dom';
 import { logoutUser } from "../../../_actions/user_action";
@@ -6,7 +6,18 @@ import './Header.css';
 
 function Header(props) {
 
-    // eslint-disable-next-line no-unused-vars
+    const path = props.match.params.emotion
+
+    const Checkemotion = (props) =>{
+        if(path === 'emotion'){
+            props.preventDefault();
+        }
+    }
+
+    useEffect(()=>{
+
+    })
+
     const [User, setUser] = useState({
         userId: "",
         userName: "",
@@ -58,21 +69,24 @@ function Header(props) {
                 <div className='header-nav'>
                     <div className="wrap">
                         <ul className='nav'>
-                            <li><Link to={'/mypage'}>MY</Link></li>
+                            <li><Link to={'/mypage'} onClick = {()=>{Checkemotion();}}>MY</Link></li>
                             <li><button onClick={logoutHandler}>로그아웃</button></li>
                         </ul>
                     </div>
                 </div>
             </div>
             <div className='header-gnb'>
-                <Link to={'/login'}><h1 className='logo'>Apple</h1></Link>
+                <Link to={'/login'} onClick = {()=>{Checkemotion();}}><h1 className='logo' >Apple</h1></Link>
                 <nav className='gnb-left'>
                     <ul className='gnb-menu'>
-                        <li><Link to={'/login'}>홈</Link></li>
-                        <li><button onClick={() => toggleMenu()}>카테고리</button></li>
-                        <li><Link to={'/board'}>게시판</Link></li>
+                        <li><Link to={'/login'} onClick = {()=>{Checkemotion();}}>홈</Link></li>
+                        <li><button onClick={() => {
+                            Checkemotion()
+                            toggleMenu()
+                            } }>카테고리</button></li>
+                        <li><Link to={'/board'} onClick = {()=>{Checkemotion();}}>게시판</Link></li>
                     </ul>
-                    <ul className={isOpen ? "show-menu" : "hide-menu"}>
+                    <ul className={isOpen ? "show-menu" : "hide-menu"} >
                         <li><Link onClick={testee} to={'#'}>나의 감정</Link></li>
                         <li><Link onClick={testee1} to={'#'}>최신순</Link></li>
                         <li><Link onClick={testee2} to={'#'}>관객순</Link></li>
