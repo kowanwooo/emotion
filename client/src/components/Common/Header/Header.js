@@ -8,13 +8,8 @@ function Header(props) {
 
     const path = window.location.href
 
-    const Checkemotion = (props) =>{
-        if(path === 'http://localhost:3000/emotion'){
-            props.preventDefault();
-        }else{
-            return;
-        }
-        
+    const Checkemotion = (props) => {
+        if (path === 'http://localhost:3000/emotion') { props.preventDefault(); }
     }
 
     useEffect(()=>{
