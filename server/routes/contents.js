@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const { Contents } = require("../models/Contents");
-const { LookUps } = require('../models/LookUps');
+const { LookContents } = require('../models/LookContents');
 
 //=================================
 //            Contents
@@ -138,11 +138,11 @@ router.post('/more/:emotionId', (req, res) => {
     
     
     }else if(variable === 'mylooksmore' ){
-        LookUps.countDocuments({}, (err, count) => {
+        LookContents.countDocuments({}, (err, count) => {
             if (err) {
                 return res.status(400).send(err);
             } else {
-                LookUps.find({})
+                LookContents.find({})
                     .sort({ createdAt: -1 })
                     .skip(((Page - 1) * 20))
                     .limit(20)

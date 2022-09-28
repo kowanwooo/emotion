@@ -14,7 +14,7 @@ const userRouter = require('./routes/user');
 const commentRouter = require('./routes/comment');
 const likeRouter = require('./routes/like');
 const contentsRouter = require('./routes/contents');
-const lookUpsRouter = require('./routes/lookUps');
+const LookContentsRouter = require('./routes/LookContents');
 
 //=================================
 //            mongoose
@@ -45,7 +45,7 @@ app.use('/api/users', userRouter);
 app.use('/api/users', commentRouter);
 app.use('/api/users', likeRouter);
 app.use('/api/users', contentsRouter);
-app.use('/api/users', lookUpsRouter);
+app.use('/api/users', LookContentsRouter);
 
 app.listen(port, () => {
     console.log(`Start Server WellCome!! http://localhost:${port}`)

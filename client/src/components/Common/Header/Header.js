@@ -6,16 +6,18 @@ import './Header.css';
 
 function Header(props) {
 
-    const path = props.match.params.emotion
+    const path = window.location.href
 
     const Checkemotion = (props) =>{
-        if(path === 'emotion'){
+        if(path === 'http://localhost:3000/emotion'){
             props.preventDefault();
+        }else{
+            return;
         }
+        
     }
 
     useEffect(()=>{
-
     })
 
     const [User, setUser] = useState({
