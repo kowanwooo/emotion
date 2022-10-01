@@ -11,11 +11,85 @@ import Chart from './Section/Chart';
 function LandingDetail(props) {
     const MovieId = props.match.params.movieId;
     const [MovieDetail, setMovieDetail] = useState([]);
+    const [wish, setwish] = useState('☆');
     const actorUrl = (MovieDetail.actorUrl || '').split(' ');
     const actor = (MovieDetail.actor || '').split('/');
     const director = actor.shift()
     const directorUrl = actorUrl.shift()
     actor.pop()
+
+    const CreateWish = () =>{
+        
+        const variable = {
+            userFrom: localStorage.getItem("userId"),
+            movieId: MovieId,
+            posterUrl: MovieDetail.posterUrl,
+            title: MovieDetail.title,
+            wish : '☆'
+        }
+        // console.log(variable)
+        // console.log(wish)
+
+        axios.post("/api/users/movie/CreateWish", { variable: variable})
+            .then((response) => {
+                if (response.status === 200) {
+                    console.log('업로드 성공')
+                } else {
+                    console.log('업로드 실패')
+                }
+            })
+
+    }
+    
+    const UpdateWish =() =>{
+        const variable = {
+            userFrom: localStorage.getItem("userId"),
+            movieId: MovieId,
+        }
+
+        axios.post("/api/users/movie/UpdateWish", variable)
+        .then((response) =>{
+            if(response.data.success){
+                console.log("찜");
+            }else{
+                console.log("실패")
+            }
+        })
+
+    }
+
+    const DelWish = () =>{
+        
+        
+        const variable = {
+            userFrom: localStorage.getItem("userId"),
+            movieId: MovieId,
+        }
+
+    }
+
+    const Fetchwish = (e) => {
+        
+        const variable = {
+            userFrom: localStorage.getItem("userId"),
+            movieId: MovieId,
+        }
+
+        axios.post("/api/users/movie/FetchWish", variable).then((response) => {
+            if (response.data.success) {
+                setwish(response.data.contents.wish);
+                console.log('wish : ' ,response.data.contents)
+                
+            } else {
+                alert("콘텐츠을 보여줄 수 없습니다.");
+            }
+        })
+            .catch((err) => {
+                console.log(err);
+            });
+
+
+    }
 
 
     const scrollUp = () => {
@@ -24,7 +98,10 @@ function LandingDetail(props) {
 
     useEffect(() => {
         FetchLandingDetail();
-    }, [scrollUp()]);
+        Fetchwish()
+        UpdateWish();
+        
+    }, [scrollUp(),CreateWish() ]);
 
 
     const FetchLandingDetail = () => {
@@ -33,9 +110,9 @@ function LandingDetail(props) {
             .post(`/api/users${props.match.path}`, variable)
             .then(response => {
                 if (response.data.success) {
-                    console.log(response.data.contents);
+                    // console.log(response.data.contents);
                     setMovieDetail(response.data.contents);
-                    console.log('MovieDetail : ', response.data.contents)
+                    // console.log('MovieDetail : ', response.data.contents)
 
                     const testvari = {
 
@@ -48,6 +125,8 @@ function LandingDetail(props) {
                         .then((response) => {
                             if (response.status === 200) {
                                 console.log('업로드 성공')
+                            }else{
+                                console.log('업로드 실패')
                             }
 
                         })
@@ -57,6 +136,8 @@ function LandingDetail(props) {
                 }
             })
     }
+
+
 
     return (
         <>
@@ -68,6 +149,11 @@ function LandingDetail(props) {
                             <div className="box_basic" data-tiara-layer="main">
                                 <div className="info_poster">
                                     <img src={MovieDetail.posterUrl} className='movie_poster'></img>
+                                    <button onClick={()=>{
+                                        wish ==="☆" ? UpdateWish() : DelWish()
+                                        }} className={wish === '☆'? 'del_wish' : 'set_wish'}>
+                                        <span className="iconfont"></span>{`${wish}`}
+                                    </button>
                                 </div>
                                 <div className="detail_tit">
                                     <div className="detail_tit_fixed" aria-hidden="true">
