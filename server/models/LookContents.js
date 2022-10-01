@@ -6,7 +6,7 @@ const LookContentsSchema = mongoose.Schema({
         type: Schema.Types.ObjectId,
         ref: 'User'
     },
-    title : {
+    title: {
         type: String
     },
     movieId: {
@@ -16,6 +16,9 @@ const LookContentsSchema = mongoose.Schema({
     posterUrl: {
         type: String
     },
+    wish: {
+        type: String
+    }
 
 }, { timestamps: true });
 

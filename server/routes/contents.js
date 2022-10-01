@@ -10,6 +10,7 @@ const { LookContents } = require('../models/LookContents');
 router.post('/contents/getContents', (req, res) => {
     Contents.find({})
         .sort({ releaseDate: -1 })
+        .limit(5)
         .exec((err, contents) => {
             if (err) return res.status(400).send(err);
             return res.status(200).json({ success: true, contents });
@@ -18,6 +19,7 @@ router.post('/contents/getContents', (req, res) => {
 
 router.post('/contents/getContentsP', (req, res) => {
     Contents.find({})
+    .limit(5)
         .exec((err, contents) => {
             if (err) return res.status(400).send(err);
             return res.status(200).json({ success: true, contents });
@@ -30,6 +32,7 @@ router.post('/contents/getContentsP', (req, res) => {
 
 router.post('/contents/emotion/fear',(req, res) =>{
     Contents.find({emotion:'공포'})
+    .limit(5)
     .exec((err, contents) =>{
         if (err) return res.status(400).send(err);
         return res.status(200).json({success: true, contents});
@@ -38,6 +41,7 @@ router.post('/contents/emotion/fear',(req, res) =>{
 
 router.post(`/contents/emotion/surprised`,(req, res) =>{
     Contents.find({emotion:'놀람'})
+    .limit(5)
     .exec((err, contents) =>{
         if (err) return res.status(400).send(err);
         return res.status(200).json({success: true, contents});
@@ -46,6 +50,7 @@ router.post(`/contents/emotion/surprised`,(req, res) =>{
 
 router.post('/contents/emotion/angry',(req, res) =>{
     Contents.find({emotion:'분노'})
+    .limit(5)
     .exec((err, contents) =>{
         if (err) return res.status(400).send(err);
         return res.status(200).json({success: true, contents});
@@ -54,6 +59,7 @@ router.post('/contents/emotion/angry',(req, res) =>{
 
 router.post('/contents/emotion/sad',(req, res) =>{
     Contents.find({emotion:'슬픔'})
+    .limit(5)
     .exec((err, contents) =>{
         if (err) return res.status(400).send(err);
         return res.status(200).json({success: true, contents});
@@ -62,6 +68,8 @@ router.post('/contents/emotion/sad',(req, res) =>{
 
 router.post('/contents/emotion/neutral',(req, res) =>{
     Contents.find({emotion:'중립'})
+    .limit(5)
+    .aggregate({ $sample: { size: 5 }})
     .exec((err, contents) =>{
         if (err) return res.status(400).send(err);
         return res.status(200).json({success: true, contents});
@@ -70,6 +78,8 @@ router.post('/contents/emotion/neutral',(req, res) =>{
 
 router.post('/contents/emotion/happy',(req, res) =>{
     Contents.find({emotion:'행복'})
+    .limit(5)
+    // .aggregate({ $sample: { size: 5 })
     .exec((err, contents) =>{
         if (err) return res.status(400).send(err);
         return res.status(200).json({success: true, contents});
@@ -78,6 +88,7 @@ router.post('/contents/emotion/happy',(req, res) =>{
 
 router.post('/contents/emotion/hate',(req, res) =>{
     Contents.find({emotion:'혐오'})
+    .limit(5)
     .exec((err, contents) =>{
         if (err) return res.status(400).send(err);
         return res.status(200).json({success: true, contents});

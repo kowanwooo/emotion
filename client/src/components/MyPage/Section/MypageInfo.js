@@ -9,6 +9,7 @@ function MypageInfo(props) {
 
     const userFrom = localStorage.getItem("userId");
     const [lookContents, setLookContents] = useState([]);
+    const [wishContents, setWishContents] = useState([]);
 
     let variables = {
         userFrom: userFrom,
@@ -27,10 +28,26 @@ function MypageInfo(props) {
             })
     }
 
+    const FetchWishMovie = () => {
+        axios
+            .post("/api/users/movie/getWishContents", variables)
+            .then((response) => {
+                if (response.data.success) {
+                    setWishContents(response.data.wishContents);
+                    console.log('Wish ID : ', response.data.wishContents);
+                } else {
+                    alert("조회정보 가져오기에 실패했습니다.");
+                }
+            })
+    }
+
+
+
     const [users, setUsers] = useState('');
 
     useEffect(() => {
         FetchLookMovie();
+        FetchWishMovie();
         axios.get('/api/users/mypage')
             .then(response => {
                 console.log(response.data)
@@ -66,7 +83,7 @@ function MypageInfo(props) {
                     </div>
                 </div>
                 <MySubSection map={lookContents} label="전체 시청내역" more={`/more/mylooksmore`} />
-                <MySubSection label="찜한 콘텐츠" />
+                <MySubSection map={wishContents}label="찜한 콘텐츠" />
             </div>
             <Footer />
         </>
