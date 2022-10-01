@@ -1,23 +1,27 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-const LookContentsSchema = mongoose.Schema({
+const WishContentsSchema = mongoose.Schema({
     userFrom: {
         type: Schema.Types.ObjectId,
         ref: 'User'
-    },
-    title : {
-        type: String
     },
     movieId: {
         type: Schema.Types.ObjectId,
         ref: 'Contents'
     },
+    title: {
+        type: String
+    },
     posterUrl: {
         type: String
     },
 
+    wish: {
+        type: String
+    }
+
 }, { timestamps: true });
 
-const LookContents = mongoose.model('LookContents', LookContentsSchema);
-module.exports = { LookContents }
+const WishContents = mongoose.model('WishContents', WishContentsSchema);
+module.exports = { WishContents }

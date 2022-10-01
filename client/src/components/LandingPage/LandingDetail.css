@@ -112,3 +112,18 @@
 .actor_img, .director_img{
     border-radius: 10%;
 }
+
+.set_wish{
+    color: #FFFFFF;
+    background-color: #6d717f;
+    border-radius: 20%;
+    padding: 5px;
+}
+
+.del_wish{
+    color: #FFFFFF;
+    background-color: #6d717f;
+    border-radius: 20%;
+    padding: 5px;
+
+}
