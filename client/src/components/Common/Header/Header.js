@@ -8,7 +8,7 @@ function Header(props) {
 
     const path = window.location.href
 
-    const Checkemotion = (props) => {
+    const Checkpage = (props) => {
         if (path === 'http://localhost:3000/emotion') { props.preventDefault(); }
     }
 
@@ -66,22 +66,22 @@ function Header(props) {
                 <div className='header-nav'>
                     <div className="wrap">
                         <ul className='nav'>
-                            <li><Link to={'/mypage'} onClick = {()=>{Checkemotion();}}>MY</Link></li>
+                            <li><Link to={'/mypage'} onClick = {()=>{Checkpage();}}>MY</Link></li>
                             <li><button onClick={logoutHandler}>로그아웃</button></li>
                         </ul>
                     </div>
                 </div>
             </div>
             <div className='header-gnb'>
-                <Link to={'/login'} onClick = {()=>{Checkemotion();}}><h1 className='logo' >Apple</h1></Link>
+                <Link to={'/login'} onClick = {()=>{Checkpage();}}><h1 className='logo' >Apple</h1></Link>
                 <nav className='gnb-left'>
                     <ul className='gnb-menu'>
-                        <li><Link to={'/login'} onClick = {()=>{Checkemotion();}}>홈</Link></li>
-                        <li><button onClick={() => {
-                            Checkemotion()
+                        <li><Link to={'/login'} onClick = {()=>{Checkpage();}}>홈</Link></li>
+                        <li><button onClick={(e) => {
+                            Checkpage()
                             toggleMenu()
                             } }>카테고리</button></li>
-                        <li><Link to={'/board'} onClick = {()=>{Checkemotion();}}>게시판</Link></li>
+                        <li><Link to={'/board'} onClick = {()=>{Checkpage();}}>게시판</Link></li>
                     </ul>
                     <ul className={isOpen ? "show-menu" : "hide-menu"} >
                         <li><Link onClick={testee} to={'#'}>나의 감정</Link></li>

@@ -41,6 +41,30 @@ const contentsSchema = mongoose.Schema({
     emotion: {
         type: String
     },
+    emotionDigit: {
+        type: Number
+    },
+    happy: {
+        type: Number
+    },
+    fear: {
+        type: Number
+    },
+    surprised: {
+        type: Number
+    },
+    angry: {
+        type: Number
+    },
+    sad: {
+        type: Number
+    },
+    neutral: {
+        type: Number
+    },
+    hate: {
+        type: Number
+    },
 }, { timestamps: true });
 
 const Contents = mongoose.model('Contents', contentsSchema);

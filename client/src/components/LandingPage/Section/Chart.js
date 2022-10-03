@@ -4,11 +4,13 @@ import { Doughnut } from 'react-chartjs-2';
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
-export const data = {
-    // labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange', 'test'],
+export const Data = {
+
+    // labels: ['슬픔', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange', 'test'],
     datasets: [
         {
-            label: '# of Votesdasdasdddddddddd',
+            // label: '# of Votesdasdasdddddddddd',
+            // data : {'슬픔':12, '슬픔':12, '슬픔':12, '슬픔':12, '슬픔':12, '슬픔':12, '슬픔':12,},
             data: [12, 19, 3, 5, 2, 3, 8],
             backgroundColor: [
                 'rgba(255, 99, 132, 0.2)',
@@ -29,10 +31,15 @@ export const data = {
                 '#ffffff',
             ],
             borderWidth: 1,
+
+            
         },
     ],
 };
 const options = {
+    legend: { // 범례삭제
+        display: false
+    },
     // responsive 속성을 false로 지정한다.
     responsive: false,
     scales: {
@@ -53,10 +60,18 @@ const options = {
         }
     }
 };
+// tooltips: { // 툴팁삭제
+//     enabled: false
+// },
+// legend: { // 범례삭제
+//        display: false
+// },
+// };
+
 const chart = () => {
-    return <Doughnut data={data} options={options} style={{
+    return <Doughnut data={Data} options={options} style={{
         position: "absolute", height: "200px", top: "175px",
-        right: "363px"
+        right: "363px",
     }} />;
 }
 
