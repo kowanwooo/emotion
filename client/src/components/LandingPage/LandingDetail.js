@@ -11,6 +11,48 @@ import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import LandingTabMenu from "./LandingTabMenu";
 
 
+function Test(props) {
+    return (<>
+        <h1 className="actors_h1">출연진</h1>
+        <div className="movie_actor_and_director">
+            <div className="introduce_actor_director">
+                <div className="actors_director">
+                    <div className="director">
+                        <div className="director_border">
+                            <img
+                                src={props.directorUrl}
+                                alt="director"
+                                className="director_img"
+                            />
+                        </div>
+                        <div className="director_name">
+                            <span className="director_name1">{props.director}</span>
+                            <span className="director_name2">감독</span>
+                        </div>
+                    </div>
+                    {props.actorUrl &&
+                        props.actorUrl.map((actorurl, index) => {
+                            return (
+                                <div className="actors_pics_names">
+                                    <div className="actor_border">
+                                        <img
+                                            src={actorurl}
+                                            alt="actor"
+                                            className="actor_img"
+                                        />
+                                    </div>
+                                    <div className="actor_names">
+                                        <span className="actor_names1">{props.actor[index]}</span>
+                                        <span className="actor_names2">주연</span>
+                                    </div>
+                                </div>
+                            );
+                        })}
+                </div>
+            </div>
+        </div></>)
+}
+
 
 function LandingDetail(props) {
     const MovieId = props.match.params.movieId;
@@ -300,45 +342,8 @@ const options = {
                                 right: "363px",
                             }} />
                         </div>
-                        <LandingTabMenu />
-                        <h1 className="actors_h1">출연진</h1>
-                        <div className="movie_actor_and_director">
-                            <div className="introduce_actor_director">
-                                <div className="actors_director">
-                                    <div className="director">
-                                        <div className="director_border">
-                                            <img
-                                                src={directorUrl}
-                                                alt="director"
-                                                className="director_img"
-                                            />
-                                        </div>
-                                        <div className="director_name">
-                                            <span className="director_name1">{director}</span>
-                                            <span className="director_name2">감독</span>
-                                        </div>
-                                    </div>
-                                    {actorUrl &&
-                                        actorUrl.map((actorurl, index) => {
-                                            return (
-                                                <div className="actors_pics_names">
-                                                    <div className="actor_border">
-                                                        <img
-                                                            src={actorurl}
-                                                            alt="actor"
-                                                            className="actor_img"
-                                                        />
-                                                    </div>
-                                                    <div className="actor_names">
-                                                        <span className="actor_names1">{actor[index]}</span>
-                                                        <span className="actor_names2">주연</span>
-                                                    </div>
-                                                </div>
-                                            );
-                                        })}
-                                </div>
-                            </div>
-                        </div>
+                        <LandingTabMenu photo ={<Test directorUrl= {directorUrl}  director = {director} actorUrl = {actorUrl} actor = {actor}/>}/>
+                        
                     </article>
                 </main>
                 <Footer />
