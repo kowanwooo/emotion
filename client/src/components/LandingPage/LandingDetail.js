@@ -8,6 +8,7 @@ import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
 import { Doughnut } from 'react-chartjs-2';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
+import LandingTabMenu from "./LandingTabMenu";
 
 
 
@@ -117,7 +118,7 @@ const options = {
                     console.log("실패")
                 }
             })
-        Fetchwish();
+        Fetchwish()
 
     }
 
@@ -137,22 +138,18 @@ const options = {
                     console.log("실패")
                 }
             })
-        Fetchwish();
+            Fetchwish()
 
     }
 
     const Fetchwish = (e) => {
-
-
         const variable = {
             userFrom: localStorage.getItem("userId"),
             movieId: MovieId,
         }
-
         axios.post("/api/users/movie/FetchWish", variable).then((response) => {
             if (response.data.success) {
                 setwish(response.data.contents.wish)
-                console.log('wish : ', response.data.contents)
 
             } else {
                 alert("콘텐츠을 보여줄 수 없습니다.");
@@ -169,10 +166,9 @@ const options = {
     }
 
     useEffect(() => {
-
         FetchLandingDetail()
 
-    }, [scrollUp(), Fetchwish()]);
+    }, [scrollUp(),Fetchwish()]);
 
 
 
@@ -221,53 +217,80 @@ const options = {
 
 
 
+
+
+
+
     return (
         <>
-            <body className='landingdetail_body'>
+            <body className="landingdetail_body">
                 <Header />
-                
-                <main className='movie_content'>
-                    <article id='main_content' className='kakao_article'>
-                        <div className='section_detail'>
+                <main className="movie_content">
+                    <article id="main_content" className="kakao_article">
+                        <div className="section_detail">
                             <div className="box_basic" data-tiara-layer="main">
                                 <div className="info_poster">
-                                    <img src={MovieDetail.posterUrl} className='movie_poster'></img>
+                                    <img
+                                        src={MovieDetail.posterUrl}
+                                        className="movie_poster"
+                                    ></img>
                                     <button onClick={() => {
                                         wish === "☆" ? UpdateWish() : DelWish()
                                     }} className={wish === '☆' ? 'del_wish' : 'set_wish'}>
-                                        {wish === "☆" ? <FavoriteBorderIcon/> :<FavoriteIcon/> }
+                                        {wish === "☆" ? <FavoriteBorderIcon /> : <FavoriteIcon />}
                                     </button>
                                 </div>
                                 <div className="detail_tit">
-                                    <div className="detail_tit_fixed" aria-hidden="true">
-                                    </div>
+                                    <div className="detail_tit_fixed" aria-hidden="true"></div>
                                     <h3 className="h1_movietitle">
-                                        <span className="txt_title">
-                                            {MovieDetail.title}
-                                        </span>
+                                        <span className="txt_title">{MovieDetail.title}</span>
                                     </h3>
                                 </div>
                                 <div className="detail_cont">
                                     <div className="inner_cont1">
                                         <ul className="list_cont1">
-                                            <li className='movie_dt'><strong className='li_strong'>개봉</strong>  <a className='moviedetail_a'>{MovieDetail.releaseDate}</a></li>
+                                            <li className="movie_dt">
+                                                <strong className="li_strong">개봉</strong>{" "}
+                                                <a className="moviedetail_a">
+                                                    {MovieDetail.releaseDate}
+                                                </a>
+                                            </li>
                                         </ul>
                                         <ul className="list_cont2">
-                                            <li className='movie_dt'><strong className='li_strong'>장르</strong>  <a className='moviedetail_a'>{MovieDetail.genre}</a></li>
+                                            <li className="movie_dt">
+                                                <strong className="li_strong">장르</strong>{" "}
+                                                <a className="moviedetail_a">{MovieDetail.genre}</a>
+                                            </li>
                                         </ul>
                                         <ul className="list_cont3">
-                                            <li className='movie_dt'><strong className='li_strong'>국가</strong>  <a className='moviedetail_a'>{MovieDetail.country}</a></li>
+                                            <li className="movie_dt">
+                                                <strong className="li_strong">국가</strong>{" "}
+                                                <a className="moviedetail_a">{MovieDetail.country}</a>
+                                            </li>
                                         </ul>
                                     </div>
                                     <div className="inner_cont2">
                                         <ul className="list_cont4">
-                                            <li className='movie_dt'><strong className='li_strong'>등급</strong>  <a className="moviedetail_a text_margin">{MovieDetail.parentalGuidance}</a></li>
+                                            <li className="movie_dt">
+                                                <strong className="li_strong">등급</strong>{" "}
+                                                <a className="moviedetail_a text_margin">
+                                                    {MovieDetail.parentalGuidance}
+                                                </a>
+                                            </li>
                                         </ul>
                                         <ul className="list_cont5">
-                                            <li className='movie_dt'><strong className='li_strong'>평점</strong>  <a className="moviedetail_a text_margin">{MovieDetail.grade}점</a></li>
+                                            <li className="movie_dt">
+                                                <strong className="li_strong">평점</strong>{" "}
+                                                <a className="moviedetail_a text_margin">
+                                                    {MovieDetail.grade}
+                                                </a>
+                                            </li>
                                         </ul>
                                         <ul className="list_cont6">
-                                            <li className='movie_dt'><strong className='li_strong'>누적관객</strong><a className='moviedetail_a'>{MovieDetail.audience}명</a></li>
+                                            <li className="movie_dt">
+                                                <strong className="li_strong">누적관객</strong>
+                                                <a className="moviedetail_a">{MovieDetail.audience}</a>
+                                            </li>
                                         </ul>
                                     </div>
                                 </div>
@@ -277,71 +300,51 @@ const options = {
                                 right: "363px",
                             }} />
                         </div>
-                        <div className='tabmenu_wrap'>
-                            <ul class="list_tabmenu" role="tablist" data-tiara-layer="tab">
-                                <li className="">
-                                    <a href="/moviedb/main?movieId=155115" class="link_tabmenu">
-                                        <span class="txt_tabmenu">주요정보</span>
-                                    </a>
-                                </li>
-                                <li className="">
-                                    <a href="/moviedb/crew?movieId=155115" class="link_tabmenu">
-                                        <span class="txt_tabmenu">출연/제작</span>
-                                    </a>
-                                </li>
-                                <li className=''>
-                                    <a href="/moviedb/contents?movieId=155115" class="link_tabmenu">
-                                        <span class="txt_tabmenu">영상/포토</span>
-                                    </a>
-                                </li>
-                                <li className=''>
-                                    <a href="/moviedb/grade?movieId=155115" class="link_tabmenu">
-                                        <span class="txt_tabmenu">평점</span>
-                                    </a>
-                                </li>
-                            </ul>
-
-                        </div>
-                        <h1 className='actors_h1'>출연진</h1>
-                        <div className='movie_actor_and_director'>
-                            <div className='introduce_actor_director'>
-                                <div className='actors_director'>
-                                    <div className='director'>
-                                        <div className='director_border'>
-                                            <img src={directorUrl} alt="director" className='director_img' />
+                        <LandingTabMenu />
+                        <h1 className="actors_h1">출연진</h1>
+                        <div className="movie_actor_and_director">
+                            <div className="introduce_actor_director">
+                                <div className="actors_director">
+                                    <div className="director">
+                                        <div className="director_border">
+                                            <img
+                                                src={directorUrl}
+                                                alt="director"
+                                                className="director_img"
+                                            />
                                         </div>
-                                        <div className='director_name'>
-                                            <span className='director_name1'>{director}</span>
-                                            <span className='director_name2'>감독</span>
+                                        <div className="director_name">
+                                            <span className="director_name1">{director}</span>
+                                            <span className="director_name2">감독</span>
                                         </div>
                                     </div>
-                                    {actorUrl && actorUrl.map((actorurl, index) => {
-                                        return (
-                                            <div className='actors_pics_names'>
-                                                <div className='actor_border'>
-                                                    <img src={actorurl} alt="actor" className='actor_img' />
+                                    {actorUrl &&
+                                        actorUrl.map((actorurl, index) => {
+                                            return (
+                                                <div className="actors_pics_names">
+                                                    <div className="actor_border">
+                                                        <img
+                                                            src={actorurl}
+                                                            alt="actor"
+                                                            className="actor_img"
+                                                        />
+                                                    </div>
+                                                    <div className="actor_names">
+                                                        <span className="actor_names1">{actor[index]}</span>
+                                                        <span className="actor_names2">주연</span>
+                                                    </div>
                                                 </div>
-                                                <div className='actor_names'>
-                                                    <span className='actor_names1'>{actor[index]}</span>
-                                                    <span className='actor_names2'>주연</span>
-                                                </div>
-                                            </div>
-
-                                        )
-                                    })
-                                    }
+                                            );
+                                        })}
                                 </div>
                             </div>
                         </div>
                     </article>
                 </main>
                 <Footer />
-            </body >
-
-
-
+            </body>
         </>
-    )
+    );
 
 }
 
