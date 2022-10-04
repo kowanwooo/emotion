@@ -287,9 +287,9 @@ function LandingDetail(props) {
                                 <div className='digit_pdbottom'>
                                     <div className='digit_box' style={{}}>
                                         <div className='digit'>
-                                            {`감정 지수 : ${peopleCount}명 중 ${emoMaxCount}명이
-                                        ${MovieDetail.emotion}감정에 투표 하셨습니다. 
-                                         (${(MovieDetail.emotionDigit * 100).toFixed(1)}%)`}
+                                            {`감정 지수 : ${peopleCount}명 중 `} 
+                                            <b style={{color : "#1976D2"}}>{`${(MovieDetail.emotionDigit * 100).toFixed(1)}%`}</b>
+                                        {` 가 이 ${MovieDetail.emotion}감정에 투표 하셨습니다. `}
                                         </div>
                                         <div className='doughnut'>
                                             <Chart count={emoCount} style={{}} />
