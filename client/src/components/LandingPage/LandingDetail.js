@@ -4,14 +4,17 @@ import { withRouter } from 'react-router-dom';
 import Footer from '../Common/Footer/Footer';
 import Header from '../Common/Header/Header';
 import './LandingDetail.css'
-import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
-import { Doughnut } from 'react-chartjs-2';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
-import LandingTabMenu from "./LandingTabMenu";
+import BasicTabs from "./LandingTabMenu";
+import Chart from './Section/Chart';
 
 
-function Test(props) {
+
+
+
+
+function Photo(props) {
     return (<>
         <h1 className="actors_h1">출연진</h1>
         <div className="movie_actor_and_director">
@@ -64,86 +67,6 @@ function LandingDetail(props) {
     const directorUrl = actorUrl.shift()
     const [emoCount, setEmocount] = useState([]);
     actor.pop()
-
-
-    ChartJS.register(ArcElement, Tooltip, Legend);
-
-const Data = {
-
-    // labels: ['행복', '공포', '놀람', '화남', '슬픔', '중립', '혐오'],
-    datasets: [
-        {
-            data: emoCount,
-            backgroundColor: [
-                'rgba(255, 99, 132, 0.2)',
-                'rgba(54, 162, 235, 0.2)',
-                'rgba(255, 206, 86, 0.2)',
-                'rgba(75, 192, 192, 0.2)',
-                'rgba(153, 102, 255, 0.2)',
-                'rgba(255, 159, 64, 0.2)',
-                '#ffffff',
-            ],
-            borderColor: [
-                'rgba(255, 99, 132, 1)',
-                'rgba(54, 162, 235, 1)',
-                'rgba(255, 206, 86, 1)',
-                'rgba(75, 192, 192, 1)',
-                'rgba(153, 102, 255, 1)',
-                'rgba(255, 159, 64, 1)',
-                '#ffffff',
-            ],
-            borderWidth: 1,
-
-            
-        },
-    ],
-};
-const options = {
-    legend: { // 범례삭제
-        display: false
-    },
-    // responsive 속성을 false로 지정한다.
-    responsive: false,
-    scales: {
-        yAxes: [
-            {
-                ticks: {
-                    beginAtZero: true,
-                },
-            },
-        ],
-    },
-
-    tooltips: {
-        callbacks: {
-            label: function (tooltipItem) {
-                return tooltipItem.yLabel;
-            }
-        }
-    }
-};
-
-    // const CreateWish = () =>{
-
-    //     const variable = {
-    //         userFrom: localStorage.getItem("userId"),
-    //         movieId: MovieId,
-    //         posterUrl: MovieDetail.posterUrl,
-    //         title: MovieDetail.title,
-    //         wish : '☆'
-    //     }
-    //     console.log(variable)
-
-    //     axios.post("/api/users/movie/CreateWish", { variable: variable})
-    //         .then((response) => {
-    //             if (response.status === 200) {
-    //                 console.log('업로드 성공')
-    //             } else {
-    //                 console.log('업로드 실패')
-    //             }
-    //         })
-
-    // }
 
     const UpdateWish = () => {
         const variable = {
@@ -222,6 +145,7 @@ const options = {
                 if (response.data.success) {
                     // console.log(response.data.contents);
                     setMovieDetail(response.data.contents);
+                    console.log(response.data.contents.summary);
                     setEmocount([response.data.contents.happy,
                         response.data.contents.fear,
                         response.data.contents.surprised,
@@ -233,7 +157,6 @@ const options = {
                     console.log('MovieDetail : ', response.data.contents)
 
                     const testvari = {
-
                         userFrom: localStorage.getItem("userId"),
                         movieId: MovieId,
                         posterUrl: response.data.contents.posterUrl,
@@ -247,9 +170,7 @@ const options = {
                             } else {
                                 console.log('업로드 실패')
                             }
-
                         })
-
                 } else {
                     alert("영화정보 가져오기에 실패했습니다.");
                 }
@@ -337,13 +258,25 @@ const options = {
                                     </div>
                                 </div>
                             </div>
-                            <Doughnut data={Data} options={options} style={{
-                                position: "absolute", height: "200px", top: "175px",
-                                right: "363px",
-                            }} />
+
                         </div>
-                        <LandingTabMenu photo ={<Test directorUrl= {directorUrl}  director = {director} actorUrl = {actorUrl} actor = {actor}/>}/>
-                        
+                        <BasicTabs
+                            label1={`줄거리`}
+                            tab1={MovieDetail.summary}
+                            label2={"감독/배우"}
+                            tab2={<Photo directorUrl={directorUrl} director={director} actorUrl={actorUrl} actor={actor} />}
+                            label3={"감정 정보"}
+                            tab3={
+                                <div className='digit_box' style={{ height: "300px" }}>
+                                    <div className='digit'>
+                                        {`${MovieDetail.emotion} 감정 지수 : ${(MovieDetail.emotionDigit * 100).toFixed(1)}%`}
+                                    </div>
+                                    <div className='doughnut'>
+                                        <Chart count={emoCount} style={{}} />
+                                    </div>
+                                </div>
+                            }
+                        />
                     </article>
                 </main>
                 <Footer />

@@ -9,6 +9,7 @@ import SubBanner from './Section/SubBanner';
 import TopButton from './Section/TopButton';
 import Footer from '../Common/Footer/Footer';
 import axios from 'axios';
+import BasicTabs from './LandingTabMenu';
 
 
 

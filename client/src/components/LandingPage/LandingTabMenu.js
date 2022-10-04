@@ -6,14 +6,7 @@ import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 import { useTheme } from "@mui/material/styles";
 
-const styles = {
-  tab: {
-    color: "#a6a6a6",
-  },
-  TabPanel: {
-    color: "#a6a6a6",
-  },
-};
+
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -49,6 +42,16 @@ function a11yProps(index) {
 }
 
 export default function BasicTabs(props) {
+
+  const styles = {
+    tab: {
+      color: "#a6a6a6",
+    },
+    TabPanel: {
+      color: "#a6a6a6",
+    },
+  };
+
   const [value, setValue] = React.useState(0);
 
   const handleChange = (event, newValue) => {
@@ -67,15 +70,19 @@ export default function BasicTabs(props) {
           variant="fullWidth"
           aria-label="full width tabs example"
         >
-          <Tab label="주요정보" {...a11yProps(0)} />
-          <Tab label="영상/포토" {...a11yProps(1)} />
+          <Tab label={props.label1} {...a11yProps(0)} />
+          <Tab label={props.label2} {...a11yProps(1)} />
+          <Tab label={props.label3} {...a11yProps(2)} />
         </Tabs>
       </Box>
       <TabPanel value={value} index={0} style={styles.TabPanel}>
-        {props.summary}
+        {props.tab1}
       </TabPanel>
       <TabPanel value={value} index={1} style={styles.TabPanel}>
-        {props.photo}
+        {props.tab2}
+      </TabPanel>
+      <TabPanel value={value} index={2} style={styles.TabPanel}>
+        {props.tab3}
       </TabPanel>
     </Box>
   );

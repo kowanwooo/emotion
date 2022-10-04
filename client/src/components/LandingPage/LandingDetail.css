@@ -127,3 +127,19 @@
     padding: 5px;
 
 }
+
+.digit_box{
+    height: "500px";
+    
+}
+.digit{
+    height: 100%;
+    text-align: center;
+    float: left;
+    padding-right: 50px;
+    margin: 0 auto;
+}
+.doughnut{
+    float: right;
+    position: "relative";
+}
