@@ -66,6 +66,8 @@ function LandingDetail(props) {
     const director = actor.shift()
     const directorUrl = actorUrl.shift()
     const [emoCount, setEmocount] = useState([]);
+    const [peopleCount, setPeopleCount] = useState();
+    const [emoMaxCount, setEmoMaxCount] = useState([]);
     actor.pop()
 
     const UpdateWish = () => {
@@ -132,8 +134,9 @@ function LandingDetail(props) {
 
     useEffect(() => {
         FetchLandingDetail()
-
-    }, [scrollUp(),Fetchwish()]);
+        // setEmoMaxCount(Math.max(...emoCount))
+        
+    }, [scrollUp(),Fetchwish(),]);
 
 
 
@@ -153,6 +156,14 @@ function LandingDetail(props) {
                         response.data.contents.sad,
                         response.data.contents.neutral,
                         response.data.contents.hate])
+                    setPeopleCount(response.data.contents.happy+
+                        response.data.contents.fear+
+                        response.data.contents.surprised+
+                        response.data.contents.angry+
+                        response.data.contents.sad+
+                        response.data.contents.neutral+
+                        response.data.contents.hate)
+                        setEmoMaxCount(Math.max(...emoCount))
 
                     console.log('MovieDetail : ', response.data.contents)
 
@@ -262,17 +273,27 @@ function LandingDetail(props) {
                         </div>
                         <BasicTabs
                             label1={`줄거리`}
-                            tab1={MovieDetail.summary}
+                            tab1={
+                                <>
+                                    <div className='summary_pdbottom'>
+                                        {MovieDetail.summary}
+                                    </div>
+                                </>
+                            }
                             label2={"감독/배우"}
                             tab2={<Photo directorUrl={directorUrl} director={director} actorUrl={actorUrl} actor={actor} />}
                             label3={"감정 정보"}
                             tab3={
-                                <div className='digit_box' style={{ height: "300px" }}>
-                                    <div className='digit'>
-                                        {`${MovieDetail.emotion} 감정 지수 : ${(MovieDetail.emotionDigit * 100).toFixed(1)}%`}
-                                    </div>
-                                    <div className='doughnut'>
-                                        <Chart count={emoCount} style={{}} />
+                                <div className='digit_pdbottom'>
+                                    <div className='digit_box' style={{}}>
+                                        <div className='digit'>
+                                            {`감정 지수 : ${peopleCount}명 중 ${emoMaxCount}명이
+                                        ${MovieDetail.emotion}감정에 투표 하셨습니다. 
+                                         (${(MovieDetail.emotionDigit * 100).toFixed(1)}%)`}
+                                        </div>
+                                        <div className='doughnut'>
+                                            <Chart count={emoCount} style={{}} />
+                                        </div>
                                     </div>
                                 </div>
                             }

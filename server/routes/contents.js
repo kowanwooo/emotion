@@ -98,12 +98,10 @@ router.post('/contents/emotion/hate',(req, res) =>{
 //=======================================================================
 
 router.post('/login/:id', (req, res) => {
-    Contents.findOne({ _id: req.body.movieDbId }, (err, contents) => {
-        if (contents) {
-            return res.json({ success: true, contents });
-        } else return res.status(404).json({
-            success: false
-        })
+    Contents.findOne({ _id: req.body.movieDbId })
+    .exec((err, contents) => {
+        if (err) return res.status(404).json({success: false})
+        return res.json({ success: true, contents });
     })
 })
 
