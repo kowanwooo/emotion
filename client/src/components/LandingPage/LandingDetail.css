@@ -139,6 +139,8 @@
     float: left;
     padding-right: 50px;
     margin: 0 auto;
+    line-height: 150px;
+    font-size: 18px;
 }
 .digit_pdbottom, .summary_pdbottom {
     padding-bottom: 200px;
