@@ -77,7 +77,7 @@ router.post('/movie/DelWish', (req, res) => {
 
 router.post('/movie/getWishContents',(req, res) => {
     LookContents.find({ userFrom : req.body.userFrom, wish : "★"})
-    .sort({ createdAt: -1 })
+    .sort({ updatedAt: -1 })
     .exec((err, wishContents) =>{
         if (err) return res.status(400).send(err);
         return res.status(200).json({success: true, wishContents})
