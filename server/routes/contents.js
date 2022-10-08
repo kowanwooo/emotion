@@ -69,7 +69,6 @@ router.post('/contents/emotion/sad',(req, res) =>{
 router.post('/contents/emotion/neutral',(req, res) =>{
     Contents.find({emotion:'중립'})
     .limit(5)
-    .aggregate({ $sample: { size: 5 }})
     .exec((err, contents) =>{
         if (err) return res.status(400).send(err);
         return res.status(200).json({success: true, contents});
@@ -99,10 +98,19 @@ router.post('/contents/emotion/hate',(req, res) =>{
 
 router.post('/login/:id', (req, res) => {
     Contents.findOne({ _id: req.body.movieDbId })
-    .exec((err, contents) => {
-        if (err) return res.status(404).json({success: false})
-        return res.json({ success: true, contents });
-    })
+        .exec((err, contents) => {
+            if (err) return res.status(404).json({ success: false })
+            const emoCount = [
+                contents.happy, contents.fear, contents.surprised, contents.angry,
+                contents.sad, contents.neutral, contents.hate]
+            const pelpleCount =
+                contents.happy + contents.fear + contents.surprised + contents.angry +
+                contents.sad + contents.neutral + contents.hate
+            const summaryLen = contents.summary.length / 3;
+            const summary = [contents.summary.substring(0, summaryLen), contents.summary.substr(summaryLen)];
+            return res.json({ success: true, contents, emoCount, pelpleCount, summary });
+
+        })
 })
 
 //=================================

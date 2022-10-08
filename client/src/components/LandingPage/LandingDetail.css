@@ -145,6 +145,11 @@
 .digit_pdbottom, .summary_pdbottom {
     padding-bottom: 200px;
 }
+
+.btn_more{
+    color: white;
+    
+}
 /* .doughnut{
     padding-left: 100px;
 } */

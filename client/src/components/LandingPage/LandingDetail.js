@@ -67,7 +67,8 @@ function LandingDetail(props) {
     const directorUrl = actorUrl.shift()
     const [emoCount, setEmocount] = useState([]);
     const [peopleCount, setPeopleCount] = useState();
-    const [emoMaxCount, setEmoMaxCount] = useState([]);
+    const [summary, setSummary] = useState([]);
+    const [summaryState, SetsummaryState] = useState(false);
     actor.pop()
 
     const UpdateWish = () => {
@@ -134,9 +135,9 @@ function LandingDetail(props) {
 
     useEffect(() => {
         FetchLandingDetail()
-        // setEmoMaxCount(Math.max(...emoCount))
+
         
-    }, [scrollUp(),Fetchwish(),]);
+    }, [scrollUp(),Fetchwish()]);
 
 
 
@@ -149,23 +150,9 @@ function LandingDetail(props) {
                     // console.log(response.data.contents);
                     setMovieDetail(response.data.contents);
                     console.log(response.data.contents.summary);
-                    setEmocount([response.data.contents.happy,
-                        response.data.contents.fear,
-                        response.data.contents.surprised,
-                        response.data.contents.angry,
-                        response.data.contents.sad,
-                        response.data.contents.neutral,
-                        response.data.contents.hate])
-                    setPeopleCount(response.data.contents.happy+
-                        response.data.contents.fear+
-                        response.data.contents.surprised+
-                        response.data.contents.angry+
-                        response.data.contents.sad+
-                        response.data.contents.neutral+
-                        response.data.contents.hate)
-                        setEmoMaxCount(Math.max(...emoCount))
-
-                    console.log('MovieDetail : ', response.data.contents)
+                    setEmocount(response.data.emoCount)
+                    setPeopleCount(response.data.pelpleCount)
+                    setSummary(response.data.summary)
 
                     const testvari = {
                         userFrom: localStorage.getItem("userId"),
@@ -187,6 +174,10 @@ function LandingDetail(props) {
                 }
             })
 
+    }
+
+    const MoreSummary = (props) =>{
+        SetsummaryState(summaryState =>!summaryState)
     }
 
 
@@ -276,7 +267,11 @@ function LandingDetail(props) {
                             tab1={
                                 <>
                                     <div className='summary_pdbottom'>
-                                        {MovieDetail.summary}
+                                        {!summaryState ? `${summary[0]}...` : `${summary}`}
+                                        <button className='btn_more' onClick={() =>{MoreSummary()}}>
+                                        {!summaryState ? '더보기' : '더보기 접기'}
+                                        </button>                                    
+
                                     </div>
                                 </>
                             }
