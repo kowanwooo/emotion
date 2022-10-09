@@ -27,8 +27,8 @@ const { WishContents } = require('../models/WishContents')
 // })
 
 router.post('/movie/FetchWish', (req, res) => {
-    const movieId = req.body.movieId
-    const userFrom = req.body.userFrom
+    const movieId = req.body.variable.movieId
+    const userFrom = req.body.variable.userFrom
     console.log(movieId, userFrom)
  
     LookContents.findOne({movieId : movieId, userFrom : userFrom}, (err, contents) => {
@@ -42,8 +42,8 @@ router.post('/movie/FetchWish', (req, res) => {
 })
 
 router.post('/movie/UpdateWish', (req, res) => {
-    const movieId = req.body.movieId
-    const userFrom = req.body.userFrom
+    const movieId = req.body.variable.movieId
+    const userFrom = req.body.variable.userFrom
     console.log(movieId, userFrom)
 
     LookContents.findOne({ movieId: movieId, userFrom: userFrom })
@@ -59,8 +59,8 @@ router.post('/movie/UpdateWish', (req, res) => {
 })
 
 router.post('/movie/DelWish', (req, res) => {
-    const movieId = req.body.movieId
-    const userFrom = req.body.userFrom
+    const movieId = req.body.variable.movieId
+    const userFrom = req.body.variable.userFrom
     console.log(movieId, userFrom)
 
     LookContents.findOne({ movieId: movieId, userFrom: userFrom })
