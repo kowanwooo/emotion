@@ -71,16 +71,15 @@ function LandingDetail(props) {
     const [summaryState, SetsummaryState] = useState(false);
     actor.pop()
 
-    const UpdateWish = () => {
-        const variable = {
-            userFrom: localStorage.getItem("userId"),
-            movieId: MovieId,
-        }
+    const variable = {
+        userFrom: localStorage.getItem("userId"),
+        movieId: MovieId,
+    }
 
-        axios.post("/api/users/movie/UpdateWish", variable)
+    const UpdateWish = () => {
+        axios.post("/api/users/movie/UpdateWish", { variable: variable })
             .then((response) => {
                 if (response.data.success) {
-                    // setwish(response.data.contents.wish);
                     console.log("찜");
                 } else {
                     console.log("실패")
@@ -91,38 +90,29 @@ function LandingDetail(props) {
     }
 
     const DelWish = () => {
-        const variable = {
-            userFrom: localStorage.getItem("userId"),
-            movieId: MovieId,
-        }
-
-        axios.post("/api/users/movie/DelWish", variable)
+        axios.post("/api/users/movie/DelWish", { variable: variable })
             .then((response) => {
                 if (response.data.success) {
-                    // setwish(response.data.contents.wish);
 
                     console.log("찜삭제");
                 } else {
                     console.log("실패")
                 }
             })
-            Fetchwish()
+        Fetchwish()
 
     }
 
     const Fetchwish = (e) => {
-        const variable = {
-            userFrom: localStorage.getItem("userId"),
-            movieId: MovieId,
-        }
-        axios.post("/api/users/movie/FetchWish", variable).then((response) => {
-            if (response.data.success) {
-                setwish(response.data.contents.wish)
+        axios.post("/api/users/movie/FetchWish", { variable: variable })
+            .then((response) => {
+                if (response.data.success) {
+                    setwish(response.data.contents.wish)
 
-            } else {
-                alert("콘텐츠을 보여줄 수 없습니다.");
-            }
-        })
+                } else {
+                    alert("콘텐츠을 보여줄 수 없습니다.");
+                }
+            })
             .catch((err) => {
                 console.log(err);
             });
@@ -135,10 +125,10 @@ function LandingDetail(props) {
 
     useEffect(() => {
         FetchLandingDetail()
+        // FetchNewchart()
 
-        
-    }, [scrollUp(),Fetchwish()]);
 
+    }, [scrollUp(), Fetchwish()]);
 
 
     const FetchLandingDetail = () => {
@@ -149,19 +139,18 @@ function LandingDetail(props) {
                 if (response.data.success) {
                     // console.log(response.data.contents);
                     setMovieDetail(response.data.contents);
-                    console.log(response.data.contents.summary);
                     setEmocount(response.data.emoCount)
                     setPeopleCount(response.data.pelpleCount)
                     setSummary(response.data.summary)
 
-                    const testvari = {
+                    const variable = {
                         userFrom: localStorage.getItem("userId"),
                         movieId: MovieId,
                         posterUrl: response.data.contents.posterUrl,
                         title: response.data.contents.title,
                         wish: '☆'
                     }
-                    axios.post("/api/users/movie/lookup", testvari)
+                    axios.post("/api/users/movie/lookup", variable)
                         .then((response) => {
                             if (response.status === 200) {
                                 console.log('업로드 성공')
@@ -176,8 +165,8 @@ function LandingDetail(props) {
 
     }
 
-    const MoreSummary = (props) =>{
-        SetsummaryState(summaryState =>!summaryState)
+    const MoreSummary = (props) => {
+        SetsummaryState(summaryState => !summaryState)
     }
 
 
@@ -201,7 +190,7 @@ function LandingDetail(props) {
                                     ></img>
                                     <button onClick={() => {
                                         wish === "☆" ? UpdateWish() : DelWish()
-                                    }} className={wish === '☆' ? 'del_wish' : 'set_wish'}>
+                                    }} className='set_wish'>
                                         {wish === "☆" ? <FavoriteBorderIcon /> : <FavoriteIcon />}
                                     </button>
                                 </div>
@@ -268,9 +257,9 @@ function LandingDetail(props) {
                                 <>
                                     <div className='summary_pdbottom'>
                                         {!summaryState ? `${summary[0]}...` : `${summary}`}
-                                        <button className='btn_more' onClick={() =>{MoreSummary()}}>
-                                        {!summaryState ? '더보기' : '더보기 접기'}
-                                        </button>                                    
+                                        <button className='btn_more' onClick={() => { MoreSummary() }}>
+                                            {!summaryState ? '더보기' : '더보기 접기'}
+                                        </button>
 
                                     </div>
                                 </>
@@ -278,20 +267,32 @@ function LandingDetail(props) {
                             label2={"감독/배우"}
                             tab2={<Photo directorUrl={directorUrl} director={director} actorUrl={actorUrl} actor={actor} />}
                             label3={"감정 정보"}
-                            tab3={
+                            tab3={<>
                                 <div className='digit_pdbottom'>
                                     <div className='digit_box' style={{}}>
                                         <div className='digit'>
-                                            {`감정 지수 : ${peopleCount}명 중 `} 
-                                            <b style={{color : "#1976D2"}}>{`${(MovieDetail.emotionDigit * 100).toFixed(1)}%`}</b>
-                                        {` 가 이 ${MovieDetail.emotion}감정에 투표 하셨습니다. `}
+                                            {`감정 지수 : ${peopleCount}명 중 `}
+                                            <b style={{ color: "#1976D2" }}>{`${(MovieDetail.emotionDigit * 100).toFixed(1)}%`}</b>
+                                            {` 가 이 ${MovieDetail.emotion}감정에 투표 하셨습니다. `}
                                         </div>
                                         <div className='doughnut'>
                                             <Chart count={emoCount} style={{}} />
                                         </div>
                                     </div>
                                 </div>
-                            }
+                                <div className='digit_pdbottom'>
+                                    <div className='digit_box' style={{}}>
+                                        <div className='digit'>
+                                            {`감정 지수 : ${peopleCount}명 중 `}
+                                            <b style={{ color: "#1976D2" }}>{`${(MovieDetail.emotionDigit * 100).toFixed(1)}%`}</b>
+                                            {` 가 이 ${MovieDetail.emotion}감정에 투표 하셨습니다. `}
+                                        </div>
+                                        <div className='doughnut'>
+                                            <Chart count={emoCount} style={{}} />
+                                        </div>
+                                    </div>
+                                </div>
+                            </>}
                         />
                     </article>
                 </main>
