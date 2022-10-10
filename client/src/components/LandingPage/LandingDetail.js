@@ -8,6 +8,7 @@ import FavoriteIcon from '@mui/icons-material/Favorite';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import BasicTabs from "./LandingTabMenu";
 import Chart from './Section/Chart';
+import { useForm } from "react-hook-form"
 
 
 
@@ -68,7 +69,10 @@ function LandingDetail(props) {
     const [emoCount, setEmocount] = useState([]);
     const [peopleCount, setPeopleCount] = useState();
     const [summary, setSummary] = useState([]);
-    const [summaryState, SetsummaryState] = useState(false);
+    const [summaryModal, SetsummaryModal] = useState(false);
+    const [voteModal, SetVoteModal] = useState(false);
+    const {register, handleSubmit} = useForm();
+    // const [vote, setVote] = useState([]);
     actor.pop()
 
     const variable = {
@@ -150,7 +154,7 @@ function LandingDetail(props) {
                         title: response.data.contents.title,
                         wish: '☆'
                     }
-                    axios.post("/api/users/movie/lookup", variable)
+                    axios.post("/api/users/movie/create", variable)
                         .then((response) => {
                             if (response.status === 200) {
                                 console.log('업로드 성공')
@@ -166,12 +170,50 @@ function LandingDetail(props) {
     }
 
     const MoreSummary = (props) => {
-        SetsummaryState(summaryState => !summaryState)
+        SetsummaryModal(summaryModal => !summaryModal)
+    }
+    const VoteOnOff = () => {
+        SetVoteModal(voteModal => !voteModal)
+    }
+
+    const checkOnlyOne = (checkThis) => {
+        const checkboxes = document.getElementsByName('emotion')
+        for (let i = 0; i < checkboxes.length; i++) {
+            if (checkboxes[i] !== checkThis) {
+                checkboxes[i].checked = false
+            }
+        }
+        // handleChange()
     }
 
 
+    const onSubmit = (data) => {
+        let variable = {
+            userFrom: localStorage.getItem("userId"),
+            movieFrom: MovieId,
+        }
+        alert("투표를 완료하셨습니다.");
+        axios.post("/api/users/vote", variable)
+            .then((response) => {
+                if (response.data.success) {
+                } else {
+
+                }
+            })
+    };
 
 
+
+    // const [voteEmotion, setVoteEmotion] = useState("");
+    // const [disabled, setDisabled] = useState(false);
+
+    // const handleChange = ({ target: {value}}) => setVoteEmotion(value)
+
+    // const handleSubmit = async (e) =>{
+    //     setDisabled(true)
+    //     e.preventDefault();
+    //     setDisabled(false);
+    // }
 
 
 
@@ -256,9 +298,9 @@ function LandingDetail(props) {
                             tab1={
                                 <>
                                     <div className='summary_pdbottom'>
-                                        {!summaryState ? `${summary[0]}...` : `${summary}`}
+                                        {!summaryModal ? `${summary[0]}...` : `${summary}`}
                                         <button className='btn_more' onClick={() => { MoreSummary() }}>
-                                            {!summaryState ? '더보기' : '더보기 접기'}
+                                            {!summaryModal ? '더보기' : '더보기 접기'}
                                         </button>
 
                                     </div>
@@ -280,7 +322,7 @@ function LandingDetail(props) {
                                         </div>
                                     </div>
                                 </div>
-                                <div className='digit_pdbottom'>
+                                <div className='digit_pdbottom2'>
                                     <div className='digit_box' style={{}}>
                                         <div className='digit'>
                                             {`감정 지수 : ${peopleCount}명 중 `}
@@ -288,8 +330,26 @@ function LandingDetail(props) {
                                             {` 가 이 ${MovieDetail.emotion}감정에 투표 하셨습니다. `}
                                         </div>
                                         <div className='doughnut'>
-                                            <Chart count={emoCount} style={{}} />
+                                            <Chart count={[0, 0, 0, 0, 0, 0, 0]} style={{}} />
                                         </div>
+                                        <button className='btn_vote' onClick={() => { VoteOnOff() }}>{!voteModal ? '투표 하기' : '투표 접기'}</button>
+                                        {!voteModal ? <></> :
+                                            <div className='vote_box'>
+                                                <div className='vote_checkbox' >
+
+                                                    <form onSubmit={handleSubmit(onSubmit)}>
+                                                    <span className='box'><label><input  {...register("emotion")} type="checkbox" value="fear"  onChange={(e) => checkOnlyOne(e.target)} /> 공포</label></span>
+                                                        <span className='box'><label><input  {...register("emotion")} type="checkbox" value="surpised"  onChange={(e) => checkOnlyOne(e.target)} /> 놀람</label></span>
+                                                        <span className='box'><label><input {...register("emotion")} type="checkbox"  value="angry"  onChange={(e) => checkOnlyOne(e.target)} /> 화남</label></span>
+                                                        <span className='box'><label><input {...register("emotion")} type="checkbox"  value="sad"  onChange={(e) => checkOnlyOne(e.target)} /> 슬픔</label></span>
+                                                        <span className='box'><label><input {...register("emotion")} type="checkbox"  value="neutral"  onChange={(e) => checkOnlyOne(e.target)} /> 중립</label></span>
+                                                        <span className='box'><label><input {...register("emotion")} type="checkbox"  value="hate"  onChange={(e) => checkOnlyOne(e.target)} /> 혐오</label></span>
+                                                        <div className='vote_submit'><input type="submit"/></div>
+                                                    </form>
+
+                                                </div>
+                                            </div>
+                                        }
                                     </div>
                                 </div>
                             </>}

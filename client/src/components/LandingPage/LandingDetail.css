@@ -142,12 +142,31 @@
     line-height: 150px;
     font-size: 18px;
 }
-.digit_pdbottom, .summary_pdbottom {
+.digit_pdbottom, .summary_pdbottom{
     padding-bottom: 200px;
 }
 
 .btn_more{
-    color: white;
+    color: #a5a5a5;
+}
+
+.vote_box{
+    color: #a5a5a5;
+    height: 300px;
+    width: 100%;
+    padding-top: 100px;
+    font-size: 18px;
+
+}
+.btn_vote{
+    color: #a5a5a5;
+}
+.box{
+    margin-left: 100px;
+}
+.vote_submit{
+    padding-top: 100px;
+    text-align: center;
 }
 
 

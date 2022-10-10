@@ -1,23 +1,8 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-const contentsSchema = mongoose.Schema({
+const votecontentsSchema = mongoose.Schema({
     title: {
-        type: String
-    },
-    releaseDate: {
-        type: String
-    },
-    genre: {
-        type: String
-    },
-    country: {
-        type: String
-    },
-    parentalGuidance: {
-        type: String
-    },
-    runningTime: {
         type: String
     },
     grade: {
@@ -25,18 +10,6 @@ const contentsSchema = mongoose.Schema({
     },
     audience: {
         type: Number
-    },
-    posterUrl: {
-        type: String
-    },
-    actor: {
-        type: String
-    },
-    actorUrl: {
-        type: String
-    },
-    summary: {
-        type: String
     },
     emotion: {
         type: String
@@ -67,5 +40,5 @@ const contentsSchema = mongoose.Schema({
     },
 }, { timestamps: true });
 
-const Contents = mongoose.model('Contents', contentsSchema);
-module.exports = { Contents }
+const VoteContents = mongoose.model('VoteContents', votecontentsSchema);
+module.exports = { VoteContents }
