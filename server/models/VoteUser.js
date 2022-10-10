@@ -3,48 +3,51 @@ const Schema = mongoose.Schema;
 
 const voteuserSchema = mongoose.Schema({
     userFrom: {
-        type: String,
+        type: Schema.Types.ObjectId,
         ref: 'User'
     },
-    movieFrom: {
+    title: {
         type: String,
+    },
+    movieFrom: {
+        type: Schema.Types.ObjectId,
         ref: 'Contnets'
     },
     grade: {
         type: Number,
-        default: 0
+
     },
     audience: {
         type: Number,
-        default: 0
+
     },
     happy: {
         type: Number,
-        default: 0
+
     },
     fear: {
         type: Number,
-        default: 0
+
     },
     surprised: {
         type: Number,
-        default: 0
+
     },
     angry: {
         type: Number,
-        default: 0
+
     },
     sad: {
         type: Number,
-        default: 0
+
     },
     neutral: {
         type: Number,
-        default: 0
+
     },
     hate: {
         type: Number,
-        default: 0
+
     },
 }, { timestamps: true });
 

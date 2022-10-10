@@ -129,9 +129,6 @@ function LandingDetail(props) {
 
     useEffect(() => {
         FetchLandingDetail()
-        // FetchNewchart()
-
-
     }, [scrollUp(), Fetchwish()]);
 
 
@@ -162,6 +159,7 @@ function LandingDetail(props) {
                                 console.log('업로드 실패')
                             }
                         })
+
                 } else {
                     alert("영화정보 가져오기에 실패했습니다.");
                 }
@@ -183,37 +181,31 @@ function LandingDetail(props) {
                 checkboxes[i].checked = false
             }
         }
-        // handleChange()
     }
 
-
     const onSubmit = (data) => {
-        let variable = {
+        alert(`투표를 완료하셨습니다.`);
+
+        let voteVari = {
             userFrom: localStorage.getItem("userId"),
+            title: MovieDetail.title,
             movieFrom: MovieId,
+            data : data
         }
-        alert("투표를 완료하셨습니다.");
-        axios.post("/api/users/vote", variable)
+
+        axios.post("/api/users/createvote", voteVari,)
             .then((response) => {
                 if (response.data.success) {
+
                 } else {
 
                 }
             })
+    }
+
+    const CreateVote = (data) => {
+
     };
-
-
-
-    // const [voteEmotion, setVoteEmotion] = useState("");
-    // const [disabled, setDisabled] = useState(false);
-
-    // const handleChange = ({ target: {value}}) => setVoteEmotion(value)
-
-    // const handleSubmit = async (e) =>{
-    //     setDisabled(true)
-    //     e.preventDefault();
-    //     setDisabled(false);
-    // }
 
 
 
