@@ -75,7 +75,6 @@ function LandingDetail(props) {
     const [voteModal, SetVoteModal] = useState(false);
     const {register, handleSubmit} = useForm();
     actor.pop()
-    const [webArray, setWebArray] = useState([]);
 
     const variable = {
         userFrom: localStorage.getItem("userId"),
@@ -166,35 +165,6 @@ function LandingDetail(props) {
                     axios.post("/api/users/votecontents", wishVariable)
                         .then((response) => {
                             if (response.data.success) {
-                                const emo = []
-                                if (response.data.contents.length === 0) {
-                                    for (let i = 0; i <= 6; i++) {
-                                        emo.push(0)
-                                    }
-                                    setWebArray(emo)
-                                }
-                                else if (response.data.contents.length >= 1) {
-                                    emo.push(response.data.contents[0].happy);
-                                    emo.push(response.data.contents[0].fear);
-                                    emo.push(response.data.contents[0].surprised);
-                                    emo.push(response.data.contents[0].angry);
-                                    emo.push(response.data.contents[0].sad);
-                                    emo.push(response.data.contents[0].neutral);
-                                    emo.push(response.data.contents[0].hate);
-                                    setWebArray(emo)
-                                }
-                                if (response.data.contents.length >= 2) {
-                                    for (let i = 1; i <= response.data.contents.length - 1; i++) {
-                                        emo[0] += response.data.contents[i].happy
-                                        emo[1] += response.data.contents[i].fear
-                                        emo[2] += response.data.contents[i].surprised
-                                        emo[3] += response.data.contents[i].angry
-                                        emo[4] += response.data.contents[i].sad
-                                        emo[5] += response.data.contents[i].neutral
-                                        emo[6] += response.data.contents[i].hate
-                                    }
-                                    setWebArray(emo)
-                                }
                             } else {
 
                             }
@@ -363,7 +333,7 @@ function LandingDetail(props) {
                                             {` 가 이 ${MovieDetail.emotion}감정에 투표 하셨습니다. `}
                                         </div> */}
                                         <div className='doughnut2'>
-                                            <Chart count={webArray} style={{}} />
+                                            <Chart count={[1,1,1,1,1,1,1]} style={{}} />
                                         </div>
                                         <button className='btn_vote' onClick={() => { VoteOnOff() }}>{!voteModal ? '투표 하기' : '투표 접기'}</button>
                                         {!voteModal ? <></> :
