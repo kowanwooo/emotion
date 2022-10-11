@@ -40,10 +40,10 @@ router.post('/contents/Korea', (req, res) => {
 
 router.post('/contents/America', (req, res) => {
     Contents.aggregate([
-        { $match: { country: "미국" } },
-        { $sample: { size: 5 } }
+        { $match: {$or:[{ country: "미국" }, { country: "미국," } ] }},
+        { $sample: { size: 50 } }
     ])
-    .limit(5)
+    // .limit(5)
         .exec((err, contents) => {
             if (err) return res.status(400).send(err);
             return res.status(200).json({ success: true, contents });

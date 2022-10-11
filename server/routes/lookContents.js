@@ -4,8 +4,8 @@ const { LookContents } = require("../models/LookContents");
 
 router.post('/movie/create', (req, res) => {
     const lookup = new LookContents(req.body);
-    movieId = req.body.movieId;
-    userFrom = req.body.userFrom;
+    const movieId = req.body.movieId;
+    const userFrom = req.body.userFrom;
     LookContents.findOne({ movieId: movieId, userFrom: userFrom }, (err, Contents) => {
         if (!Contents){
             lookup.save((err, lookup) => {

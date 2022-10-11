@@ -59,6 +59,8 @@ function Photo(props) {
 
 
 function LandingDetail(props) {
+    const MovieName = localStorage.getItem("movie");
+    const userFrom = localStorage.getItem("userId")
     const MovieId = props.match.params.movieId;
     const [MovieDetail, setMovieDetail] = useState([]);
     const [wish, setwish] = useState('☆');
@@ -72,8 +74,8 @@ function LandingDetail(props) {
     const [summaryModal, SetsummaryModal] = useState(false);
     const [voteModal, SetVoteModal] = useState(false);
     const {register, handleSubmit} = useForm();
-    // const [vote, setVote] = useState([]);
     actor.pop()
+    const [webArray, setWebArray] = useState([]);
 
     const variable = {
         userFrom: localStorage.getItem("userId"),
@@ -129,7 +131,8 @@ function LandingDetail(props) {
 
     useEffect(() => {
         FetchLandingDetail()
-    }, [scrollUp(), Fetchwish()]);
+
+    }, [scrollUp(), Fetchwish(),]);
 
 
     const FetchLandingDetail = () => {
@@ -143,15 +146,16 @@ function LandingDetail(props) {
                     setEmocount(response.data.emoCount)
                     setPeopleCount(response.data.pelpleCount)
                     setSummary(response.data.summary)
+                    localStorage.setItem("movie",response.data.contents.title)
 
-                    const variable = {
+                    const wishVariable = {
                         userFrom: localStorage.getItem("userId"),
                         movieId: MovieId,
                         posterUrl: response.data.contents.posterUrl,
                         title: response.data.contents.title,
                         wish: '☆'
                     }
-                    axios.post("/api/users/movie/create", variable)
+                    axios.post("/api/users/movie/create", wishVariable)
                         .then((response) => {
                             if (response.status === 200) {
                                 console.log('업로드 성공')
@@ -159,11 +163,49 @@ function LandingDetail(props) {
                                 console.log('업로드 실패')
                             }
                         })
+                    axios.post("/api/users/votecontents", wishVariable)
+                        .then((response) => {
+                            if (response.data.success) {
+                                const emo = []
+                                if (response.data.contents.length === 0) {
+                                    for (let i = 0; i <= 6; i++) {
+                                        emo.push(0)
+                                    }
+                                    setWebArray(emo)
+                                }
+                                else if (response.data.contents.length >= 1) {
+                                    emo.push(response.data.contents[0].happy);
+                                    emo.push(response.data.contents[0].fear);
+                                    emo.push(response.data.contents[0].surprised);
+                                    emo.push(response.data.contents[0].angry);
+                                    emo.push(response.data.contents[0].sad);
+                                    emo.push(response.data.contents[0].neutral);
+                                    emo.push(response.data.contents[0].hate);
+                                    setWebArray(emo)
+                                }
+                                if (response.data.contents.length >= 2) {
+                                    for (let i = 1; i <= response.data.contents.length - 1; i++) {
+                                        emo[0] += response.data.contents[i].happy
+                                        emo[1] += response.data.contents[i].fear
+                                        emo[2] += response.data.contents[i].surprised
+                                        emo[3] += response.data.contents[i].angry
+                                        emo[4] += response.data.contents[i].sad
+                                        emo[5] += response.data.contents[i].neutral
+                                        emo[6] += response.data.contents[i].hate
+                                    }
+                                    setWebArray(emo)
+                                }
+                            } else {
+
+                            }
+                        })
 
                 } else {
                     alert("영화정보 가져오기에 실패했습니다.");
                 }
+
             })
+
 
     }
 
@@ -187,25 +229,24 @@ function LandingDetail(props) {
         alert(`투표를 완료하셨습니다.`);
 
         let voteVari = {
-            userFrom: localStorage.getItem("userId"),
-            title: MovieDetail.title,
+            userFrom: userFrom,
+            title: MovieName,
             movieFrom: MovieId,
             data : data
         }
+        console.log('voteVari',voteVari)
 
-        axios.post("/api/users/createvote", voteVari,)
+        axios.post("/api/users/createvote", voteVari)
             .then((response) => {
                 if (response.data.success) {
-
                 } else {
 
                 }
             })
+
     }
 
-    const CreateVote = (data) => {
 
-    };
 
 
 
@@ -316,13 +357,13 @@ function LandingDetail(props) {
                                 </div>
                                 <div className='digit_pdbottom2'>
                                     <div className='digit_box' style={{}}>
-                                        <div className='digit'>
+                                        {/* <div className='digit'>
                                             {`감정 지수 : ${peopleCount}명 중 `}
                                             <b style={{ color: "#1976D2" }}>{`${(MovieDetail.emotionDigit * 100).toFixed(1)}%`}</b>
                                             {` 가 이 ${MovieDetail.emotion}감정에 투표 하셨습니다. `}
-                                        </div>
-                                        <div className='doughnut'>
-                                            <Chart count={[0, 0, 0, 0, 0, 0, 0]} style={{}} />
+                                        </div> */}
+                                        <div className='doughnut2'>
+                                            <Chart count={webArray} style={{}} />
                                         </div>
                                         <button className='btn_vote' onClick={() => { VoteOnOff() }}>{!voteModal ? '투표 하기' : '투표 접기'}</button>
                                         {!voteModal ? <></> :
