@@ -26,6 +26,84 @@ router.post('/contents/getContentsP', (req, res) => {
         })
 })
 
+router.post('/contents/Korea', (req, res) => {
+    Contents.aggregate([
+        { $match: { country: "한국" } },
+        { $sample: { size: 5 } }
+    ])
+    .limit(5)
+        .exec((err, contents) => {
+            if (err) return res.status(400).send(err);
+            return res.status(200).json({ success: true, contents });
+        })
+})
+
+router.post('/contents/America', (req, res) => {
+    Contents.aggregate([
+        { $match: { country: "미국" } },
+        { $sample: { size: 5 } }
+    ])
+    .limit(5)
+        .exec((err, contents) => {
+            if (err) return res.status(400).send(err);
+            return res.status(200).json({ success: true, contents });
+        })
+})
+router.post('/contents/Action', (req, res) => {
+    Contents.aggregate([
+        { $match: { genre: "액션" } },
+        { $sample: { size: 5 } }
+    ])
+    .limit(5)
+        .exec((err, contents) => {
+            if (err) return res.status(400).send(err);
+            return res.status(200).json({ success: true, contents });
+        })
+})
+router.post('/contents/Happy', (req, res) => {
+    Contents.aggregate([
+        { $match: { emotion: "행복" } },
+        { $sample: { size: 5 } }
+    ])
+    .limit(5)
+        .exec((err, contents) => {
+            if (err) return res.status(400).send(err);
+            return res.status(200).json({ success: true, contents });
+        })
+})
+router.post('/contents/Anger', (req, res) => {
+    Contents.aggregate([
+    { $match: { emotion: "분노" } },
+    { $sample: { size: 5 } }
+    ])
+    .limit(5)
+        .exec((err, contents) => {
+            if (err) return res.status(400).send(err);
+            return res.status(200).json({ success: true, contents });
+        })
+})
+router.post('/contents/Sadness', (req, res) => {
+    Contents.aggregate([
+    { $match: { emotion: "슬픔" } },
+    { $sample: { size: 5 } }
+    ])
+    .limit(5)
+        .exec((err, contents) => {
+            if (err) return res.status(400).send(err);
+            return res.status(200).json({ success: true, contents });
+        })
+})
+router.post('/contents/Random', (req, res) => {
+    Contents.aggregate([
+        {$sample: {size: 5}}
+    ])
+    .limit(5)
+        .exec((err, contents) => {
+            if (err) return res.status(400).send(err);
+            return res.status(200).json({ success: true, contents });
+        })
+})
+
 //=================================
 //            EmotionContents
 //=================================
