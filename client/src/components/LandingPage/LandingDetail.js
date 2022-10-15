@@ -73,6 +73,7 @@ function LandingDetail(props) {
     const [summary, setSummary] = useState([]);
     const [summaryModal, SetsummaryModal] = useState(false);
     const [voteModal, SetVoteModal] = useState(false);
+    const [webEmoCount, SetWebEmoCount] = useState()
     const {register, handleSubmit} = useForm();
     actor.pop()
 
@@ -90,7 +91,6 @@ function LandingDetail(props) {
                     console.log("실패")
                 }
             })
-        Fetchwish()
 
     }
 
@@ -104,7 +104,6 @@ function LandingDetail(props) {
                     console.log("실패")
                 }
             })
-        Fetchwish()
 
     }
 
@@ -131,8 +130,9 @@ function LandingDetail(props) {
     useEffect(() => {
         FetchLandingDetail()
 
-    }, [scrollUp(), Fetchwish(),]);
-
+    },);
+    
+    
 
     const FetchLandingDetail = () => {
         const variable = { movieDbId: MovieId };
@@ -140,7 +140,6 @@ function LandingDetail(props) {
             .post(`/api/users${props.match.path}`, variable)
             .then(response => {
                 if (response.data.success) {
-                    // console.log(response.data.contents);
                     setMovieDetail(response.data.contents);
                     setEmocount(response.data.emoCount)
                     setPeopleCount(response.data.pelpleCount)
@@ -165,7 +164,17 @@ function LandingDetail(props) {
                     axios.post("/api/users/votecontents", wishVariable)
                         .then((response) => {
                             if (response.data.success) {
+                                console.log(response.data.Array)
+                                SetWebEmoCount(response.data.Array)
                             } else {
+
+                            }
+                        })
+                    axios.post("/api/users/votecheckuser",wishVariable)
+                        .then((response) =>{
+                            if(response.data.success){
+                                console.log(response.data.voteState)
+                            } else{
 
                             }
                         })
@@ -209,11 +218,13 @@ function LandingDetail(props) {
         axios.post("/api/users/createvote", voteVari)
             .then((response) => {
                 if (response.data.success) {
+                    console.log('투표완료')
                 } else {
-
+                    console.log('투표실패')
                 }
             })
-
+            
+            
     }
 
 
@@ -233,9 +244,7 @@ function LandingDetail(props) {
                                         src={MovieDetail.posterUrl}
                                         className="movie_poster"
                                     ></img>
-                                    <button onClick={() => {
-                                        wish === "☆" ? UpdateWish() : DelWish()
-                                    }} className='set_wish'>
+                                    <button onClick={() => { wish === "☆" ? UpdateWish() : DelWish()}} className='set_wish'>
                                         {wish === "☆" ? <FavoriteBorderIcon /> : <FavoriteIcon />}
                                     </button>
                                 </div>
@@ -316,7 +325,7 @@ function LandingDetail(props) {
                                 <div className='digit_pdbottom'>
                                     <div className='digit_box' style={{}}>
                                         <div className='digit'>
-                                            {`감정 지수 : ${peopleCount}명 중 `}
+                                            {`원본 데이터 감정 지수 : ${peopleCount}명 중 `}
                                             <b style={{ color: "#1976D2" }}>{`${(MovieDetail.emotionDigit * 100).toFixed(1)}%`}</b>
                                             {` 가 이 ${MovieDetail.emotion}감정에 투표 하셨습니다. `}
                                         </div>
@@ -327,13 +336,13 @@ function LandingDetail(props) {
                                 </div>
                                 <div className='digit_pdbottom2'>
                                     <div className='digit_box' style={{}}>
-                                        {/* <div className='digit'>
-                                            {`감정 지수 : ${peopleCount}명 중 `}
+                                        <div className='digit'>
+                                            {`웹 사이트 투표  : ${peopleCount}명 중 `}
                                             <b style={{ color: "#1976D2" }}>{`${(MovieDetail.emotionDigit * 100).toFixed(1)}%`}</b>
                                             {` 가 이 ${MovieDetail.emotion}감정에 투표 하셨습니다. `}
-                                        </div> */}
-                                        <div className='doughnut2'>
-                                            <Chart count={[1,1,1,1,1,1,1]} style={{}} />
+                                        </div>
+                                        <div className='doughnut'>
+                                            <Chart count={webEmoCount} style={{}} />
                                         </div>
                                         <button className='btn_vote' onClick={() => { VoteOnOff() }}>{!voteModal ? '투표 하기' : '투표 접기'}</button>
                                         {!voteModal ? <></> :
@@ -341,6 +350,7 @@ function LandingDetail(props) {
                                                 <div className='vote_checkbox' >
 
                                                     <form onSubmit={handleSubmit(onSubmit)}>
+                                                    <span className='box'><label><input  {...register("emotion")} type="checkbox" value="happy"  onChange={(e) => checkOnlyOne(e.target)} /> 기쁨</label></span>
                                                     <span className='box'><label><input  {...register("emotion")} type="checkbox" value="fear"  onChange={(e) => checkOnlyOne(e.target)} /> 공포</label></span>
                                                         <span className='box'><label><input  {...register("emotion")} type="checkbox" value="surpised"  onChange={(e) => checkOnlyOne(e.target)} /> 놀람</label></span>
                                                         <span className='box'><label><input {...register("emotion")} type="checkbox"  value="angry"  onChange={(e) => checkOnlyOne(e.target)} /> 화남</label></span>
