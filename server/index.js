@@ -16,7 +16,6 @@ const likeRouter = require('./routes/like');
 const contentsRouter = require('./routes/contents');
 const LookContentsRouter = require('./routes/LookContents');
 const WishContentsRouter = require('./routes/wishContents');
-const voteContentsRouter = require('./routes/voteContents');
 const voteuserRouter = require('./routes/voteuser');
 
 //=================================
@@ -50,7 +49,6 @@ app.use('/api/users', likeRouter);
 app.use('/api/users', contentsRouter);
 app.use('/api/users', LookContentsRouter);
 app.use('/api/users', WishContentsRouter);
-app.use('/api/users', voteContentsRouter);
 app.use('/api/users', voteuserRouter);
 
 app.listen(port, () => {

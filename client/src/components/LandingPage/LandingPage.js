@@ -202,11 +202,11 @@ function LandingPage(props) {
       <SubBanner label="최신순" Contents={Contents} more={`/more/latestorder`} />
       <SubBanner label="관객순" Contents={ContentsP} more={`/more/manyspectators`} />
       <SubBanner label="한국영화" Contents={ContentsKorea} />
-      <SubBanner label="서양영화" Contents={ContentsAmerica} />
-      <SubBanner label="액션모음" Contents={ContentsAction} />
-      <SubBanner label="행복할때" Contents={ContentsHappy} />
-      <SubBanner label="눈물날때" Contents={ContentsSadness} />
-      <SubBanner label="화가날때" Contents={ContentsAnger} />
+      <SubBanner label="외국영화" Contents={ContentsAmerica} />
+      <SubBanner label="장르 : 액션" Contents={ContentsAction} />
+      <SubBanner label="감정 : 행복" Contents={ContentsHappy} />
+      <SubBanner label="감정 : 슬픔" Contents={ContentsSadness} />
+      <SubBanner label="감정 : 화남" Contents={ContentsAnger} />
       <TopButton BtnStatus={BtnStatus} handleTop={handleTop} />
       <Footer />
     </>
