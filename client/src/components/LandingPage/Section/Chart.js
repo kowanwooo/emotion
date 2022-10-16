@@ -1,12 +1,16 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
 import { Doughnut } from 'react-chartjs-2';
+import { useState } from 'react';
 
 
 
 function Chart(props) {
     
     ChartJS.register(ArcElement, Tooltip, Legend);
+    
+    
+
 
     const Data = {
         labels: ['행복','공포','놀람','화남','슬픔','중립','혐오'],
@@ -22,7 +26,7 @@ function Chart(props) {
                     'rgba(75, 192, 192, 0.2)',
                     'rgba(153, 102, 255, 0.2)',
                     'rgba(255, 159, 64, 0.2)',
-                    '#ffffff',
+                    'rgba(153,203,154,0.2)',
                 ],
                 borderColor: [
                     'rgba(255, 99, 132, 1)',
@@ -31,7 +35,7 @@ function Chart(props) {
                     'rgba(75, 192, 192, 1)',
                     'rgba(153, 102, 255, 1)',
                     'rgba(255, 159, 64, 1)',
-                    '#ffffff',
+                    'rgba(153,203,154,1)',
                 ],
                 borderWidth: 1,
 

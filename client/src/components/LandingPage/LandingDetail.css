@@ -128,12 +128,32 @@
 
 }
 
-.digit_box{
-    height: "300px";
+.digit_pdbottom{
+    padding-bottom: 300px;
+}
+
+.digit_title{
+    text-align: center;
+    padding-bottom: 30px;
+    font-weight: bold;
+    font-size: 18px;
+    color: rgba(255,255,255,0.8);
     
 }
-.digit{
+
+.digit_1{
+    padding-left: 200px;
+    float: left;
+}
+
+.digit_2{
+    padding-right: 200px;
+    float: right;
+}
+
+/* .digit{
     padding-left: 190px;
+    padding-right: 500px;
     height: 100%;
     text-align: center;
     float: left;
@@ -144,7 +164,8 @@
 }
 .digit_pdbottom, .summary_pdbottom{
     padding-bottom: 200px;
-}
+    margin: 0 auto; */
+/* } */
 
 .btn_more{
     color: #a5a5a5;
@@ -160,6 +181,7 @@
 }
 .btn_vote{
     color: #a5a5a5;
+    font-size: 18px;
 }
 .box{
     margin-left: 100px;
@@ -167,9 +189,6 @@
 .vote_submit{
     padding-top: 100px;
     text-align: center;
-}
-.doughnut2{
-    padding-left: 400px;
 }
 
 

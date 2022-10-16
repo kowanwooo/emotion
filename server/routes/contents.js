@@ -41,7 +41,7 @@ router.post('/contents/Korea', (req, res) => {
 router.post('/contents/America', (req, res) => {
     Contents.aggregate([
         { $match: {$or:[{ country: "미국" }, { country: "미국," } ] }},
-        { $sample: { size: 50 } }
+        { $sample: { size: 5 } }
     ])
     // .limit(5)
         .exec((err, contents) => {

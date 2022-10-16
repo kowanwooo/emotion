@@ -49,6 +49,11 @@ const voteuserSchema = mongoose.Schema({
         type: Number,
 
     },
+    
+    voteresult : {
+        type: String,
+    },
+
 }, { timestamps: true });
 
 const VoteUser = mongoose.model('VoteUser', voteuserSchema);

@@ -71,9 +71,6 @@ function LandingPage(props) {
     FetchContentsHappy();
     FetchContentsAnger();
     FetchContentsSadness();
-    // console.log('props :',props);
-    // console.log('props.match.path : ',props.match.path);
-    // console.log(`props.match.params : ${props.match.params.movieId}`);
 
   }, [])
 
@@ -81,7 +78,6 @@ function LandingPage(props) {
     axios.post("/api/users/contents/getContents")
       .then((response) => {
         if (response.data.success) {
-          // console.log(response.data.contents);
           setContents(response.data.contents);
         } else {
           alert("콘텐츠을 보여줄 수 없습니다.");
@@ -96,7 +92,6 @@ function LandingPage(props) {
     axios.post("/api/users/contents/getContentsP")
       .then((response) => {
         if (response.data.success) {
-          // console.log(response.data.contents);
           setContentsP(response.data.contents);
         } else {
           alert("콘텐츠을 보여줄 수 없습니다.");
@@ -110,7 +105,6 @@ function LandingPage(props) {
   const FetchContentsAmerica = () => {
     axios.post("/api/users/contents/America").then((response) => {
       if (response.data.success) {
-        console.log(response.data.contents);
         setContentsAmerica(response.data.contents);
       } else {
         console.log("콘텐츠 오류");
@@ -130,10 +124,11 @@ function LandingPage(props) {
         }
       });
   };
+
   const FetchContentsKorea = () => {
     axios.post("/api/users/contents/Korea").then((response) => {
       if (response.data.success) {
-        console.log(response.data.contents);
+
         setContentsKorea(response.data.contents);
       } else {
         console.log("콘텐츠 오류");
@@ -143,7 +138,6 @@ function LandingPage(props) {
   const FetchContentsAction = () => {
     axios.post("/api/users/contents/Action").then((response) => {
       if (response.data.success) {
-        console.log(response.data.contents);
         setContentsAction(response.data.contents);
       } else {
         console.log("콘텐츠 오류");
@@ -153,7 +147,6 @@ function LandingPage(props) {
   const FetchContentsHappy = () => {
     axios.post("/api/users/contents/Happy").then((response) => {
       if (response.data.success) {
-        console.log(response.data.contents);
         setContentsHappy(response.data.contents);
       } else {
         console.log("콘텐츠 오류");
@@ -163,7 +156,6 @@ function LandingPage(props) {
   const FetchContentsAnger = () => {
     axios.post("/api/users/contents/Anger").then((response) => {
       if (response.data.success) {
-        console.log(response.data.contents);
         setContentsAnger(response.data.contents);
       } else {
         console.log("콘텐츠 오류");
@@ -173,7 +165,6 @@ function LandingPage(props) {
   const FetchContentsSadness = () => {
     axios.post("/api/users/contents/Sadness").then((response) => {
       if (response.data.success) {
-        console.log(response.data.contents);
         setContentsSadness(response.data.contents);
       } else {
         console.log("콘텐츠 오류");
@@ -183,7 +174,6 @@ function LandingPage(props) {
   const FetchContentsRandom = () => {
     axios.post("/api/users/contents/Random").then((response) => {
       if (response.data.success) {
-        console.log(response.data.contents);
         setContentsRandom(response.data.contents);
       } else {
         console.log("콘텐츠 오류");
