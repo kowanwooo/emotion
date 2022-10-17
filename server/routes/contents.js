@@ -202,9 +202,8 @@ router.post('/more/:emotionId', (req, res) => {
 
     if(variable === 'manyspectators' ){ // 관객순
         Contents.countDocuments({}, (err, count) => {
-            if (err) {
-                return res.status(400).send(err);
-            } else {
+            if (err) {return res.status(400).send(err);} 
+            else {
                 Contents.find({})
                     .skip(((Page - 1) * 20))
                     .limit(20)
@@ -217,9 +216,8 @@ router.post('/more/:emotionId', (req, res) => {
 
     }else if(variable === 'latestorder' ){ // 최신순
         Contents.countDocuments({}, (err, count) => {
-            if (err) {
-                return res.status(400).send(err);
-            } else {
+            if (err) { return res.status(400).send(err);} 
+            else {
                 Contents.find({})
                     .sort({ releaseDate: -1 })
                     .skip(((Page - 1) * 20))
@@ -234,9 +232,8 @@ router.post('/more/:emotionId', (req, res) => {
     
     }else if(variable === 'mylooksmore' ){
         LookContents.countDocuments({}, (err, count) => {
-            if (err) {
-                return res.status(400).send(err);
-            } else {
+            if (err) { return res.status(400).send(err);} 
+            else {
                 LookContents.find({})
                     .sort({ createdAt: -1 })
                     .skip(((Page - 1) * 20))
@@ -250,9 +247,7 @@ router.post('/more/:emotionId', (req, res) => {
     }else{
 
         Contents.countDocuments({ emotion: variable }, (err, count) => {
-            if (err) {
-                return res.status(400).send(err);
-            } else {
+            if (err) {return res.status(400).send(err);} else {
                 Contents.find({ emotion: variable })
                     .sort({ releaseDate: -1 })
                     .skip(((Page - 1) * 20))

@@ -43,7 +43,10 @@ function MoreContents(props) {
         hate: '혐오',
         latestorder: 'latestorder',
         manyspectators: 'manyspectators',
-        mylooksmore: 'mylooksmore'
+        mylooksmore: 'mylooksmore',
+        morekorea: 'morekorea',
+        morefcountry :'morefcountry',
+        moreaction : 'moreaction',
     }
 
 

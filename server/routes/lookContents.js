@@ -25,6 +25,7 @@ router.post('/movie/create', (req, res) => {
 router.post('/movie/getLookContents',(req, res) => {
     LookContents.find({ userFrom : req.body.userFrom })
     .sort({ createdAt: -1 })
+    .limit(5)
     .exec((err, lookContents) =>{
         if (err) return res.status(400).send(err);
         return res.status(200).json({success: true, lookContents})
