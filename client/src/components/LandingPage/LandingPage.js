@@ -181,22 +181,22 @@ function LandingPage(props) {
     });
   };
 
-  
+
 
 
   return (
     <>
       <Header />
       <MainBanner />
-      <SubBanner label={EmotionMsg} Contents={EmotionContents} more={`/more/${EmotionState}`} />
-      <SubBanner label="최신순" Contents={Contents} more={`/more/latestorder`} />
-      <SubBanner label="관객순" Contents={ContentsP} more={`/more/manyspectators`} />
+      <SubBanner label={EmotionMsg} Contents={EmotionContents} more={`/more/${EmotionState}`} moreText={"더보기"} />
+      <SubBanner label="최신순" Contents={Contents} more={`/more/latestorder`} moreText={"더보기"} />
+      <SubBanner label="관객순" Contents={ContentsP} more={`/more/manyspectators`} moreText={"더보기"} />
       <SubBanner label="한국영화" Contents={ContentsKorea} more={`/more/korea`} />
-      <SubBanner label="외국영화" Contents={ContentsAmerica} more={`/more/morefcountry`} />
-      <SubBanner label="장르 : 액션" Contents={ContentsAction} more={`/more/moreaction`} />
-      <SubBanner label="감정 : 행복" Contents={ContentsHappy} more={`/more/happy`} />
-      <SubBanner label="감정 : 슬픔" Contents={ContentsSadness} more={`/more/sad`} />
-      <SubBanner label="감정 : 화남" Contents={ContentsAnger} more={`/more/angry`} />
+      <SubBanner label="외국영화" Contents={ContentsAmerica} more={`/more/morefcountry`} moreText={"더보기"} />
+      <SubBanner label="장르 : 액션" Contents={ContentsAction} more={`/more/moreaction`} moreText={"더보기"} />
+      <SubBanner label="감정 : 행복" Contents={ContentsHappy} more={`/more/happy`} moreText={"더보기"} />
+      <SubBanner label="감정 : 슬픔" Contents={ContentsSadness} more={`/more/sad`} moreText={"더보기"} />
+      <SubBanner label="감정 : 화남" Contents={ContentsAnger} more={`/more/angry`} moreText={"더보기"} />
       <TopButton BtnStatus={BtnStatus} handleTop={handleTop} />
       <Footer />
     </>

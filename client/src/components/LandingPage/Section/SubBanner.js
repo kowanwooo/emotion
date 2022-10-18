@@ -23,15 +23,15 @@ function SubBanner(props) {
                     </div>
                     <div className='more_contents'>
                         <Link className='btn_more' to={props.more} onClick={()=>{
-                        }}>더보기</Link>
+                        }}>{props.moreText}</Link>
                     </div>
                 </div>
                 <div class="img_wrap">
-                    <ImgSrc to={props.Contents[0]?._id} src={props.Contents[0]?.posterUrl} />
-                    <ImgSrc to={props.Contents[1]?._id} src={props.Contents[1]?.posterUrl} />
-                    <ImgSrc to={props.Contents[2]?._id} src={props.Contents[2]?.posterUrl} />
-                    <ImgSrc to={props.Contents[3]?._id} src={props.Contents[3]?.posterUrl} />
-                    <ImgSrc to={props.Contents[4]?._id} src={props.Contents[4]?.posterUrl} />
+                    <ImgSrc to={props.Contents[0]?._id} src={props.Contents[0]?.posterUrl} moreText ={props.moreText} />
+                    <ImgSrc to={props.Contents[1]?._id} src={props.Contents[1]?.posterUrl} moreText ={props.moreText}/>
+                    <ImgSrc to={props.Contents[2]?._id} src={props.Contents[2]?.posterUrl} moreText ={props.moreText}/>
+                    <ImgSrc to={props.Contents[3]?._id} src={props.Contents[3]?.posterUrl} moreText ={props.moreText}/>
+                    <ImgSrc to={props.Contents[4]?._id} src={props.Contents[4]?.posterUrl} moreText ={props.moreText}/>
                 </div>
             </div>
         </section>
