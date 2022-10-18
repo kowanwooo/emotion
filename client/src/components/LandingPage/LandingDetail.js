@@ -9,7 +9,7 @@ import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import BasicTabs from "./LandingTabMenu";
 import Chart from './Section/Chart';
 import { useForm } from "react-hook-form"
-
+import SubBanner from './Section/SubBanner';
 
 
 
@@ -61,6 +61,8 @@ function LandingDetail(props) {
     const MovieName = localStorage.getItem("movie");
     const userFrom = localStorage.getItem("userId")
     const MovieId = props.match.params.movieId;
+
+    const [relatedContents, setRelatedContents] = useState([]);
     const [MovieDetail, setMovieDetail] = useState([]);
     const [wish, setwish] = useState('☆');
     const actorUrl = (MovieDetail.actorUrl || '').split(' ');
@@ -106,6 +108,7 @@ function LandingDetail(props) {
                     console.log("실패")
                 }
             })
+            
         Fetchwish()
 
     }
@@ -134,8 +137,12 @@ function LandingDetail(props) {
         FetchLandingDetail()
         Fetchwish()
 
-    }, []);
+    },[]);
 
+    useEffect(()=>{
+        FetchLandingDetail()
+        scrollUp()
+    },[MovieId])
 
 
 
@@ -150,6 +157,22 @@ function LandingDetail(props) {
                     setPeopleCount(response.data.pelpleCount)
                     setSummary(response.data.summary)
                     localStorage.setItem("movie", response.data.contents.title)
+
+                    console.log(response.data.contents)
+
+                    axios.post(`/api/users/contents/emotion/related`,
+                        { emotion: response.data.contents.emotion })
+                        .then((response) => {
+                            if (response.data.success) {
+                                console.log(response.data.contents);
+                                setRelatedContents(response.data.contents);
+                            } else {
+                                alert("콘텐츠을 보여줄 수 없습니다.");
+                            }
+                        })
+                        .catch((err) => {
+                            console.log(err);
+                        });
 
                     const wishVariable = {
                         userFrom: localStorage.getItem("userId"),
@@ -188,6 +211,8 @@ function LandingDetail(props) {
 
                             }
                         })
+
+
 
                 } else {
                     alert("영화정보 가져오기에 실패했습니다.");
@@ -233,7 +258,11 @@ function LandingDetail(props) {
                     console.log('투표실패')
                 }
             })
-        FetchLandingDetail()
+        
+            setTimeout(()=> {
+                FetchLandingDetail()
+              }, 500);
+
 
 
     }
@@ -319,7 +348,7 @@ function LandingDetail(props) {
                         <BasicTabs
                             label1={`줄거리`}
                             tab1={
-                                <>
+                                <><div className='tab_pdtop'></div>
                                     <div className='summary_pdbottom'>
                                         {!summaryModal ? `${summary[0]}...` : `${summary}`}
                                         <button className='btn_more' onClick={() => { MoreSummary() }}>
@@ -382,6 +411,7 @@ function LandingDetail(props) {
                         />
                     </article>
                 </main>
+                <SubBanner label="유사 컨텐츠" Contents={relatedContents}/>
                 <Footer />
             </body>
         </>

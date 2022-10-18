@@ -128,9 +128,13 @@
 
 }
 
-.digit_pdbottom{
+.digit_pdbottom {
     padding-bottom: 300px;
 }
+.summary_pdbottom{
+    padding-bottom: 200px;
+}
+
 
 .digit_title{
     text-align: center;

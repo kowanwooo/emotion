@@ -3,7 +3,7 @@ const router = express.Router();
 const { LookContents } = require("../models/LookContents");
 
 router.post('/movie/create', (req, res) => {
-    console.log(req.body)
+    // console.log(req.body)
     const lookup = new LookContents(req.body);
     const movieId = req.body.movieId;
     const userFrom = req.body.userFrom;

@@ -109,8 +109,10 @@ router.post('/contents/Random', (req, res) => {
 //=================================
 
 router.post('/contents/emotion/fear',(req, res) =>{
-    Contents.find({emotion:'공포'})
-    .limit(5)
+    Contents.aggregate([
+        { $match: { emotion: "공포" } },
+        { $sample: { size: 5 } }
+    ])
     .exec((err, contents) =>{
         if (err) return res.status(400).send(err);
         return res.status(200).json({success: true, contents});
@@ -118,8 +120,10 @@ router.post('/contents/emotion/fear',(req, res) =>{
 })
 
 router.post(`/contents/emotion/surprised`,(req, res) =>{
-    Contents.find({emotion:'놀람'})
-    .limit(5)
+    Contents.aggregate([
+        { $match: { emotion: "놀람" } },
+        { $sample: { size: 5 } }
+    ])
     .exec((err, contents) =>{
         if (err) return res.status(400).send(err);
         return res.status(200).json({success: true, contents});
@@ -127,8 +131,10 @@ router.post(`/contents/emotion/surprised`,(req, res) =>{
 })
 
 router.post('/contents/emotion/angry',(req, res) =>{
-    Contents.find({emotion:'분노'})
-    .limit(5)
+    Contents.aggregate([
+        { $match: { emotion: "분노" } },
+        { $sample: { size: 5 } }
+    ])
     .exec((err, contents) =>{
         if (err) return res.status(400).send(err);
         return res.status(200).json({success: true, contents});
@@ -136,8 +142,10 @@ router.post('/contents/emotion/angry',(req, res) =>{
 })
 
 router.post('/contents/emotion/sad',(req, res) =>{
-    Contents.find({emotion:'슬픔'})
-    .limit(5)
+    Contents.aggregate([
+        { $match: { emotion: "슬픔" } },
+        { $sample: { size: 5 } }
+    ])
     .exec((err, contents) =>{
         if (err) return res.status(400).send(err);
         return res.status(200).json({success: true, contents});
@@ -145,8 +153,10 @@ router.post('/contents/emotion/sad',(req, res) =>{
 })
 
 router.post('/contents/emotion/neutral',(req, res) =>{
-    Contents.find({emotion:'중립'})
-    .limit(5)
+    Contents.aggregate([
+        { $match: { emotion: "중립" } },
+        { $sample: { size: 5 } }
+    ])
     .exec((err, contents) =>{
         if (err) return res.status(400).send(err);
         return res.status(200).json({success: true, contents});
@@ -154,8 +164,10 @@ router.post('/contents/emotion/neutral',(req, res) =>{
 })
 
 router.post('/contents/emotion/happy',(req, res) =>{
-    Contents.find({emotion:'행복'})
-    .limit(5)
+    Contents.aggregate([
+        { $match: { emotion: "행복" } },
+        { $sample: { size: 5 } }
+    ])
     // .aggregate({ $sample: { size: 5 })
     .exec((err, contents) =>{
         if (err) return res.status(400).send(err);
@@ -164,13 +176,27 @@ router.post('/contents/emotion/happy',(req, res) =>{
 })
 
 router.post('/contents/emotion/hate',(req, res) =>{
-    Contents.find({emotion:'혐오'})
-    .limit(5)
+    Contents.aggregate([
+        { $match: { emotion: "혐오" } },
+        { $sample: { size: 5 } }
+    ])
     .exec((err, contents) =>{
         if (err) return res.status(400).send(err);
         return res.status(200).json({success: true, contents});
     })
 })
+
+router.post('/contents/emotion/related',(req, res) =>{
+    Contents.aggregate([
+        { $match: { emotion: req.body.emotion } },
+        { $sample: { size: 5 } }
+    ])
+    .exec((err, contents) =>{
+        if (err) return res.status(400).send(err);
+        return res.status(200).json({success: true, contents});
+    })
+})
+
 
 //=======================================================================
 

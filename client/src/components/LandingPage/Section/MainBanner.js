@@ -40,6 +40,7 @@ function PrevArrow(props) {
 }
 
 const Div = styled.div`
+margin : 0 auto;
   `;
 
 const MainImg = styled.img`
@@ -49,13 +50,13 @@ const MainImg = styled.img`
       background-repeat: no-repeat;
       background-position: 50%;
       background-size: 100%;
-      display : inline;
-      margin : auto;
+      // display : inline;
+      margin : 0 auto;
       border-radius: 20px;
   `;
 
 const H2 = styled.h2`
-  `
+   `
 
 const MainBanner = () => {
 

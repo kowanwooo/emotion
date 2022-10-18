@@ -4,6 +4,8 @@ const router = express.Router();
 
 router.post('/createvote', (req, res) => {
 
+    // console.log(req.body.data)
+
     const variable = {
         userFrom: req.body.userFrom,
         movieFrom: req.body.movieFrom,

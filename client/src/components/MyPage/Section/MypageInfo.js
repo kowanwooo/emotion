@@ -82,7 +82,7 @@ function MypageInfo(props) {
                         </div>
                     </div>
                 </div>
-                <MySubSection map={lookContents} label="전체 시청내역" more={`/more/mylooksmore`} />
+                <MySubSection map={lookContents} label="방문한 콘텐츠" more={`/more/mylooksmore`} />
                 <MySubSection map={wishContents}label="찜한 콘텐츠" />
             </div>
             <Footer />

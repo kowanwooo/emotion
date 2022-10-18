@@ -50,13 +50,13 @@ function Chart(props) {
         // responsive 속성을 false로 지정한다.
         responsive: false,
         scales: {
-            yAxes: [
-                {
-                    ticks: {
-                        beginAtZero: true,
-                    },
-                },
-            ],
+            // yAxes: [
+            //     {
+            //         ticks: {
+            //             beginAtZero: true,
+            //         },
+            //     },
+            // ],
         },
 
         tooltips: {
