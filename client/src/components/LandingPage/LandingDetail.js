@@ -255,8 +255,8 @@ function LandingDetail(props) {
                                         src={MovieDetail.posterUrl}
                                         className="movie_poster"
                                     ></img>
-                                    <button onClick={() => { wish === "☆" ? UpdateWish() : DelWish() }} className='set_wish'>
-                                        {wish === "☆" ? <FavoriteBorderIcon /> : <FavoriteIcon />}
+                                    <button onClick={() => { wish === "☆" ? UpdateWish() : DelWish() }}>
+                                        {wish === "☆" ? <FavoriteIcon style={{color : "white"}} /> : <FavoriteIcon style={{color : "FF6666"}} />}
                                     </button>
                                 </div>
                                 <div className="detail_tit">
