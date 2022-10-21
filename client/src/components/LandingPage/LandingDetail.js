@@ -5,7 +5,6 @@ import Footer from '../Common/Footer/Footer';
 import Header from '../Common/Header/Header';
 import './LandingDetail.css'
 import FavoriteIcon from '@mui/icons-material/Favorite';
-import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import BasicTabs from "./LandingTabMenu";
 import Chart from './Section/Chart';
 import { useForm } from "react-hook-form"
@@ -63,14 +62,13 @@ function LandingDetail(props) {
     const MovieId = props.match.params.movieId;
 
     const [relatedContents, setRelatedContents] = useState([]);
-    const [MovieDetail, setMovieDetail] = useState([]);
+    const [MovieDetail, setMovieDetail] = useState([1]);
     const [wish, setwish] = useState('☆');
     const actorUrl = (MovieDetail.actorUrl || '').split(' ');
     const actor = (MovieDetail.actor || '').split('/');
     const director = actor.shift()
     const directorUrl = actorUrl.shift()
     const [emoCount, setEmocount] = useState([]);
-    const [peopleCount, setPeopleCount] = useState();
     const [summary, setSummary] = useState([]);
     const [summaryModal, SetsummaryModal] = useState(false);
     const [voteModal, SetVoteModal] = useState(false);
@@ -80,6 +78,7 @@ function LandingDetail(props) {
     const [isArray, setIsArray] = useState();
     const [userVote, setUserVote] = useState();
     actor.pop()
+
 
     const variable = {
         userFrom: localStorage.getItem("userId"),
@@ -94,8 +93,9 @@ function LandingDetail(props) {
                 } else {
                     console.log("실패")
                 }
+            }).then(()=>{
+                Fetchwish()
             })
-        Fetchwish()
 
     }
 
@@ -107,9 +107,10 @@ function LandingDetail(props) {
                 } else {
                     console.log("실패")
                 }
+            }).then(()=>{
+                Fetchwish()
             })
             
-        Fetchwish()
 
     }
 
@@ -129,22 +130,15 @@ function LandingDetail(props) {
     }
 
 
-    const scrollUp = () => {
-        window.scroll({ top: 0, left: 0, behavior: 'smooth' });
-    }
-
-    useEffect(() => {
-        FetchLandingDetail()
-        Fetchwish()
-
-    },[]);
 
     useEffect(()=>{
         FetchLandingDetail()
-        scrollUp()
     },[MovieId])
 
-
+    useEffect(()=>{
+        FetchRelatedContents()
+        FetchUserState()
+    },[MovieDetail])
 
     const FetchLandingDetail = () => {
         const variable = { movieDbId: MovieId };
@@ -154,74 +148,89 @@ function LandingDetail(props) {
                 if (response.data.success) {
                     setMovieDetail(response.data.contents);
                     setEmocount(response.data.emoCount)
-                    setPeopleCount(response.data.pelpleCount)
                     setSummary(response.data.summary)
-                    localStorage.setItem("movie", response.data.contents.title)
-
-                    console.log(response.data.contents)
-
-                    axios.post(`/api/users/contents/emotion/related`,
-                        { emotion: response.data.contents.emotion })
-                        .then((response) => {
-                            if (response.data.success) {
-                                console.log(response.data.contents);
-                                setRelatedContents(response.data.contents);
-                            } else {
-                                alert("콘텐츠을 보여줄 수 없습니다.");
-                            }
-                        })
-                        .catch((err) => {
-                            console.log(err);
-                        });
-
-                    const wishVariable = {
-                        userFrom: localStorage.getItem("userId"),
-                        movieId: MovieId,
-                        posterUrl: response.data.contents.posterUrl,
-                        title: response.data.contents.title,
-                        wish: '☆'
-                    }
-                    axios.post("/api/users/movie/create", wishVariable)
-                        .then((response) => {
-                            if (response.status === 200) {
-                                console.log('업로드 성공')
-                            } else {
-                                console.log('업로드 실패')
-                            }
-                        })
-                    axios.post("/api/users/votecontents", wishVariable)
-                        .then((response) => {
-                            if (response.data.success) {
-                                console.log(response.data.Array)
-                                console.log('isArray : ', response.data.isArray)
-
-                                setIsArray(response.data.isArray)
-                                SetWebEmoCount(response.data.Array)
-                            } else {
-                            }
-                        })
-                    axios.post("/api/users/votecheckuser", wishVariable)
-                        .then((response) => {
-                            if (response.data.success) {
-                                console.log(response.data.voteState)
-                                setIsVote(response.data.voteState)
-                                setUserVote(response.data.userVote)
-                                console.log('response.data.userVote : ', response.data.userVote)
-                            } else {
-
-                            }
-                        })
-
-
-
                 } else {
                     alert("영화정보 가져오기에 실패했습니다.");
                 }
 
+            }).then(()=>{
+                Fetchwish()
+                scrollUp()
+                DelCheck()
+                SetVoteModal(false)
             })
+    }
 
+    const DelCheck = (checkThis) => {
+        const checkboxes = document.getElementsByName('emotion')
+        for (let i = 0; i < checkboxes.length; i++) {
+                checkboxes[i].checked = false
+
+        }
+    }
+
+    const scrollUp = () => {
+        window.scroll({ top: 0, left: 0, behavior: 'smooth' });
+    }
+
+    const FetchRelatedContents = () =>{
+        axios.post(`/api/users/contents/emotion/related`,
+        { emotion: MovieDetail.emotion })
+        .then((response) => {
+            if (response.data.success) {
+                console.log(response.data.contents);
+                setRelatedContents(response.data.contents);
+            } else {
+                alert("콘텐츠을 보여줄 수 없습니다.");
+            }
+        })
+        .catch((err) => {
+            console.log(err);
+        });
 
     }
+
+    const FetchUserState = () =>{
+        const wishVariable = {
+            userFrom: localStorage.getItem("userId"),
+            movieId: MovieId,
+            posterUrl: MovieDetail.posterUrl,
+            title: MovieDetail.title,
+            wish: '☆'
+        }
+        axios.post("/api/users/movie/create", wishVariable)
+            .then((response) => {
+                if (response.status === 200) {
+                    console.log('업로드 성공')
+                } else {
+                    console.log('업로드 실패')
+                }
+            })
+        axios.post("/api/users/votecontents", wishVariable)
+            .then((response) => {
+                if (response.data.success) {
+                    console.log(response.data.Array)
+                    console.log('isArray : ', response.data.isArray)
+                    setIsArray(response.data.isArray)
+                    SetWebEmoCount(response.data.Array)
+                } else {
+                }
+            })
+        axios.post("/api/users/votecheckuser", wishVariable)
+            .then((response) => {
+                if (response.data.success) {
+                    console.log(response.data.voteState)
+                    setIsVote(response.data.voteState)
+                    setUserVote(response.data.userVote)
+                    console.log('response.data.userVote : ', response.data.userVote)
+                } else {
+
+                }
+            })
+    }
+
+
+
 
     const MoreSummary = (props) => {
         SetsummaryModal(summaryModal => !summaryModal)
@@ -257,22 +266,17 @@ function LandingDetail(props) {
                 } else {
                     console.log('투표실패')
                 }
+            }).then(()=>{
+                FetchUserState()
             })
-        
-            setTimeout(()=> {
-                FetchLandingDetail()
-              }, 500);
-
-
 
     }
 
 
 
 
-
     return (
-        <>
+        <>        
             <body className="landingdetail_body">
                 <Header />
                 <main className="movie_content">
@@ -411,7 +415,7 @@ function LandingDetail(props) {
                         />
                     </article>
                 </main>
-                <SubBanner label="유사 컨텐츠" Contents={relatedContents}/>
+                <SubBanner label="유사 컨텐츠" Contents={relatedContents} />
                 <Footer />
             </body>
         </>
