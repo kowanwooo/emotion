@@ -12,6 +12,15 @@ import SubBanner from './Section/SubBanner';
 
 
 
+function AddChart(local, web){
+    let addList = [];
+    
+    for(let i = 0 ; i <local.length; i++){
+        addList.push(local[i] + web[i]);
+    }
+    return addList;
+}
+
 function Photo(props) {
     return (<>
         {/* <h1 className="actors_h1">출연진</h1> */}
@@ -57,7 +66,6 @@ function Photo(props) {
 
 function LandingDetail(props) {
     const UserName = localStorage.getItem("userName");
-    const MovieName = localStorage.getItem("movie");
     const userFrom = localStorage.getItem("userId")
     const MovieId = props.match.params.movieId;
 
@@ -149,6 +157,23 @@ function LandingDetail(props) {
                     setMovieDetail(response.data.contents);
                     setEmocount(response.data.emoCount)
                     setSummary(response.data.summary)
+
+                    const wishVariable = {
+                        userFrom: localStorage.getItem("userId"),
+                        movieId: response.data.contents._id,
+                        posterUrl: response.data.contents.posterUrl,
+                        title: response.data.contents.title,
+                        wish: '☆'
+                    }
+                    axios.post("/api/users/movie/create", wishVariable)
+                        .then((response) => {
+                            if (response.status === 200) {
+                                console.log('업로드 성공')
+                            } else {
+                                console.log('업로드 실패')
+                            }
+                        })
+
                 } else {
                     alert("영화정보 가져오기에 실패했습니다.");
                 }
@@ -191,21 +216,13 @@ function LandingDetail(props) {
     }
 
     const FetchUserState = () =>{
+
         const wishVariable = {
             userFrom: localStorage.getItem("userId"),
             movieId: MovieId,
-            posterUrl: MovieDetail.posterUrl,
             title: MovieDetail.title,
-            wish: '☆'
         }
-        axios.post("/api/users/movie/create", wishVariable)
-            .then((response) => {
-                if (response.status === 200) {
-                    console.log('업로드 성공')
-                } else {
-                    console.log('업로드 실패')
-                }
-            })
+
         axios.post("/api/users/votecontents", wishVariable)
             .then((response) => {
                 if (response.data.success) {
@@ -253,8 +270,8 @@ function LandingDetail(props) {
 
         let voteVari = {
             userFrom: userFrom,
-            title: MovieName,
-            movieFrom: MovieId,
+            title: MovieDetail.title,
+            movieFrom: MovieDetail._id,
             data: data
         }
         console.log('voteVari', voteVari)
@@ -377,20 +394,40 @@ function LandingDetail(props) {
                                             </div>
                                         </div>
                                         <div className='digit_2'>
-                                            <div className='digit_title'>웹 사이트 감정 차트</div>
+                                            <div className='digit_title'>
+                                                {!isArray ? <> 원본 데이터 + 웹 사이트  감정 차트
+                                                <div className='not_vote'>
+                                                투표가 아직 반영 되지 않았습니다. 
+                                                </div>
+                                                </> : <>원본 데이터 + 웹 사이트  감정 차트</>}</div>
                                             <div className='doughnut'>
-                                                {!isArray ? <> 투표가 아직 없습니다. </> : <Chart count={webEmoCount} style={{}} />}
-
+                                                {!isArray ? <></> : <Chart count={AddChart(emoCount, webEmoCount)} style={{}} />}
+                                            </div>
+                                            <div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
+                                {!isArray ? <></> :
+                                    <>
+                                        <div className='emoiton_msg'>
+                                            {`감정 수치 결과 : (원본 데이터 감정투표 결과 + 웹 사이트 감정투표 결과)`}
+                                        </div>
+                                        <div className='emotion_count'>
+                                            <div>행복 : <span style={{color : 'white'}}>{emoCount[0]} + {webEmoCount[0]}</span></div>
+                                            <div>공포 : <span style={{color : 'white'}}>{emoCount[1]} + {webEmoCount[1]}</span></div>
+                                            <div>놀람 : <span style={{color : 'white'}}>{emoCount[2]} + {webEmoCount[2]}</span></div>
+                                            <div>화남 : <span style={{color : 'white'}}>{emoCount[3]} + {webEmoCount[3]}</span></div>
+                                            <div>슬픔 : <span style={{color : 'white'}}>{emoCount[4]} + {webEmoCount[4]}</span></div>
+                                            <div>중립 : <span style={{color : 'white'}}>{emoCount[5]} + {webEmoCount[5]}</span></div>
+                                            <div>혐오 : <span style={{color : 'white'}}>{emoCount[6]} + {webEmoCount[6]}</span></div>
+                                        </div>
+                                    </>}
 
-
-
-
+                                {/* 투표권 */}
                                 {isVote === 1 ? <>
                                     <button className='btn_vote' onClick={() => { VoteOnOff() }}>{!voteModal ? '투표 하기' : '투표 접기'}</button>
+                                    {/* 투표 On Off */}
                                     {!voteModal ? <></> :
                                         <div className='vote_box'>
                                             <div className='vote_checkbox' >
@@ -408,7 +445,12 @@ function LandingDetail(props) {
                                             </div>
                                         </div>
                                     }
-                                </> : <><b>{UserName}</b>님께서는 <b>{userVote}</b> 감정에 투표를 하셨습니다.</>}
+                                </> : <>
+
+                                    <div className='user_votestate'>
+                                        <b>{UserName}</b>님께서는 <b>{userVote}</b> 감정에 투표를 하셨습니다.
+                                    </div>
+                                </>}
 
 
                             </>}

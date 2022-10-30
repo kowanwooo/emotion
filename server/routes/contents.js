@@ -207,9 +207,6 @@ router.post('/login/:id', (req, res) => {
             const emoCount = [
                 contents.happy, contents.fear, contents.surprised, contents.angry,
                 contents.sad, contents.neutral, contents.hate]
-            // const pelpleCount =
-            //     contents.happy + contents.fear + contents.surprised + contents.angry +
-            //     contents.sad + contents.neutral + contents.hate
             const summaryLen = contents.summary.length / 3;
             const summary = [contents.summary.substring(0, summaryLen), contents.summary.substr(summaryLen)];
             return res.json({ success: true, contents, emoCount, summary });
