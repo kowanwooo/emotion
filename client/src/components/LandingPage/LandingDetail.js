@@ -9,17 +9,19 @@ import BasicTabs from "./LandingTabMenu";
 import Chart from './Section/Chart';
 import { useForm } from "react-hook-form"
 import SubBanner from './Section/SubBanner';
+import BasicTabsSecond from './LandingTabMenuSecond';
 
 
 
-function AddChart(local, web){
-    let addList = [];
-    
-    for(let i = 0 ; i <local.length; i++){
-        addList.push(local[i] + web[i]);
-    }
-    return addList;
-}
+// function AddChart(local, web) {
+//     let addList = [];
+
+//     for (let i = 0; i < local.length; i++) {
+//         addList.push(local[i] + web[i]);
+//     }
+//     return addList;
+// }
+
 
 function Photo(props) {
     return (<>
@@ -66,9 +68,10 @@ function Photo(props) {
 
 function LandingDetail(props) {
     const UserName = localStorage.getItem("userName");
-    const userFrom = localStorage.getItem("userId")
+    const userFrom = localStorage.getItem("userId");
     const MovieId = props.match.params.movieId;
 
+    const [relatedGenre, setRelatedGenre] = useState([]);
     const [relatedContents, setRelatedContents] = useState([]);
     const [MovieDetail, setMovieDetail] = useState([1]);
     const [wish, setwish] = useState('☆');
@@ -145,6 +148,7 @@ function LandingDetail(props) {
 
     useEffect(()=>{
         FetchRelatedContents()
+        FetchRelatedGenge()
         FetchUserState()
     },[MovieDetail])
 
@@ -212,7 +216,19 @@ function LandingDetail(props) {
         .catch((err) => {
             console.log(err);
         });
+    }
 
+    const FetchRelatedGenge = () =>{
+        axios.post(`/api/users/contents/emotion/relatedgenre`,
+        { genre: MovieDetail.genre })
+        .then((response) => {
+            if (response.data.success) {
+                console.log(response.data.contents);
+                setRelatedGenre(response.data.contents);
+            } else {
+                alert("콘텐츠을 보여줄 수 없습니다.");
+            }
+        })
     }
 
     const FetchUserState = () =>{
@@ -288,6 +304,15 @@ function LandingDetail(props) {
             })
 
     }
+
+    const AddChart = (local, web) => {
+    let addList = [];
+
+    for (let i = 0; i < local.length; i++) {
+        addList.push(local[i] + web[i]);
+    }
+    return addList;
+}
 
 
 
@@ -391,15 +416,16 @@ function LandingDetail(props) {
 
                                             <div className='doughnut'>
                                                 <Chart count={emoCount} style={{}} />
+                                                {/* <Chart2 count={emoCount}/> */}
                                             </div>
                                         </div>
                                         <div className='digit_2'>
                                             <div className='digit_title'>
-                                                {!isArray ? <> 원본 데이터 + 웹 사이트  감정 차트
+                                                {!isArray ? <> 최종 투표 결과 차트
                                                 <div className='not_vote'>
                                                 투표가 아직 반영 되지 않았습니다. 
                                                 </div>
-                                                </> : <>원본 데이터 + 웹 사이트  감정 차트</>}</div>
+                                                </> : <>최종 투표 결과 차트</>}</div>
                                             <div className='doughnut'>
                                                 {!isArray ? <></> : <Chart count={AddChart(emoCount, webEmoCount)} style={{}} />}
                                             </div>
@@ -410,10 +436,11 @@ function LandingDetail(props) {
                                 </div>
                                 {!isArray ? <></> :
                                     <>
-                                        <div className='emoiton_msg'>
+                                        {/* <div className='emoiton_msg'>
                                             {`감정 수치 결과 : (원본 데이터 감정투표 결과 + 웹 사이트 감정투표 결과)`}
-                                        </div>
-                                        <div className='emotion_count'>
+                                        </div> */}
+                                        {/* <div className='emotion_count'>
+
                                             <div>행복 : <span style={{color : 'white'}}>{emoCount[0]} + {webEmoCount[0]}</span></div>
                                             <div>공포 : <span style={{color : 'white'}}>{emoCount[1]} + {webEmoCount[1]}</span></div>
                                             <div>놀람 : <span style={{color : 'white'}}>{emoCount[2]} + {webEmoCount[2]}</span></div>
@@ -421,7 +448,7 @@ function LandingDetail(props) {
                                             <div>슬픔 : <span style={{color : 'white'}}>{emoCount[4]} + {webEmoCount[4]}</span></div>
                                             <div>중립 : <span style={{color : 'white'}}>{emoCount[5]} + {webEmoCount[5]}</span></div>
                                             <div>혐오 : <span style={{color : 'white'}}>{emoCount[6]} + {webEmoCount[6]}</span></div>
-                                        </div>
+                                        </div> */}
                                     </>}
 
                                 {/* 투표권 */}
@@ -448,16 +475,28 @@ function LandingDetail(props) {
                                 </> : <>
 
                                     <div className='user_votestate'>
-                                        <b>{UserName}</b>님께서는 <b>{userVote}</b> 감정에 투표를 하셨습니다.
+                                        <b>{UserName}</b>님께서는 <span><b>{userVote}</b></span> 감정에 투표를 하셨습니다.
                                     </div>
                                 </>}
 
 
                             </>}
                         />
+                        <div className='related_title'>유사컨텐츠</div>
+                                            <BasicTabsSecond
+                            label1={`감정`}
+                            tab1={
+                                <SubBanner Contents={relatedContents}/>
+                            }
+                            label2={"장르"}
+                            tab2={
+                            <SubBanner Contents={relatedGenre}/>
+                        }
+                        />
                     </article>
+
                 </main>
-                <SubBanner label="유사 컨텐츠" Contents={relatedContents} />
+
                 <Footer />
             </body>
         </>

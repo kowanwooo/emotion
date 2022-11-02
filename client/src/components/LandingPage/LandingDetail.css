@@ -129,7 +129,7 @@
 }
 
 .digit_pdbottom {
-    padding-bottom: 300px;
+    padding-bottom: 420px;
 }
 .summary_pdbottom{
     padding-bottom: 200px;
@@ -144,6 +144,8 @@
     color: rgba(255,255,255,0.8);
     
 }
+
+
 
 .digit_1{
     padding-left: 200px;
@@ -201,9 +203,9 @@
     margin: 0 0 100px 300px;
 }
 .user_votestate{
-    margin: 0 0 100px 300px;
+    margin: 0 0 100px 200px;
 }
-.emotion_count div:first-child{
+/* .emotion_count div:first-child{
     color:rgb(255,99,132)
 }
 .emotion_count div:nth-child(2){
@@ -223,12 +225,16 @@
 }
 .emotion_count div:nth-child(7){
     color:rgba(153, 203, 154, 1)
-}
+} */
 
 .not_vote{
     margin-top: 100px;
 }
-
+.related_title{
+    color: white;
+    font-size: 22px;
+    padding: 20px 0 20px 0;
+}
 
 /* .doughnut{
     padding-left: 100px;

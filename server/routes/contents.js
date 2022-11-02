@@ -197,6 +197,17 @@ router.post('/contents/emotion/related',(req, res) =>{
     })
 })
 
+router.post('/contents/emotion/relatedgenre',(req, res) =>{
+    Contents.aggregate([
+        { $match: { genre: req.body.genre } },
+        { $sample: { size: 5 } }
+    ])
+    .exec((err, contents) =>{
+        if (err) return res.status(400).send(err);
+        return res.status(200).json({success: true, contents});
+    })
+})
+
 
 //=======================================================================
 

@@ -44,11 +44,11 @@ function Chart(props) {
         ],
     };
     const options = {
-        legend: { // 범례삭제
-            display: false
-        },
+        // legend: { // 범례삭제
+        //     display: false
+        // },
         // responsive 속성을 false로 지정한다.
-        responsive: false,
+        responsive: true,
         scales: {
             // yAxes: [
             //     {
