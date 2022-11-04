@@ -10,17 +10,7 @@ import Chart from './Section/Chart';
 import { useForm } from "react-hook-form"
 import SubBanner from './Section/SubBanner';
 import BasicTabsSecond from './LandingTabMenuSecond';
-
-
-
-// function AddChart(local, web) {
-//     let addList = [];
-
-//     for (let i = 0; i < local.length; i++) {
-//         addList.push(local[i] + web[i]);
-//     }
-//     return addList;
-// }
+import LoadingPage from '../Common/LoadingPage/LoadingPage';
 
 
 function Photo(props) {
@@ -90,6 +80,8 @@ function LandingDetail(props) {
     const [userVote, setUserVote] = useState();
     actor.pop()
 
+    const [loading, setLoading] = useState(true);
+
 
     const variable = {
         userFrom: localStorage.getItem("userId"),
@@ -144,6 +136,10 @@ function LandingDetail(props) {
 
     useEffect(()=>{
         FetchLandingDetail()
+        setLoading(true);
+        setTimeout(() => {
+            setLoading(false);
+        }, 1000);
     },[MovieId])
 
     useEffect(()=>{
@@ -315,9 +311,7 @@ function LandingDetail(props) {
 }
 
 
-
-
-    return (
+return loading ? (<LoadingPage />) : (
         <>        
             <body className="landingdetail_body">
                 <Header />
@@ -475,7 +469,7 @@ function LandingDetail(props) {
                                 </> : <>
 
                                     <div className='user_votestate'>
-                                        <b>{UserName}</b>님께서는 <span><b>{userVote}</b></span> 감정에 투표를 하셨습니다.
+                                        <b>{UserName}</b>님께서는 <span className={`emotion_${userVote}`}><b>{userVote}</b></span> 감정에 투표를 하셨습니다.
                                     </div>
                                 </>}
 
