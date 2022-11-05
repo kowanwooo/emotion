@@ -71,7 +71,7 @@ function LandingDetail(props) {
     const directorUrl = actorUrl.shift()
     const [emoCount, setEmocount] = useState([]);
     const [summary, setSummary] = useState([]);
-    const [summaryModal, SetsummaryModal] = useState(false);
+    const [summaryModal, setSummaryModal] = useState(false);
     const [voteModal, SetVoteModal] = useState(false);
     const [webEmoCount, SetWebEmoCount] = useState()
     const { register, handleSubmit } = useForm();
@@ -136,6 +136,7 @@ function LandingDetail(props) {
 
     useEffect(()=>{
         FetchLandingDetail()
+        setSummaryModal(false)
         setLoading(true);
         setTimeout(() => {
             setLoading(false);
@@ -262,7 +263,7 @@ function LandingDetail(props) {
 
 
     const MoreSummary = (props) => {
-        SetsummaryModal(summaryModal => !summaryModal)
+        setSummaryModal(summaryModal => !summaryModal)
     }
     const VoteOnOff = () => {
         SetVoteModal(voteModal => !voteModal)
@@ -354,6 +355,12 @@ return loading ? (<LoadingPage />) : (
                                             <li className="movie_dt">
                                                 <strong className="li_strong">국가</strong>{" "}
                                                 <a className="moviedetail_a">{MovieDetail.country}</a>
+                                            </li>
+                                        </ul>
+                                        <ul className="list_cont3">
+                                            <li className="movie_dt">
+                                                <strong className="li_strong">감정</strong>{" "}
+                                                <a className="moviedetail_a">{MovieDetail.emotion}</a>
                                             </li>
                                         </ul>
                                     </div>
@@ -478,11 +485,11 @@ return loading ? (<LoadingPage />) : (
                         />
                         <div className='related_title'>유사컨텐츠</div>
                                             <BasicTabsSecond
-                            label1={`감정`}
+                            label1={`감정: ${MovieDetail.emotion}`}
                             tab1={
                                 <SubBanner Contents={relatedContents}/>
                             }
-                            label2={"장르"}
+                            label2={`장르: ${MovieDetail.genre}`}
                             tab2={
                             <SubBanner Contents={relatedGenre}/>
                         }

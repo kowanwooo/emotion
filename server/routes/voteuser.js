@@ -23,11 +23,10 @@ router.post('/createvote', (req, res) => {
     }
 
     const voteresult = req.body.data.emotion[0];
-    
     variable[voteresult] = 1
 
     const vote = new VoteUser(variable)
-    // console.log('vote:', vote)
+
     VoteUser.findOne({ userFrom: req.body.userFrom, movieFrom: req.body.movieFrom})
         .exec((err, contents) => {
             if (!contents) {
@@ -58,19 +57,21 @@ router.post('/votecontents', (req, res) => {
 
         let isArray = true;
 
-        if (contents.length === 0) {
-            const Array = [0, 0, 0, 0, 0, 0, 0]
-            isArray = false;
-            if (err) return res.status(400).send(err);
-            return res.status(200).json({ success: true, Array, isArray })
-        }
-        else {
+        if (contents.length !== 0) {
             const Array = [contents[0].Happy, contents[0].Fear, contents[0].Surprised,
             contents[0].Angry, contents[0].Sad, contents[0].Neutral, contents[0].Hate]
 
             if (err) return res.status(400).send(err);
-            return res.status(200).json({ success: true, Array, isArray})
+            return res.status(200).json({ success: true, Array, isArray })
         }
+        const Array = [0, 0, 0, 0, 0, 0, 0]
+        isArray = false;
+        if (err) return res.status(400).send(err);
+        return res.status(200).json({ success: true, Array, isArray })
+
+
+
+
     })
 
 })
