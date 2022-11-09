@@ -9,7 +9,7 @@ import SubBanner from './Section/SubBanner';
 import TopButton from './Section/TopButton';
 import Footer from '../Common/Footer/Footer';
 import axios from 'axios';
-import BasicTabs from './LandingTabMenu';
+import postArray from '../Variable/variable';
 
 
 
@@ -118,7 +118,7 @@ function LandingPage(props) {
         if (response.data.success) {
           setEmotionState(localStorage.getItem("emotion").split('"')[1]);
           setEmotionContents(response.data.contents);
-          setEmotionMsg(`${EmotionState} 표정의 콘텐츠입니다.`);
+          setEmotionMsg(response.data.State);
         } else {
           console.log("콘텐츠 오류");
         }
@@ -188,15 +188,15 @@ function LandingPage(props) {
     <>
       <Header />
       <MainBanner />
-      <SubBanner label={EmotionMsg} Contents={EmotionContents} more={`/more/${EmotionState}`} moreText={"더보기"} />
+      <SubBanner label={`${EmotionMsg}의 감정 이신가요?`} Contents={EmotionContents} more={`/more/${EmotionState}`} moreText={"더보기"} /> 
       <SubBanner label="최신순" Contents={Contents} more={`/more/latestorder`} moreText={"더보기"} />
       <SubBanner label="관객순" Contents={ContentsP} more={`/more/manyspectators`} moreText={"더보기"} />
-      <SubBanner label="한국영화" Contents={ContentsKorea} more={`/more/korea`} />
-      <SubBanner label="외국영화" Contents={ContentsAmerica} more={`/more/morefcountry`} moreText={"더보기"} />
-      <SubBanner label="장르 : 액션" Contents={ContentsAction} more={`/more/moreaction`} moreText={"더보기"} />
+      <SubBanner label="한국영화" Contents={ContentsKorea} more={`/more/korea`} moreText={"더보기"} />
+      <SubBanner label="외국영화" Contents={ContentsAmerica} more={`/more/fcountry`} moreText={"더보기"} />
+      <SubBanner label="장르 : 액션" Contents={ContentsAction} more={`/more/action`} moreText={"더보기"} />
       <SubBanner label="감정 : 행복" Contents={ContentsHappy} more={`/more/happy`} moreText={"더보기"} />
       <SubBanner label="감정 : 슬픔" Contents={ContentsSadness} more={`/more/sad`} moreText={"더보기"} />
-      <SubBanner label="감정 : 화남" Contents={ContentsAnger} more={`/more/angry`} moreText={"더보기"} />
+      <SubBanner label="감정 : 분노" Contents={ContentsAnger} more={`/more/angry`} moreText={"더보기"} />
       <TopButton BtnStatus={BtnStatus} handleTop={handleTop} />
       <Footer />
     </>

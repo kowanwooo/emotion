@@ -6,7 +6,7 @@ import Header from '../../Common/Header/Header';
 import Footer from '../../Common/Footer/Footer';
 import Pagination from "@material-ui/lab/Pagination";
 import styled from "styled-components";
-
+import postArray from '../../Variable/variable';
 
 const PaginationBox = styled.div`
     text-align: center;
@@ -33,21 +33,7 @@ function MoreContents(props) {
      
     // const emotionId = localStorage.getItem("emotion").split('"')[1]
     // const EmotionId = props.match.params.emotionId;
-    const postArray = {
-        fear: '공포',
-        surprised: '놀람',
-        angry: '분노',
-        sad: '슬픔',
-        neutral: '중립',
-        happy: '행복',
-        hate: '혐오',
-        latestorder: 'latestorder',
-        manyspectators: 'manyspectators',
-        mylooksmore: 'mylooksmore',
-        morekorea: 'morekorea',
-        morefcountry :'morefcountry',
-        moreaction : 'moreaction',
-    }
+
 
 
     const userFrom = localStorage.getItem("userId");
@@ -58,12 +44,12 @@ function MoreContents(props) {
     const [currentPage, setcurrentPage] = useState(1);
     const [boardTap, setboardTap] = useState(0);
     const [post, setPost] = useState('');
+    const [moreTitle, setMoreTitle] = useState();
 
     const FetchMoreContents = () => {
         for (let i = 0; i < Object.keys(postArray).length; i++) {
-            if (morePath === Object.keys(postArray)[i]) {
-                setPost(Object?.values(postArray)[i])
-                // console.log(`Object.values(postArray)[i] : ${Object.values(postArray)[i]}`)
+            if (morePath === Object.keys(postArray)[i]) { //path 값이랑 key랑 같으면
+                setPost(Object?.values(postArray)[i]) // 그 key의 value를 재료로
                 console.log(post)
                 axios.post(`/api/users${props.match.path}`, 
                 { page: currentPage, emotionId: post, userFrom : userFrom })
@@ -73,6 +59,7 @@ function MoreContents(props) {
                             setContents(response.data.content);
                             settotalPage(Math.ceil(response.data.count / 20));
                             setboardTap(0);
+                            setMoreTitle(response.data.State);
                             console.log(response.data.State);
                         } else {
                             alert("콘텐츠을 보여줄 수 없습니다.");
@@ -94,10 +81,7 @@ function MoreContents(props) {
     };
 
     useEffect(() => {
-        // FetchMoreContents()
-        // FetchMoreContents();
-        console.log('props : ',props.match.path)
-        console.log(`path :/api/users${props.match.path}`)
+        // window.scroll({ top: 0, left: 0, behavior: 'smooth' });
     }, [currentPage, boardTap, ])
     useEffect(() => {
         FetchMoreContents()
@@ -113,15 +97,15 @@ function MoreContents(props) {
             <main className='list-view'>
                 <Header />
                 <div id='contents'>
-                    <div className='more_title'>
-                        <h1 className='title-name'>{post}</h1>
+                    <div className='more_title' style={{color : 'white'}}>
+                        <h1 className='title-name'>{moreTitle}</h1>
                     </div>
                     <div className='list-view-detail'>
                         {Contents &&
                             Contents.map((Content, index) => {
                                 return (
                                     <>
-                                        <Badge to={post === 'mylooksmore' ? Content.movieId : Content._id} src={Content.posterUrl} />
+                                        <Badge to={post === 'mylooks' || 'mywish' ? Content.movieId : Content._id} src={Content.posterUrl} />
                                     </>
                                 )
 
