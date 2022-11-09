@@ -11,6 +11,7 @@ import { useForm } from "react-hook-form"
 import SubBanner from './Section/SubBanner';
 import BasicTabsSecond from './LandingTabMenuSecond';
 import LoadingPage from '../Common/LoadingPage/LoadingPage';
+import postArray from '../Variable/variable';
 
 
 function Photo(props) {
@@ -476,7 +477,7 @@ return loading ? (<LoadingPage />) : (
                                 </> : <>
 
                                     <div className='user_votestate'>
-                                        <b>{UserName}</b>님께서는 <span className={`emotion_${userVote}`}><b>{userVote}</b></span> 감정에 투표를 하셨습니다.
+                                        <b>{UserName}</b>님께서는 <span className={`emotion_${userVote}`}><b>{postArray[userVote]}</b></span> 감정에 투표를 하셨습니다.
                                     </div>
                                 </>}
 
