@@ -65,7 +65,7 @@ function LandingDetail(props) {
     const [relatedGenre, setRelatedGenre] = useState([]);
     const [relatedContents, setRelatedContents] = useState([]);
     const [MovieDetail, setMovieDetail] = useState([1]);
-    const [wish, setwish] = useState('☆');
+    const [wish, setwish] = useState(false);
     const actorUrl = (MovieDetail.actorUrl || '').split(' ');
     const actor = (MovieDetail.actor || '').split('/');
     const director = actor.shift()
@@ -104,7 +104,7 @@ function LandingDetail(props) {
     }
 
     const DelWish = () => {
-        axios.post("/api/users/movie/DelWish", { variable: variable })
+        axios.put("/api/users/movie/DelWish", { variable: variable })
             .then((response) => {
                 if (response.data.success) {
                     console.log("찜삭제");
@@ -165,7 +165,7 @@ function LandingDetail(props) {
                         movieId: response.data.contents._id,
                         posterUrl: response.data.contents.posterUrl,
                         title: response.data.contents.title,
-                        wish: '☆'
+                        wish: false
                     }
                     axios.post("/api/users/movie/create", wishVariable)
                         .then((response) => {
@@ -326,8 +326,8 @@ return loading ? (<LoadingPage />) : (
                                         src={MovieDetail.posterUrl}
                                         className="movie_poster"
                                     ></img>
-                                    <button onClick={() => { wish === "☆" ? UpdateWish() : DelWish() }}>
-                                        {wish === "☆" ? <FavoriteIcon style={{color : "white"}} /> : <FavoriteIcon style={{color : "FF6666"}} />}
+                                    <button onClick={() => { wish === false ? UpdateWish() : DelWish() }}>
+                                        {wish === false ? <FavoriteIcon style={{color : "white"}} /> : <FavoriteIcon style={{color : "FF6666"}} />}
                                     </button>
                                 </div>
                                 <div className="detail_tit">

@@ -17,7 +17,8 @@ const LookContentsSchema = mongoose.Schema({
         type: String
     },
     wish: {
-        type: String
+        type: Boolean,
+        default : false
     }
 
 }, { timestamps: true });

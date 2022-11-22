@@ -207,8 +207,20 @@ router.post('/contents/emotion/related',(req, res) =>{
 })
 
 router.post('/contents/emotion/relatedgenre',(req, res) =>{
+    
+    let genre = req.body.genre
+    for(let i = 0; i < genre.length; i++){
+        if(genre[i] === '/'){
+            genre = genre.substr(0,i);
+            break;
+        }
+    }
+
+
+
+    
     Contents.aggregate([
-        { $match: { genre: req.body.genre } },
+        { $match: { genre: {'$regex': genre }} },
         { $sample: { size: 5 } }
     ])
     .exec((err, contents) =>{
@@ -339,10 +351,10 @@ router.post('/more/:emotionId', (req, res) => {
     } 
 
     else if(variable === 'mywish' ){
-        LookContents.countDocuments({userFrom : req.body.userFrom, wish : "★"}, (err, count) => {
+        LookContents.countDocuments({userFrom : req.body.userFrom, wish : true}, (err, count) => {
             if (err) { return res.status(400).send(err);} 
             else {
-                LookContents.find({userFrom : req.body.userFrom, wish : "★"})
+                LookContents.find({userFrom : req.body.userFrom, wish : true})
                     .sort({ createdAt: -1 })
                     .skip(((Page - 1) * 20))
                     .limit(20)

@@ -3,7 +3,6 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import './MoreAllContents.css'
 import Header from '../../Common/Header/Header';
-import Footer from '../../Common/Footer/Footer';
 import Pagination from "@material-ui/lab/Pagination";
 import styled from "styled-components";
 import postArray from '../../Variable/variable';
@@ -29,12 +28,7 @@ function Badge(props) {
 }
 
 
-function MoreContents(props) { 
-     
-    // const emotionId = localStorage.getItem("emotion").split('"')[1]
-    // const EmotionId = props.match.params.emotionId;
-
-
+function MoreContents(props) {    
 
     const userFrom = localStorage.getItem("userId");
     const morePath = props.match.params.emotionId;
@@ -105,7 +99,7 @@ function MoreContents(props) {
                             Contents.map((Content, index) => {
                                 return (
                                     <>
-                                        <Badge to={post === 'mylooks' || 'mywish' ? Content.movieId : Content._id} src={Content.posterUrl} />
+                                        <Badge to={post === ('myvisit' || 'mywish') ? Content.movieId : Content._id} src={Content.posterUrl} />
                                     </>
                                 )
 
