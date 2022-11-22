@@ -10,6 +10,7 @@ import TopButton from './Section/TopButton';
 import Footer from '../Common/Footer/Footer';
 import axios from 'axios';
 import postArray from '../Variable/variable';
+import LoadingPage from '../Common/LoadingPage/LoadingPage';
 
 
 
@@ -29,6 +30,7 @@ function LandingPage(props) {
   const [EmotionState, setEmotionState] = useState(localStorage.getItem("emotion").split('"')[1]);
   const [EmotionContents, setEmotionContents] = useState([]);
   const [EmotionMsg, setEmotionMsg] = useState(null);
+  const [loading, setLoading] = useState(true);
 
 
 
@@ -48,6 +50,13 @@ function LandingPage(props) {
     setScrollY(0);
     setBtnStatus(false);
   }
+
+  useEffect(()=>{
+      setTimeout(() => {
+        setLoading(false);
+    }, 1000);
+  },[])
+
 
   useEffect(() => {
     const watch = () => {
@@ -184,7 +193,7 @@ function LandingPage(props) {
 
 
 
-  return (
+  return loading ? (<LoadingPage/>) : (
     <>
       <Header />
       <MainBanner />

@@ -93,12 +93,13 @@ function LandingDetail(props) {
         axios.post("/api/users/movie/UpdateWish", { variable: variable })
             .then((response) => {
                 if (response.data.success) {
-                    console.log("찜");
+                    setwish(true)
+                    alert("찜이 완료되었습니다.")
                 } else {
                     console.log("실패")
                 }
             }).then(()=>{
-                Fetchwish()
+
             })
 
     }
@@ -107,12 +108,13 @@ function LandingDetail(props) {
         axios.put("/api/users/movie/DelWish", { variable: variable })
             .then((response) => {
                 if (response.data.success) {
-                    console.log("찜삭제");
+                    setwish(false)
+                    alert("찜이 삭제되었습니다.")
                 } else {
                     console.log("실패")
                 }
             }).then(()=>{
-                Fetchwish()
+
             })
             
 
@@ -132,6 +134,10 @@ function LandingDetail(props) {
                 console.log(err);
             });
     }
+
+    useEffect(()=>{
+        Fetchwish();
+    },[wish])
 
 
 
@@ -304,13 +310,13 @@ function LandingDetail(props) {
     }
 
     const AddChart = (local, web) => {
-    let addList = [];
+        let addList = [];
 
-    for (let i = 0; i < local.length; i++) {
-        addList.push(local[i] + web[i]);
+        for (let i = 0; i < local.length; i++) {
+            addList.push(local[i] + web[i]);
+        }
+        return addList;
     }
-    return addList;
-}
 
 
 return loading ? (<LoadingPage />) : (
@@ -398,11 +404,12 @@ return loading ? (<LoadingPage />) : (
                             tab1={
                                 <><div className='tab_pdtop'></div>
                                     <div className='summary_pdbottom'>
-                                        {!summaryModal ? `${summary[0]}...` : `${summary}`}
-                                        <button className='btn_more' onClick={() => { MoreSummary() }}>
-                                            {!summaryModal ? '더보기' : '더보기 접기'}
-                                        </button>
-
+                                        <div className='summary_index'>
+                                            {!summaryModal ? `${summary[0]}...` : `${summary}`}
+                                            <button className='btn_more' onClick={() => { MoreSummary() }}>
+                                                {!summaryModal ? '더보기' : '더보기 접기'}
+                                            </button>
+                                        </div>
                                     </div>
                                 </>
                             }
